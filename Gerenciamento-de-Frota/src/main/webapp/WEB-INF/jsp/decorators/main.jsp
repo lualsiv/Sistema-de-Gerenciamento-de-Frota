@@ -5,7 +5,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title><decorator:title default="Veiculos"/></title>
+	<title><decorator:title default="Gerencioamento de Frota"/></title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/stylesheets/application.css"/>
     <decorator:head/>
   </head>
