@@ -19,13 +19,7 @@ public class VeiculoDAO {
 	}
 	
 	public void adiciona(Veiculo veiculo) {
-		try {
-			em.getTransaction().begin();
 			dao.adiciona(veiculo);
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			em.getTransaction().rollback();
-		}
 	}
 	
 	public List<Veiculo> lista() {

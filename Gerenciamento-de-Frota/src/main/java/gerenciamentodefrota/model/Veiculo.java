@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @SequenceGenerator(sequenceName = "SEQ_VEICULO", name = "SEQ_VEICULO")
@@ -16,12 +19,18 @@ public class Veiculo {
 	private Long id;
 	
 	@Column(unique = true)
+	@NotNull
+	@NotEmpty
 	private String placa;
 	
 	@Column
+	@NotNull
+	@NotEmpty
 	private Integer anoFabricacao;
 	
 	@Column
+	@NotNull
+	@NotEmpty
 	private Integer anoModelo;
 
 	public Long getId() {
