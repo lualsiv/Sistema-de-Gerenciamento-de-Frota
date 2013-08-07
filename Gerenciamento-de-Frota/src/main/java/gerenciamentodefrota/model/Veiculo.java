@@ -19,20 +19,17 @@ public class Veiculo {
 	private Long id;
 	
 	@Column(unique = true)
-	@NotNull
 	@NotEmpty
 	private String placa;
 	
 	@Column
 	@NotNull
-	@NotEmpty
 	private Integer anoFabricacao;
 	
 	@Column
 	@NotNull
-	@NotEmpty
 	private Integer anoModelo;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -46,7 +43,7 @@ public class Veiculo {
 	}
 
 	public void setPlaca(String placa) {
-		this.placa = placa;
+		this.placa = placa.toUpperCase();
 	}
 
 	public Integer getAnoFabricacao() {

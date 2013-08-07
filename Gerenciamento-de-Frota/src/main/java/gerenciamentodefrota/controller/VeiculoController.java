@@ -1,0 +1,75 @@
+package gerenciamentodefrota.controller;
+
+import java.util.List;
+
+import gerenciamentodefrota.dao.VeiculoDAO;
+import gerenciamentodefrota.interceptor.Transacional;
+import gerenciamentodefrota.model.Veiculo;
+import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Resource;
+import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.validator.Validations;
+
+@Resource
+public class VeiculoController {
+
+	private Result result;
+	private VeiculoDAO dao;
+	private Validator validator;
+
+	public VeiculoController(Result result, VeiculoDAO dao, Validator validator) {
+		this.result = result;
+		this.dao = dao;
+		this.validator = validator;
+	}
+
+	@Get("/veiculo/novo")
+	public void formulario() {
+
+	}
+
+	@Transacional
+	@Post("/veiculos")
+	public void salva(final Veiculo veiculo) {
+		validator.validate(veiculo);
+		validator.checking(new Validations() {
+			{
+				that(dao.buscaPorPlaca(veiculo.getPlaca()).size() == 0,
+						"veiculo.placa",
+						"Ja existe um veiculo cadastrado com este placa");
+			}
+		});
+
+		validator.onErrorRedirectTo(this).formulario();
+
+		if (veiculo == null) {
+			dao.adiciona(veiculo);
+		} else {
+			dao.alterar(veiculo);
+		}
+
+		result.redirectTo(this).lista();
+	}
+
+	@Get
+	@Path(value = "/veiculo/{id}/editar", priority = Path.LOWEST)
+	public void edita(Long id) {
+		Veiculo veiculo = dao.busca(id);
+
+		if (veiculo == null) {
+			result.notFound();
+		} else {
+			result.include("veiculo", veiculo);
+			result.of(this).formulario();
+		}
+	}
+
+	@Get("/veiculos")
+	public List<Veiculo> lista() {
+		return dao.lista();
+	}
+
+}

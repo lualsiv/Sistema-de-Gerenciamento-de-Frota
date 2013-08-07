@@ -22,6 +22,18 @@ public class VeiculoDAO {
 			dao.adiciona(veiculo);
 	}
 	
+	public void alterar(Veiculo veiculo) {
+		dao.alterar(veiculo);
+	}
+	
+	public Veiculo busca(Long id){
+		return dao.busca(id);
+	}
+	
+	public List<Veiculo> buscaPorPlaca(String placa){
+		return dao.listAllByFieldUsingLike("placa", placa);
+	}
+	
 	public List<Veiculo> lista() {
 		return dao.lista();
 	}

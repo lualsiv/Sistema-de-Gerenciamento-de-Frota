@@ -15,7 +15,7 @@ public class DAO<T> {
 		this.classe = classe;
 	}
 
-	public T busca(Integer id) {
+	public T busca(Long id) {
 		return em.getReference(classe, id);
 	}
 
