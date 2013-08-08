@@ -27,12 +27,15 @@ public class VeiculoDAO {
 	public Veiculo busca(Long id) {
 		return dao.busca(id);
 	}
-
+	
 	public Veiculo buscaPorPlaca(String placa) {
-		List<Veiculo> veiculos = dao.listAllByFieldUsingLike("placa", placa);
+		List<Veiculo> veiculos = dao.listAllByFieldUsingLike("placa", placa.toUpperCase());
 
 		if(veiculos != null)
-			return veiculos.get(0);
+			if(veiculos.size() > 0)
+				return veiculos.get(0);
+			else
+				return null;
 		else
 			return null;
 	}

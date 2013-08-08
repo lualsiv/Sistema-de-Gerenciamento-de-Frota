@@ -1,4 +1,4 @@
-<h3>Lista de Livros</h3>
+<h3>Lista de Veiculos</h3>
 
 <ul>
 	<c:forEach items="${veiculoList}" var="veiculo">

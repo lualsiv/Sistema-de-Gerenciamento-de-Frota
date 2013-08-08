@@ -24,7 +24,7 @@ public class DAO<T> {
 		return em.createQuery("select e from " + classe.getName() + " e")
 				.getResultList();
 	}
-
+	
 	public void remove(T t) {
 		this.em.remove(t);
 	}

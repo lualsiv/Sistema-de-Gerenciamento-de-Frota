@@ -27,6 +27,14 @@ public class Veiculo {
 	private String marca;
 	
 	@Column
+	@NotEmpty
+	private String modelo;
+	
+	@Column
+	@NotEmpty
+	private String chassi;
+	
+	@Column
 	@NotNull
 	private Integer anoFabricacao;
 	
@@ -72,6 +80,22 @@ public class Veiculo {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public String getChassi() {
+		return chassi;
+	}
+
+	public void setChassi(String chassi) {
+		this.chassi = chassi;
 	}
 	
 }

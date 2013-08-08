@@ -1,5 +1,6 @@
 package gerenciamentodefrota.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gerenciamentodefrota.dao.VeiculoDAO;
@@ -33,7 +34,7 @@ public class VeiculoController {
 
 	@SuppressWarnings("unused")
 	@Transacional
-	@Post("/veiculos")
+	@Post("/veiculo/salvar")
 	public void salva(final Veiculo veiculo) {
 		validator.validate(veiculo);
 		
@@ -56,6 +57,7 @@ public class VeiculoController {
 		
 		if (veiculo == null) {
 			dao.adiciona(veiculo);
+			System.out.println("Salva");
 		} else {
 			dao.alterar(veiculo);
 		}
@@ -78,7 +80,11 @@ public class VeiculoController {
 
 	@Get("/veiculos")
 	public List<Veiculo> lista() {
-		return dao.lista();
+		try {
+			return dao.lista();			
+		} catch (Exception e) {
+			return new ArrayList<Veiculo>();
+		}
 	}
 
 }

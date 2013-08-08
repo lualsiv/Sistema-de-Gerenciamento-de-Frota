@@ -14,6 +14,12 @@
 		<li>Marca: <br/>
 		<input type="text" name="veiculo.marca" value="${veiculo.marca}"/></li>
 		
+		<li>Modelo: <br/>
+		<input type="text" name="veiculo.modelo" value="${veiculo.modelo}"/></li>
+		
+		<li>Chassi: <br/>
+		<input type="text" name="veiculo.chassi" value="${veiculo.chassi}"/></li>
+		
 		<li>Placa: <br/>
 		<input type="text" name="veiculo.placa" value="${veiculo.placa}"/></li>
 	
