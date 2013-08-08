@@ -11,6 +11,9 @@
 	
 		<input type="hidden" name="veiculo.id" value="${veiculo.id}"/>
 		
+		<li>Marca: <br/>
+		<input type="text" name="veiculo.marca" value="${veiculo.marca}"/></li>
+		
 		<li>Placa: <br/>
 		<input type="text" name="veiculo.placa" value="${veiculo.placa}"/></li>
 	

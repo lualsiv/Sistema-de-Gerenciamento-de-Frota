@@ -31,26 +31,35 @@ public class VeiculoController {
 
 	}
 
+	@SuppressWarnings("unused")
 	@Transacional
 	@Post("/veiculos")
 	public void salva(final Veiculo veiculo) {
 		validator.validate(veiculo);
-		validator.checking(new Validations() {
-			{
-				that(dao.buscaPorPlaca(veiculo.getPlaca()).size() == 0,
-						"veiculo.placa",
-						"Ja existe um veiculo cadastrado com este placa");
+		
+		Veiculo veiculoValida = dao.buscaPorPlaca(veiculo.getPlaca());
+
+		if (veiculoValida != null) {
+			if (!veiculoValida.getId().equals(veiculo.getId())) {
+				validator.checking(new Validations() {
+					{
+						that(dao.buscaPorPlaca(veiculo.getPlaca()) == null,
+								"veiculo.placa",
+								"Já existe um veiculo cadastrado com esta placa");
+					}
+				});
+
 			}
-		});
-
+		}
+		
 		validator.onErrorRedirectTo(this).formulario();
-
+		
 		if (veiculo == null) {
 			dao.adiciona(veiculo);
 		} else {
 			dao.alterar(veiculo);
 		}
-
+		
 		result.redirectTo(this).lista();
 	}
 

@@ -13,7 +13,7 @@
 
 	<header>
 		<nav>
-			<a href="veiculo/novo">Novo veiculo</a>
+			<a href="/veiculo/novo">Novo veiculo</a>
 			<a href="/veiculos">Lista de veiculos</a>
 		</nav>
 	</header>

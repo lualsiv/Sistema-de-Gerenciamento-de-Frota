@@ -23,6 +23,10 @@ public class Veiculo {
 	private String placa;
 	
 	@Column
+	@NotEmpty
+	private String marca;
+	
+	@Column
 	@NotNull
 	private Integer anoFabricacao;
 	
@@ -60,6 +64,14 @@ public class Veiculo {
 
 	public void setAnoModelo(Integer anoModelo) {
 		this.anoModelo = anoModelo;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
 	}
 	
 }
