@@ -3,8 +3,8 @@ package gerenciamentodefrota.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.VeiculoDAO;
-import gerenciamentodefrota.interceptor.Transacional;
 import gerenciamentodefrota.model.Veiculo;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;

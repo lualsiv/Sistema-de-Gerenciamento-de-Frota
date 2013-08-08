@@ -1,5 +1,7 @@
 package gerenciamentodefrota.interceptor;
 
+import gerenciamentodefrota.annotation.Transacional;
+
 import javax.persistence.EntityManager;
 
 import br.com.caelum.vraptor.InterceptionException;

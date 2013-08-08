@@ -18,7 +18,7 @@ public class Veiculo {
 	@GeneratedValue(generator = "SEQ_VEICULO", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
-	@Column(unique = true)
+	@Column(unique = true, length = 8)
 	@NotEmpty
 	private String placa;
 	
@@ -37,7 +37,7 @@ public class Veiculo {
 	@Column
 	@NotNull
 	private Integer anoFabricacao;
-	
+
 	@Column
 	@NotNull
 	private Integer anoModelo;
