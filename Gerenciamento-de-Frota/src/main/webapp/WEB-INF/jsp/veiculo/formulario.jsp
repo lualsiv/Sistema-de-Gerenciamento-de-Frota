@@ -11,7 +11,7 @@
 		<h3 class="box-title">Formulário de cadastro de veiculos</h3>
 	</div>
 	<div class="box-body">
-		<form action="${linkTo[VeiculoController].salva }" method="post">
+		<form action="${linkTo[VeiculoController].salva}" method="post">
 				<input type="hidden" name="veiculo.id" value="${veiculo.id}"/>
 				
 				<li>Marca: <br/>

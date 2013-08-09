@@ -7,8 +7,8 @@ import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.VeiculoDAO;
 import gerenciamentodefrota.model.Veiculo;
 import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
@@ -32,12 +32,22 @@ public class VeiculoController {
 
 	}
 
-	@SuppressWarnings("unused")
+	@Put("/veiculo/{id}")
+	public void formulario(Long id) {
+		Veiculo veiculo = dao.busca(id);
+
+		if (veiculo != null) {
+			result.include("veiculo", veiculo);
+		} else {
+			result.notFound();
+		}
+	}
+
 	@Transacional
 	@Post("/veiculo/salvar")
 	public void salva(final Veiculo veiculo) {
 		validator.validate(veiculo);
-		
+
 		Veiculo veiculoValida = dao.buscaPorPlaca(veiculo.getPlaca());
 
 		if (veiculoValida != null) {
@@ -52,36 +62,22 @@ public class VeiculoController {
 
 			}
 		}
-		
+
 		validator.onErrorRedirectTo(this).formulario();
 		
-		if (veiculo == null) {
-			dao.adiciona(veiculo);
-			System.out.println("Salva");
-		} else {
+		if (veiculo.getId() > 0) {
 			dao.alterar(veiculo);
+		} else {
+			dao.adiciona(veiculo);
 		}
-		
+
 		result.redirectTo(this).lista();
 	}
 
-	@Get
-	@Path(value = "/veiculo/{id}/editar", priority = Path.LOWEST)
-	public void edita(Long id) {
-		Veiculo veiculo = dao.busca(id);
-
-		if (veiculo == null) {
-			result.notFound();
-		} else {
-			result.include("veiculo", veiculo);
-			result.of(this).formulario();
-		}
-	}
-
-	@Get("/veiculos")
+	@Get("/veiculo")
 	public List<Veiculo> lista() {
 		try {
-			return dao.lista();			
+			return dao.lista();
 		} catch (Exception e) {
 			return new ArrayList<Veiculo>();
 		}

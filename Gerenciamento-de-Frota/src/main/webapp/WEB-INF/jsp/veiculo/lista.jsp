@@ -9,7 +9,14 @@
 			<c:forEach items="${veiculoList}" var="veiculo">
 				<li>
 					${veiculo.placa}
-					<a href="veiculo/${veiculo.id}/editar">editar</a>
+					
+					<!--  <a href="veiculo/${veiculo.id}/editar">editar</a>  -->
+					
+					<form action="<c:url value='/veiculo/${veiculo.id}'/>" method="post">
+						<input type="hidden" name="veiculo.id" value="${veiculo.id}" />
+						<input type="hidden" name="_method" value="put" />
+						<input type="submit" value="editar" />
+					</form>
 				</li>
 			</c:forEach>
 		</ul>
