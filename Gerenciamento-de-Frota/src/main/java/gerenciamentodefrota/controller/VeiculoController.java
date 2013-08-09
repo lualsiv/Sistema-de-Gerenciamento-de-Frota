@@ -29,12 +29,12 @@ public class VeiculoController {
 
 	@Get("/veiculo/novo")
 	public void formulario() {
-
+		
 	}
 
-	@Put("/veiculo/{id}")
-	public void formulario(Long id) {
-		Veiculo veiculo = dao.busca(id);
+	@Put("/veiculo/{veiculo.id}")
+	public void formulario(Veiculo veiculo) {
+		veiculo = dao.busca(veiculo.getId());
 
 		if (veiculo != null) {
 			result.include("veiculo", veiculo);
@@ -64,13 +64,7 @@ public class VeiculoController {
 		}
 
 		validator.onErrorRedirectTo(this).formulario();
-		
-		if (veiculo.getId() > 0) {
-			dao.alterar(veiculo);
-		} else {
-			dao.adiciona(veiculo);
-		}
-
+		dao.atualiza(veiculo);
 		result.redirectTo(this).lista();
 	}
 

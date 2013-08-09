@@ -24,6 +24,14 @@ public class VeiculoDAO {
 		dao.alterar(veiculo);
 	}
 	
+	public void atualiza(Veiculo veiculo) {
+		if (veiculo.getId() > 0) {
+			dao.alterar(veiculo);
+		} else {
+			dao.adiciona(veiculo);
+		}
+	}
+	
 	public Veiculo busca(Long id) {
 		return dao.busca(id);
 	}
