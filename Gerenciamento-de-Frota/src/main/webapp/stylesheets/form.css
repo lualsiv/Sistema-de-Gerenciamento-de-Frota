@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+.submitLink {
+background-color: transparent;
+text-decoration: underline;
+border: none;
+color: blue;
+cursor: pointer;
+}

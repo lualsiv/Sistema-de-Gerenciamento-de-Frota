@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><decorator:title default="Gerenciamento de Frota"/></title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/stylesheets/application.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/stylesheets/all.min.css"/>
     <decorator:head/>
   </head>
   <body>
@@ -14,7 +14,7 @@
 	<header>
 		<nav>
 			<a href="/veiculo/novo">Novo veiculo</a>
-			<a href="/veiculos">Lista de veiculos</a>
+			<a href="/veiculo">Lista de veiculos</a>
 		</nav>
 	</header>
 

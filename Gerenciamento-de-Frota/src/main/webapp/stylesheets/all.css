@@ -1,7 +1,12 @@
-@CHARSET "UTF-8"; 
+@CHARSET "UTF-8";
 
-@IMPORT url("scaffold.css");
-
+.submitLink {
+background-color: transparent;
+text-decoration: underline;
+border: none;
+color: blue;
+cursor: pointer;
+}
 .box-header, .box-body {
     -moz-box-sizing: border-box;
 }
