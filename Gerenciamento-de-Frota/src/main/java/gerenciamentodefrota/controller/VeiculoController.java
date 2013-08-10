@@ -64,6 +64,7 @@ public class VeiculoController {
 		}
 
 		validator.onErrorRedirectTo(this).formulario();
+		
 		dao.atualiza(veiculo);
 		result.redirectTo(this).lista();
 	}

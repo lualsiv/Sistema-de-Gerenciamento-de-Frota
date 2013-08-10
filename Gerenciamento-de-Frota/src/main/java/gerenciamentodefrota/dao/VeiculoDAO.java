@@ -25,7 +25,7 @@ public class VeiculoDAO {
 	}
 	
 	public void atualiza(Veiculo veiculo) {
-		if (veiculo.getId() > 0) {
+		if (veiculo.getId() != null) {
 			dao.alterar(veiculo);
 		} else {
 			dao.adiciona(veiculo);
