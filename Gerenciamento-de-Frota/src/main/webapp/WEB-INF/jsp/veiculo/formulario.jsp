@@ -42,7 +42,6 @@
 				<input type="text" name="veiculo.renavam" value="${veiculo.renavam}"/></li>
 			
 				<li>Observação: <br/>
-<%-- 				<input type="text" name="veiculo.observacao" value="${veiculo.observacao}"/></li> --%>
 				<textarea name="veiculo.observacao" rows="10" cols="40">${veiculo.observacao}</textarea>
 				
 			<input type="submit" value="Salvar" />
@@ -51,6 +50,7 @@
 </div>
 
 <content tag="scripts">
+
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#form_veiculo').validate({
@@ -65,6 +65,9 @@
 	           }
 	       }
 		});
+		
+		$("select, input, a.button, button").uniform();
 	}); 
 	</script>
+
 </content>
