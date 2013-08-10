@@ -10,10 +10,10 @@ import br.com.caelum.vraptor.ioc.Component;
 @Component
 public class VeiculoDAO {
 
-	private DAO<Veiculo> dao;
+	private DAO<Veiculo, Long> dao;
 
 	public VeiculoDAO(EntityManager em) {
-		this.dao = new DAO<Veiculo>(em, Veiculo.class);
+		this.dao = new DAO<Veiculo, Long>(em, Veiculo.class);
 	}
 
 	public void adiciona(Veiculo veiculo) {
