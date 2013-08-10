@@ -24,6 +24,10 @@ public class Veiculo {
 	
 	@Column
 	@NotEmpty
+	private String descricao;
+	
+	@Column
+	@NotEmpty
 	private String marca;
 	
 	@Column
@@ -32,7 +36,7 @@ public class Veiculo {
 	
 	@Column
 	@NotEmpty
-	private String chassi;
+	private String cor;
 	
 	@Column
 	@NotNull
@@ -41,6 +45,17 @@ public class Veiculo {
 	@Column
 	@NotNull
 	private Integer anoModelo;
+
+	@Column
+	@NotEmpty
+	private String chassi;
+
+	@Column
+	@NotEmpty
+	private String renavam;
+	
+	@Column
+	private String observacao;
 	
 	public Long getId() {
 		return id;
@@ -96,6 +111,38 @@ public class Veiculo {
 
 	public void setChassi(String chassi) {
 		this.chassi = chassi;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	public String getRenavam() {
+		return renavam;
+	}
+
+	public void setRenavam(String renavam) {
+		this.renavam = renavam;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 	
 }

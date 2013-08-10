@@ -11,11 +11,11 @@
 		<h3 class="box-title">Formulário de cadastro de veiculos</h3>
 	</div>
 	<div class="box-body">
-		<form action="${linkTo[VeiculoController].salva}" method="post">
+		<form action="${linkTo[VeiculoController].salva}" method="post" name="form_veiculo" id="form_veiculo">
 				<input type="hidden" name="veiculo.id" value="${veiculo.id}"/>
 				
 				<li>Marca: <br/>
-				<input type="text" name="veiculo.marca" value="${veiculo.marca}"/></li>
+				<input type="text" id="veiculo.marca" name="veiculo.marca" value="${veiculo.marca}"/></li>
 				
 				<li>Modelo: <br/>
 				<input type="text" name="veiculo.modelo" value="${veiculo.modelo}"/></li>
@@ -36,3 +36,22 @@
 		</form>
 	</div>
 </div>
+
+<content tag="scripts">
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#form_veiculo').validate({
+		    rules: {
+		    	"veiculo.marca": {
+	                required: true
+	            }
+	        },
+	        messages: {
+	            "veiculo.marca": {
+	                required: "O campo marca é obrigatorio."
+	           }
+	       }
+		});
+	}); 
+	</script>
+</content>

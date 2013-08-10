@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title><decorator:title default="Gerenciamento de Frota"/></title>
+	<title><decorator:title default="Sistema de Gerenciamento de Frota"/></title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/stylesheets/all.min.css"/>
 	
 	<decorator:head/>
@@ -39,11 +39,13 @@
 		<decorator:body/>
 	</section>
 	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/all.min.js"></script>
+
+	<decorator:getProperty property="page.scripts"/>
+	
   	<footer>
     	<p>This footer contains the declaration position:relative; to give Internet Explorer 6 hasLayout for the footer and cause it to clear correctly. If you're not required to support IE6, you may remove it.</p>
   	</footer>
-  	
-    <script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/jquery.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/application.js"></script>
+
 </body>
 </html>
