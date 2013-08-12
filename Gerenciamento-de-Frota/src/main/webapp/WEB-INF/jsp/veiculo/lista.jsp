@@ -1,39 +1,35 @@
-<br />
+<!-- Box -->
+<div class="box">
+	<!-- Box Head -->
+	<div class="box-head">
+		<h2 class="left">Lisa de veiculos</h2>
+	</div>
+	<!-- End Box Head -->	
 
-<div class="box box-small">
-	<div class="box-header">
-		<h3 class="box-title">Lista de Veiculos</h3>
-	</div>
-	<div class="box-body">
-		<ul>
-			<table border="1" width="95%" align="center">
-				<tr>
-					<td>Descricao</td>
-					<td></td>
-				</tr>
-				<c:forEach items="${veiculoList}" var="veiculo">
-				<tr>
-					<td>
-						${veiculo.placa}
-					</td>
-					<td>
-						<form action="<c:url value='/veiculo/${veiculo.id}'/>" method="post">
-							<input type="hidden" name="veiculo.id" value="${veiculo.id}" />
-							<input type="hidden" name="_method" value="put" />
-							<input type="submit" value="editar" class="submitLink" />
-						</form>
-					</td>
-				</tr>
-				</c:forEach>
-			</table>
-		</ul>
-	</div>
+<!-- Table -->
+<div class="table">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<th>Descricao</th>
+			<th>Placa</th>
+			<th>Opções</th>
+		</tr>
+		<c:forEach items="${veiculoList}" var="veiculo">
+		<tr>
+			<td>${veiculo.descricao}</td>
+			<td>${veiculo.placa}</td>
+			<td>
+				<form action="<c:url value='/veiculo/${veiculo.id}'/>" method="post">
+					<input type="hidden" name="veiculo.id" value="${veiculo.id}" />
+					<input type="hidden" name="_method" value="put" />
+					<input type="submit" value="editar" class="submitLink ico edit" />
+				</form>
+			</td>
+		</tr>
+		</c:forEach>
+	</table>
 </div>
+<!-- Table -->
 
-<content tag="scripts">
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("select, input, a.button, button").uniform();
-		}); 
-	</script>
-</content>
+</div>
+<!-- End Box -->

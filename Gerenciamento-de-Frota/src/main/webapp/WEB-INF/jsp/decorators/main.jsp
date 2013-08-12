@@ -13,39 +13,102 @@
 
 <body>
 
-	<header>
-		<h1>Sistema de Gerenciamento de Frota</h1>
-	</header>
-	
-	<nav>
-		<a href="${pageContext.request.contextPath}/veiculo/novo">Novo veiculo</a>
-		<a href="${pageContext.request.contextPath}/veiculo">Lista de veiculos</a>
-	</nav>
-	
-	<aside class="box box-small">
-		<div class="box-header">
-			<h3 class="box-title">Menu secundario</h3>
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="#">Sistema de Gerenciamento de Frota</a></h1>
+			<div id="top-navigation">
+				Welcome <a href="#"><strong>Administrator</strong></a>
+				<span>|</span>
+				<a href="#">Help</a>
+				<span>|</span>
+				<a href="#">Profile Settings</a>
+				<span>|</span>
+				<a href="#">Log out</a>
+			</div>
 		</div>
-		<div class="box-body">
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
 			<ul>
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
+			    <li><a href="${pageContext.request.contextPath}/veiculo/novo"><span>Novo veiculo</span></a></li>
+			    <li><a href="${pageContext.request.contextPath}/veiculo"><span>Lista de veiculos</span></a></li>
+			    <li><a href="#"><span>User Management</span></a></li>
+			    <li><a href="#"><span>Photo Gallery</span></a></li>
+			    <li><a href="#"><span>Products</span></a></li>
+			    <li><a href="#"><span>Services Control</span></a></li>
 			</ul>
 		</div>
-	</aside>
-	
-	<section id="content">
-		<decorator:body/>
-	</section>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container">
+	<div class="shell">
+		
+		<!-- Small Nav -->
+		<div class="small-nav">
+			<a href="#">Dashboard</a>
+			<span>&gt;</span>
+			Current Articles
+		</div>
+		<!-- End Small Nav -->
+		
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				
+				<decorator:body/>
+
+			</div>
+			<!-- End Content -->
+			
+			<!-- Sidebar -->
+			<div id="sidebar">
+				
+				<!-- Box -->
+				<div class="box">
+					
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2>Management</h2>
+					</div>
+					<!-- End Box Head-->
+					
+					<p>&nbsp;</p>
+					
+				</div>
+				<!-- End Box -->
+			</div>
+			<!-- End Sidebar -->
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+
+<!-- Footer -->
+<div id="footer">
+	<div class="shell">
+		<span class="left">&copy; 2010 - CompanyName</span>
+		<span class="right">
+			Design by <a href="http://chocotemplates.com" target="_blank" title="The Sweetest CSS Templates WorldWide">Chocotemplates.com</a>
+		</span>
+	</div>
+</div>
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/all.min.js"></script>
-
 	<decorator:getProperty property="page.scripts"/>
-	
-  	<footer>
-    	<p>This footer contains the declaration position:relative; to give Internet Explorer 6 hasLayout for the footer and cause it to clear correctly. If you're not required to support IE6, you may remove it.</p>
-  	</footer>
 
 </body>
 </html>
