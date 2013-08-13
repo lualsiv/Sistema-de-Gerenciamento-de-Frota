@@ -18,7 +18,7 @@
 	<div class="shell">
 		<!-- Logo + Top Nav -->
 		<div id="top">
-			<h1><a href="#">Sistema de Gerenciamento de Frota</a></h1>
+			<h1><a href="${pageContext.request.contextPath}/">Sistema de Gerenciamento de Frota</a></h1>
 			<div id="top-navigation">
 				Welcome <a href="#"><strong>Administrator</strong></a>
 				<span>|</span>
@@ -34,12 +34,8 @@
 		<!-- Main Nav -->
 		<div id="navigation">
 			<ul>
-			    <li><a href="${pageContext.request.contextPath}/veiculo/novo"><span>Novo veiculo</span></a></li>
 			    <li><a href="${pageContext.request.contextPath}/veiculo"><span>Lista de veiculos</span></a></li>
-			    <li><a href="#"><span>User Management</span></a></li>
-			    <li><a href="#"><span>Photo Gallery</span></a></li>
-			    <li><a href="#"><span>Products</span></a></li>
-			    <li><a href="#"><span>Services Control</span></a></li>
+			    <li><a href="${pageContext.request.contextPath}/veiculo/novo"><span>Novo veiculo</span></a></li>
 			</ul>
 		</div>
 		<!-- End Main Nav -->

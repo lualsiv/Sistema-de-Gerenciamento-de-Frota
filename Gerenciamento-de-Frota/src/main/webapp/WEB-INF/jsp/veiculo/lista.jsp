@@ -10,9 +10,9 @@
 <div class="table">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
-			<th>Descricao</th>
+			<th>Descrição</th>
 			<th>Placa</th>
-			<th>Op��es</th>
+			<th>Opções</th>
 		</tr>
 		<c:forEach items="${veiculoList}" var="veiculo">
 		<tr>
