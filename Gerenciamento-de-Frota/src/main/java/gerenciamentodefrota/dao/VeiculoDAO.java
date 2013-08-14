@@ -23,7 +23,7 @@ public class VeiculoDAO {
 	public void alterar(Veiculo veiculo) {
 		dao.alterar(veiculo);
 	}
-	
+
 	public void atualiza(Veiculo veiculo) {
 		if (veiculo.getId() != null) {
 			dao.alterar(veiculo);
@@ -31,19 +31,17 @@ public class VeiculoDAO {
 			dao.adiciona(veiculo);
 		}
 	}
-	
+
 	public Veiculo busca(Long id) {
 		return dao.busca(id);
 	}
-	
+
 	public Veiculo buscaPorPlaca(String placa) {
-		List<Veiculo> veiculos = dao.listAllByFieldUsingLike("placa", placa.toUpperCase());
-		
-		if(veiculos != null)
-			if(veiculos.size() > 0)
-				return veiculos.get(0);
-			else
-				return null;
+		List<Veiculo> veiculos;
+		veiculos = dao.listAllByFieldUsingLike("placa", placa.toUpperCase());
+
+		if (veiculos.size() > 0)
+			return veiculos.get(0);
 		else
 			return null;
 	}
