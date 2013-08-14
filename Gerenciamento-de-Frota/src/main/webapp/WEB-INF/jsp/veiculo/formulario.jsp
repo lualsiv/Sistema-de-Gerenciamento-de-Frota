@@ -6,13 +6,10 @@
 	</c:forEach>
 </ul>
 
-<!-- Box -->
 <div class="box">
-	<!-- Box Head -->
 	<div class="box-head">
 		<h2 class="left">Cadastro/edição de veiculos</h2>
 	</div>
-	<!-- End Box Head -->	
 
 <form action="${linkTo[VeiculoController].salva}" method="post" name="form_veiculo" id="form_veiculo">
 	<c:import url="_form.jsp"></c:import>
@@ -20,7 +17,6 @@
 </form>
 
 </div>
-<!-- End Box -->
 
 <content tag="scripts">
 

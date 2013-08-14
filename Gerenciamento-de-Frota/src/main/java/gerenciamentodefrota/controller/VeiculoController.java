@@ -7,6 +7,7 @@ import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.VeiculoDAO;
 import gerenciamentodefrota.model.Veiculo;
 import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
@@ -27,14 +28,16 @@ public class VeiculoController {
 		this.validator = validator;
 	}
 
-	@Get("/veiculo/novo")
+	@Get
+	@Path(value="/veiculo/novo",priority =Path.HIGHEST)
 	public void formulario() {
-		
+
 	}
 
-	@Put("/veiculo/{veiculo.id}")
-	public void formulario(Veiculo veiculo) {
-		veiculo = dao.busca(veiculo.getId());
+	@Get
+	@Path(value="/veiculo/{id}",priority=Path.LOWEST)
+	public void editar(Long id) {
+		Veiculo veiculo = dao.busca(id);
 
 		if (veiculo != null) {
 			result.include("veiculo", veiculo);
@@ -42,7 +45,17 @@ public class VeiculoController {
 			result.notFound();
 		}
 	}
+	
+	@Get("/veiculo/alterar")
+	public void editar(Veiculo veiculo) {
+		System.out.println("Voltou pra correção");
+				
+		if(veiculo.getId() == null)
+			result.redirectTo(this).formulario();
 
+		result.include("veiculo", veiculo);
+	}
+	
 	@Transacional
 	@Post("/veiculo/salvar")
 	public void salva(final Veiculo veiculo) {
@@ -64,9 +77,38 @@ public class VeiculoController {
 		}
 
 		validator.onErrorRedirectTo(this).formulario();
-		
+
 		dao.atualiza(veiculo);
 		result.redirectTo(this).lista();
+	}
+	
+	@Transacional
+	@Put
+	@Path(value="/veiculo/alterar",priority=Path.LOWEST)
+	public void alterar(final Veiculo veiculo) {
+		validator.validate(veiculo);
+
+		Veiculo veiculoValida = dao.buscaPorPlaca(veiculo.getPlaca());
+
+		if (veiculoValida != null) {
+			if (!veiculoValida.getId().equals(veiculo.getId())) {
+				validator.checking(new Validations() {
+					{
+						that(dao.buscaPorPlaca(veiculo.getPlaca()) == null,
+								"veiculo.placa",
+								"Já existe um veiculo cadastrado com esta placa");
+					}
+				});
+
+			}
+		}
+		
+		validator.onErrorRedirectTo(this).editar(veiculo);
+
+		dao.atualiza(veiculo);
+		result.redirectTo(this).lista();
+		
+		System.out.println("Método alterar");
 	}
 
 	@Get("/veiculo")

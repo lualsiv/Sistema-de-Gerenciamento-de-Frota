@@ -2,7 +2,7 @@
 <div class="box">
 	<!-- Box Head -->
 	<div class="box-head">
-		<h2 class="left">Lisa de veiculos</h2>
+		<h2 class="left">Lista de veiculos</h2>
 	</div>
 	<!-- End Box Head -->	
 
@@ -19,11 +19,7 @@
 			<td>${veiculo.descricao}</td>
 			<td>${veiculo.placa}</td>
 			<td>
-				<form action="<c:url value='/veiculo/${veiculo.id}'/>" method="post">
-					<input type="hidden" name="veiculo.id" value="${veiculo.id}" />
-					<input type="hidden" name="_method" value="put" />
-					<input type="submit" value="editar" class="submitLink ico edit" />
-				</form>
+				<a href="${pageContext.request.contextPath}/veiculo/${veiculo.id}">editar</a>
 			</td>
 		</tr>
 		</c:forEach>
