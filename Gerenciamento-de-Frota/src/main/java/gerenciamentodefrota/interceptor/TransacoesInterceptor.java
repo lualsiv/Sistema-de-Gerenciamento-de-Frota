@@ -18,7 +18,7 @@ public class TransacoesInterceptor implements Interceptor {
 	public TransacoesInterceptor(EntityManager manager) {
 		this.manager = manager;
 	}
-
+	
 	@Override
 	public boolean accepts(ResourceMethod method) {
 		return method.containsAnnotation(Transacional.class);

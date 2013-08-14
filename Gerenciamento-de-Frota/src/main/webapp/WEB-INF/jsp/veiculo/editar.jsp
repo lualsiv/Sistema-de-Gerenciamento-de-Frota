@@ -8,13 +8,14 @@
 
 <div class="box">
 	<div class="box-head">
-		<h2 class="left">Edição de veiculos</h2>
+		<h2 class="left">Editar informações do veiculo</h2>
 	</div>
 	
 	<form action="${pageContext.request.contextPath}/veiculo/alterar" method="post" name="form_veiculo" id="form_veiculo">
-		<c:import url="_form.jsp"></c:import>
+		<c:import url="_form.jsp" />
 		<input type="hidden" name="_method" value="put" />
 		
+		<br />
 		<input type="submit" value="Salvar" />
 	</form>
 	

@@ -45,11 +45,9 @@ public class VeiculoController {
 			result.notFound();
 		}
 	}
-
+	
 	@Get("/veiculo/alterar")
 	public void editar(Veiculo veiculo) {
-		System.out.println("Voltou pra correção");
-
 		if (veiculo.getId() == null)
 			result.redirectTo(this).novo();
 
@@ -92,7 +90,7 @@ public class VeiculoController {
 				}
 			});
 		}
-
+		
 		validator.onErrorRedirectTo(this).editar(veiculo);
 
 		dao.atualiza(veiculo);

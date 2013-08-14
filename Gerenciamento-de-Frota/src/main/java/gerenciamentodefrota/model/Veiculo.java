@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -53,6 +54,11 @@ public class Veiculo {
 	@Column
 	@NotEmpty
 	private String renavam;
+	
+	@Column
+	@NotNull
+	@Min(value=1)
+	private Integer capacidadeTanque;
 	
 	@Column
 	private String observacao;
@@ -143,6 +149,14 @@ public class Veiculo {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public Integer getCapacidadeTanque() {
+		return capacidadeTanque;
+	}
+
+	public void setCapacidadeTanque(Integer capacidadeTanque) {
+		this.capacidadeTanque = capacidadeTanque;
 	}
 	
 }
