@@ -31,14 +31,14 @@ public class VeiculoController {
 	@Get
 	@Path(value = "/veiculo/novo", priority = Path.HIGHEST)
 	public void novo() {
-
+		
 	}
 
 	@Get
-	@Path(value = "/veiculo/{id}", priority = Path.LOWEST)
+	@Path(value = "/veiculo/{id}", priority = Path.DEFAULT)
 	public void editar(Long id) {
 		Veiculo veiculo = dao.busca(id);
-
+		
 		if (veiculo != null) {
 			result.include("veiculo", veiculo);
 		} else {
@@ -46,19 +46,21 @@ public class VeiculoController {
 		}
 	}
 	
-	@Get("/veiculo/alterar")
+	@Get
+	@Path(value = "/veiculo/alterar", priority = Path.HIGH)
 	public void editar(Veiculo veiculo) {
 		if (veiculo.getId() == null)
 			result.redirectTo(this).novo();
 
 		result.include("veiculo", veiculo);
 	}
-
+	
 	@Transacional
 	@Post("/veiculo/salvar")
 	public void salva(final Veiculo veiculo) {
 		validator.validate(veiculo);
-
+		System.out.println(veiculo.getPlaca());
+		
 		validator.checking(new Validations() {
 			{
 				that(dao.buscaPorPlaca(veiculo.getPlaca()) == null,
@@ -78,7 +80,7 @@ public class VeiculoController {
 	@Path(value = "/veiculo/alterar", priority = Path.LOWEST)
 	public void alterar(final Veiculo veiculo) {
 		validator.validate(veiculo);
-
+		
 		Veiculo veiculoValida = dao.buscaPorPlaca(veiculo.getPlaca());
 
 		if (!veiculoValida.getId().equals(veiculo.getId())) {
@@ -95,8 +97,6 @@ public class VeiculoController {
 
 		dao.atualiza(veiculo);
 		result.redirectTo(this).lista();
-
-		System.out.println("Método alterar");
 	}
 
 	@Get("/veiculo")

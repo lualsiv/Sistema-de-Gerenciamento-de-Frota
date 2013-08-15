@@ -2,6 +2,8 @@ package gerenciamentodefrota.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,27 +20,27 @@ public class Veiculo {
 	@Id
 	@GeneratedValue(generator = "SEQ_VEICULO", strategy = GenerationType.SEQUENCE)
 	private Long id;
-	
+
 	@Column(unique = true, length = 8)
 	@NotEmpty
 	private String placa;
-	
+
 	@Column
 	@NotEmpty
 	private String descricao;
-	
+
 	@Column
 	@NotEmpty
 	private String marca;
-	
+
 	@Column
 	@NotEmpty
 	private String modelo;
-	
+
 	@Column
 	@NotEmpty
 	private String cor;
-	
+
 	@Column
 	@NotNull
 	private Integer anoFabricacao;
@@ -54,15 +56,23 @@ public class Veiculo {
 	@Column
 	@NotEmpty
 	private String renavam;
-	
+
 	@Column
 	@NotNull
-	@Min(value=1)
+	@Min(value = 1)
 	private Integer capacidadeTanque;
 	
 	@Column
 	private String observacao;
-	
+
+	@Enumerated(EnumType.STRING)
+	@NotNull
+	private Propriedade propriedade;
+
+	@Enumerated(EnumType.STRING)
+	@NotNull
+	private SituacaoVeiculo situacao;
+
 	public Long getId() {
 		return id;
 	}
@@ -76,7 +86,10 @@ public class Veiculo {
 	}
 
 	public void setPlaca(String placa) {
-		this.placa = placa.toUpperCase();
+		this.placa = placa;
+
+		if (placa != null)
+			this.placa = placa.toUpperCase();
 	}
 
 	public Integer getAnoFabricacao() {
@@ -158,5 +171,21 @@ public class Veiculo {
 	public void setCapacidadeTanque(Integer capacidadeTanque) {
 		this.capacidadeTanque = capacidadeTanque;
 	}
-	
+
+	public Propriedade getPropriedade() {
+		return propriedade;
+	}
+
+	public void setPropriedade(Propriedade propriedade) {
+		this.propriedade = propriedade;
+	}
+
+	public SituacaoVeiculo getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(SituacaoVeiculo situacao) {
+		this.situacao = situacao;
+	}
+
 }

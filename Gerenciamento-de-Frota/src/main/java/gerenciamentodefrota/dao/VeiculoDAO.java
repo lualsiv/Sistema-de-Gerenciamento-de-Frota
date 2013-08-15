@@ -37,6 +37,9 @@ public class VeiculoDAO {
 	}
 
 	public Veiculo buscaPorPlaca(String placa) {
+		if (placa == null)
+			return null;
+
 		List<Veiculo> veiculos;
 		veiculos = dao.listAllByFieldUsingLike("placa", placa.toUpperCase());
 

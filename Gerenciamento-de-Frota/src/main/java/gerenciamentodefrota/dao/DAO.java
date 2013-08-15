@@ -22,7 +22,8 @@ public class DAO<T, I extends Serializable> {
 
 	@SuppressWarnings("unchecked")
 	public List<T> lista() {
-		Query query = em.createQuery("select e from " + classe.getName() + " e");
+		Query query = em
+				.createQuery("select e from " + classe.getName() + " e");
 		List<T> lista = query.getResultList();
 		return lista;
 	}
@@ -38,7 +39,7 @@ public class DAO<T, I extends Serializable> {
 	public void alterar(T t) {
 		this.em.merge(t);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public List<T> listAllByFieldUsingLike(String campo, Object valor) {
 		StringBuilder builder = new StringBuilder("select o from " + classe.getName() + " o ");
@@ -46,6 +47,7 @@ public class DAO<T, I extends Serializable> {
 		
 		Query query = em.createQuery(builder.toString());
 		query.setParameter("valor", "%" + valor + "%");
+		
 		List<T> listReturn = query.getResultList();
 		return listReturn;
 	}
