@@ -82,6 +82,16 @@
 <div class="separator">&nbsp;</div>
 
 <div class="coluna">
+	<select name="veiculo.combustivel.id">
+		<c:forEach items="${combustiveis}" var="comb">
+			<option value="${comb.id}" ${veiculo.combustivel.id == comb.id ? 'selected' : ''}>${comb.descricao}</option>
+		</c:forEach>
+	</select>
+</div>
+
+<div class="separator">&nbsp;</div>
+
+<div class="coluna">
 	<label for="veiculo.observacao">Observação:</label>
 	<textarea name="veiculo.observacao" rows="10" cols="40">${veiculo.observacao}</textarea>
 </div>

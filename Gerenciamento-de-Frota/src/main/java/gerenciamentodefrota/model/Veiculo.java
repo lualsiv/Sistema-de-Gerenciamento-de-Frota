@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -56,7 +57,7 @@ public class Veiculo {
 	@Column
 	@NotEmpty
 	private String renavam;
-
+	
 	@Column
 	@NotNull
 	@Min(value = 1)
@@ -73,6 +74,9 @@ public class Veiculo {
 	@NotNull
 	private SituacaoVeiculo situacao;
 
+	@ManyToOne
+	private Combustivel combustivel;
+	
 	public Long getId() {
 		return id;
 	}
@@ -186,6 +190,14 @@ public class Veiculo {
 
 	public void setSituacao(SituacaoVeiculo situacao) {
 		this.situacao = situacao;
+	}
+
+	public Combustivel getCombustivel() {
+		return combustivel;
+	}
+
+	public void setCombustivel(Combustivel combustivel) {
+		this.combustivel = combustivel;
 	}
 
 }
