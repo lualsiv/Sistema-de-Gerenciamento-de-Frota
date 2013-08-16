@@ -82,6 +82,7 @@
 <div class="separator">&nbsp;</div>
 
 <div class="coluna">
+	<label for="veiculo.combustivel">Combustível:</label>
 	<select name="veiculo.combustivel.id">
 		<c:forEach items="${combustiveis}" var="comb">
 			<option value="${comb.id}" ${veiculo.combustivel.id == comb.id ? 'selected' : ''}>${comb.descricao}</option>
