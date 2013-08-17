@@ -8,7 +8,7 @@
 
 <div class="box">
 	<div class="box-head">
-		<h2 class="left">Cadastrar novo veiculo</h2>
+		<h2 class="left">Cadastrar novo veículo</h2>
 	</div>
 
 <form action="${linkTo[VeiculoController].salva}" method="post" name="form_veiculo" id="form_veiculo">

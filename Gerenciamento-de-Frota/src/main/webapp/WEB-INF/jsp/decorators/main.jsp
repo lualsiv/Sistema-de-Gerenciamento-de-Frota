@@ -34,8 +34,9 @@
 		<!-- Main Nav -->
 		<div id="navigation">
 			<ul>
-			    <li><a href="${pageContext.request.contextPath}/veiculo"><span>Lista de veiculos</span></a></li>
-			    <li><a href="${pageContext.request.contextPath}/veiculo/novo"><span>Novo veiculo</span></a></li>
+			    <li><a href="${pageContext.request.contextPath}/veiculo"><span>Lista de veículos</span></a></li>
+			    <li><a href="${pageContext.request.contextPath}/veiculo/novo"><span>Novo veículo</span></a></li>
+			    <li><a href="${pageContext.request.contextPath}/combustivel"><span>Lista de combustíveis</span></a></li>
 			</ul>
 		</div>
 		<!-- End Main Nav -->

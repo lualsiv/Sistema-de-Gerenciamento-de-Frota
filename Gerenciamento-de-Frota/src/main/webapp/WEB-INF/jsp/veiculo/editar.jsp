@@ -8,7 +8,7 @@
 
 <div class="box">
 	<div class="box-head">
-		<h2 class="left">Editar informações do veiculo</h2>
+		<h2 class="left">Editar informações do veículo</h2>
 	</div>
 	
 	<form action="${pageContext.request.contextPath}/veiculo/alterar" method="post" name="form_veiculo" id="form_veiculo">

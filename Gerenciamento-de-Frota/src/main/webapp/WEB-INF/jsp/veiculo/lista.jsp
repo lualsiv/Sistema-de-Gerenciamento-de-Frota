@@ -2,7 +2,7 @@
 <div class="box">
 	<!-- Box Head -->
 	<div class="box-head">
-		<h2 class="left">Lista de veiculos</h2>
+		<h2 class="left">Lista de veículos</h2>
 	</div>
 	<!-- End Box Head -->	
 
