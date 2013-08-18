@@ -36,6 +36,25 @@
 
 	<script type="text/javascript">
 	$(document).ready(function(){
+		$('#form_combustivel').validate({
+		    rules: {
+		    	"combustivel.descricao": {
+	                required: true
+	            },
+	            "combustivel.preco": {
+	                required: true
+	            }
+	        },
+	        messages: {
+	            "combustivel.descricao": {
+	                required: "O campo descrição é obrigatorio."
+	           },
+	           "combustivel.preco": {
+	                required: "O campo preço é obrigatorio."
+	           }
+	       }
+		});
+		
 		$("select, input").uniform();
 	}); 
 	</script>

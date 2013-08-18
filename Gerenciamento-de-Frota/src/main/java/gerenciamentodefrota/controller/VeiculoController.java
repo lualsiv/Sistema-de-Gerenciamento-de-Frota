@@ -37,31 +37,6 @@ public class VeiculoController {
 		result.include("combustiveis", combustivelDAO.lista());
 	}
 	
-	@Get
-	@Path(value = "/veiculo/{id}", priority = Path.DEFAULT)
-	public void editar(Long id) {
-		Veiculo veiculo = veiculoDAO.busca(id);
-		
-		if (veiculo != null) {
-			result.include("veiculo", veiculo);
-		} else {
-			result.notFound();
-		}
-		
-		result.include("combustiveis", combustivelDAO.lista());
-	}
-	
-	@Get
-	@Path(value = "/veiculo/alterar", priority = Path.HIGH)
-	public void editar(Veiculo veiculo) {
-		System.out.println(veiculo.getCombustivel().getId());
-		
-		if (veiculo.getId() == null)
-			result.redirectTo(this).novo();
-
-		result.include("veiculo", veiculo);
-	}
-	
 	@Transacional
 	@Post("/veiculo/salvar")
 	public void salva(final Veiculo veiculo) {
@@ -81,9 +56,23 @@ public class VeiculoController {
 		result.redirectTo(this).lista();
 	}
 
+	@Get
+	@Path(value = "/veiculo/{id}", priority = Path.DEFAULT)
+	public void editar(Long id) {
+		Veiculo veiculo = veiculoDAO.busca(id);
+		
+		if (veiculo != null) {
+			result.include("veiculo", veiculo);
+		} else {
+			result.notFound();
+		}
+		
+		result.include("combustiveis", combustivelDAO.lista());
+	}
+	
 	@Transacional
 	@Put
-	@Path(value = "/veiculo/alterar", priority = Path.LOWEST)
+	@Path(value = "/veiculo/{veiculo.id}", priority = Path.LOWEST)
 	public void alterar(final Veiculo veiculo) {
 		validator.validate(veiculo);
 		
@@ -99,8 +88,9 @@ public class VeiculoController {
 			});
 		}
 		
-		validator.onErrorRedirectTo(this).editar(veiculo);
-
+		result.include("combustiveis", combustivelDAO.lista());
+		validator.onErrorUsePageOf(this).editar(veiculo.getId());
+		
 		veiculoDAO.atualiza(veiculo);
 		result.redirectTo(this).lista();
 	}

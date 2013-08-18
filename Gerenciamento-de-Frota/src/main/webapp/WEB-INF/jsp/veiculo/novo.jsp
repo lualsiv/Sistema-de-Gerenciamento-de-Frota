@@ -26,13 +26,35 @@
 	$(document).ready(function(){
 		$('#form_veiculo').validate({
 		    rules: {
-		    	"veiculo.marca": {
+		    	"veiculo.descricao": {
 	                required: true
+	            },
+	            "veiculo.marca": {
+	                required: true
+	            },
+	            "veiculo.anoModelo": {
+	                required: true,
+	                digits: true
+	            },
+				"veiculo.anoFabricacao": {
+	                required: true,
+	                digits: true
 	            }
 	        },
-	        messages: {
-	            "veiculo.marca": {
+			messages: {
+				"veiculo.descricao": {
+					required: "O campo descrição é obrigatorio."
+	           },
+	           "veiculo.marca": {
 	                required: "O campo marca é obrigatorio."
+	           },
+	           "veiculo.anoModelo": {
+	                required: "O campo ano do modelo é obrigatorio.",
+	                digits: "Número inválido"
+	           },
+	           "veiculo.anoFabricacao": {
+	                required: "O campo ano de fabricação é obrigatorio.",
+	                digits: "Número inválido"
 	           }
 	       }
 		});
@@ -40,5 +62,5 @@
 		$("select, input").uniform();
 	}); 
 	</script>
-
+	
 </content>
