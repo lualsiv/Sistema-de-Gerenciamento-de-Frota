@@ -2,10 +2,10 @@ package gerenciamentodefrota.infra;
 
 public enum NoticeEnum {
 
-	ERROR("error"),
-	SUCCESS("success"),
-	INFO("info"),
-	WARNING("warning");
+	ERROR("notice-error"),
+	SUCCESS("notice-success"),
+	INFO("notice-info"),
+	WARNING("notice-warning");
 	
 	private NoticeEnum(final String text) {
         this.text = text;

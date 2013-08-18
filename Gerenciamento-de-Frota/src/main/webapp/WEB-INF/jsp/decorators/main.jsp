@@ -32,6 +32,7 @@
 			<ul>
 			    <li><a href="${pageContext.request.contextPath}/veiculo"><span>Veículos</span></a></li>
 			    <li><a href="${pageContext.request.contextPath}/combustivel"><span>Combustíveis</span></a></li>
+			    <li><a href="${pageContext.request.contextPath}/funcionario"><span>Funcionários</span></a></li>
 			</ul>
 		</div>
 	</div>

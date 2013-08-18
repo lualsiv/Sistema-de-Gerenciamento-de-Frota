@@ -10,10 +10,10 @@
 				<th>Valor</th>
 				<th>Opções</th>
 			</tr>
-			<c:forEach items="${combustivelList}" var="veiculo">
+			<c:forEach items="${combustivelList}" var="combustivel">
 			<tr>
-				<td>${veiculo.descricao}</td>
-				<td><fmt:formatNumber>${veiculo.preco}</fmt:formatNumber></td>
+				<td>${combustivel.descricao}</td>
+				<td><fmt:formatNumber>${combustivel.preco}</fmt:formatNumber></td>
 				<td>&nbsp;</td>
 			</tr>
 			</c:forEach>

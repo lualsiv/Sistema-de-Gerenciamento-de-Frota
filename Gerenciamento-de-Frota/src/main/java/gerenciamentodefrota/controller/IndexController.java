@@ -18,7 +18,7 @@ public class IndexController {
 	
 	@Get("/")
 	public void index() {
-		notice.addInfo("Página princiapl");
+		notice.addInfo("PÃ¡gina principal");
 		
 		result.include("texto", "VRaptor");
 	}
