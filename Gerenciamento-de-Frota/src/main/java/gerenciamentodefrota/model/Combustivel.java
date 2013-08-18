@@ -8,7 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @SequenceGenerator(sequenceName = "SEQ_COMBUSTIVEL", name = "SEQ_COMBUSTIVEL")
@@ -19,12 +21,13 @@ public class Combustivel {
 	private Long id;
 
 	@Column(unique = true)
+	@NotEmpty
 	private String descricao;
 
 	@Column
-	@DecimalMin("0.01")
-	private BigDecimal valor;
-
+	@NotNull
+	private BigDecimal preco;
+	
 	public Long getId() {
 		return id;
 	}
@@ -41,12 +44,12 @@ public class Combustivel {
 		this.descricao = descricao;
 	}
 
-	public BigDecimal getValor() {
-		return valor;
+	public BigDecimal getPreco() {
+		return preco;
 	}
 
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
 	}
 	
 }

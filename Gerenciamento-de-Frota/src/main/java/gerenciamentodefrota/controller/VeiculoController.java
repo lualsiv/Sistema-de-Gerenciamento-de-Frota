@@ -66,7 +66,6 @@ public class VeiculoController {
 	@Post("/veiculo/salvar")
 	public void salva(final Veiculo veiculo) {
 		validator.validate(veiculo);
-		System.out.println(veiculo.getPlaca());
 		
 		validator.checking(new Validations() {
 			{
@@ -78,7 +77,7 @@ public class VeiculoController {
 
 		validator.onErrorRedirectTo(this).novo();
 
-		veiculoDAO.atualiza(veiculo);
+		veiculoDAO.adiciona(veiculo);
 		result.redirectTo(this).lista();
 	}
 

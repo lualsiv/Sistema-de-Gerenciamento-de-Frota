@@ -34,9 +34,8 @@
 		<!-- Main Nav -->
 		<div id="navigation">
 			<ul>
-			    <li><a href="${pageContext.request.contextPath}/veiculo"><span>Lista de veículos</span></a></li>
-			    <li><a href="${pageContext.request.contextPath}/veiculo/novo"><span>Novo veículo</span></a></li>
-			    <li><a href="${pageContext.request.contextPath}/combustivel"><span>Lista de combustíveis</span></a></li>
+			    <li><a href="${pageContext.request.contextPath}/veiculo"><span>Veículos</span></a></li>
+			    <li><a href="${pageContext.request.contextPath}/combustivel"><span>Combustíveis</span></a></li>
 			</ul>
 		</div>
 		<!-- End Main Nav -->
@@ -50,11 +49,11 @@
 		
 		<!-- Small Nav -->
 		<div class="small-nav">
-			<a href="#">Dashboard</a>
-			<span>&gt;</span>
-			Current Articles
+			<a href="<c:url value="/" />">Início</a>
+			<span>&gt;</span> Current Articles
 		</div>
 		<!-- End Small Nav -->
+		<decorator:getProperty property="page.breadcrumb"/>
 		
 		<!-- Main -->
 		<div id="main">
