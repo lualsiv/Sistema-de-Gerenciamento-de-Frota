@@ -41,6 +41,18 @@ public class DAO<T, I extends Serializable> {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<T> listAllByField(String campo, Object valor) {
+		StringBuilder builder = new StringBuilder("select o from " + classe.getName() + " o ");
+		builder.append("where ").append(campo).append(" = :valor");
+		
+		Query query = em.createQuery(builder.toString());
+		query.setParameter("valor", valor);
+		
+		List<T> listReturn = query.getResultList();
+		return listReturn;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<T> listAllByFieldUsingLike(String campo, Object valor) {
 		StringBuilder builder = new StringBuilder("select o from " + classe.getName() + " o ");
 		builder.append("where ").append(campo).append(" like :valor");

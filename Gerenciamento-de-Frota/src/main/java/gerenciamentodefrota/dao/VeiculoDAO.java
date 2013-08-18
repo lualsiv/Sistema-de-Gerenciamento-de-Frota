@@ -41,7 +41,7 @@ public class VeiculoDAO {
 			return null;
 
 		List<Veiculo> veiculos;
-		veiculos = dao.listAllByFieldUsingLike("placa", placa.toUpperCase());
+		veiculos = dao.listAllByField("placa", placa.toUpperCase());
 
 		if (veiculos.size() > 0)
 			return veiculos.get(0);
