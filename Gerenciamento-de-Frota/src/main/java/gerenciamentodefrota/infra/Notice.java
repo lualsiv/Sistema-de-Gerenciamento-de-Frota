@@ -13,7 +13,6 @@ public class Notice implements Serializable {
 
 	private static final long serialVersionUID = 196531140096146750L;
 	private List<NoticeItem> notices = new ArrayList<NoticeItem>();
-	private String html = "";
 
 	public Notice() {
 		this.notices = new ArrayList<NoticeItem>();
@@ -48,20 +47,20 @@ public class Notice implements Serializable {
 		return notices;
 	}
 	
-	public void render(){
+	private String render(){
 		StringBuilder html = new StringBuilder();
 		
 		for (NoticeItem item : notices) {
 			html.append(String.format("<div class=\"%s\"> %s </div>", item.getTipo().getText(), item.getMensagem()));
 		}
-		this.html = html.toString();
 		
 		this.clearNotices();
+		
+		return html.toString();
 	}
 	
 	public String getHtml() {
-		this.render();		
-		return html;
+		return this.render();
 	}
 	
 }
