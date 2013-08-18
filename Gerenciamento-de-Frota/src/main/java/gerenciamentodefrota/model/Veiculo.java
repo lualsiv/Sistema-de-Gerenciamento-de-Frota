@@ -90,10 +90,7 @@ public class Veiculo {
 	}
 
 	public void setPlaca(String placa) {
-		this.placa = placa;
-
-		if (placa != null)
-			this.placa = placa.toUpperCase();
+		this.placa = placa == null ? null : placa.toUpperCase();
 	}
 
 	public Integer getAnoFabricacao() {
