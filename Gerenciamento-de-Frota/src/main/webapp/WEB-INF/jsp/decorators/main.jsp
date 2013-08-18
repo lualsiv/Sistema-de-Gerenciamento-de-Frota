@@ -1,3 +1,4 @@
+<%@page import="gerenciamentodefrota.infra.NoticeComponent"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -53,6 +54,16 @@
 			<span>&gt;</span> Current Articles
 		</div>
 		<!-- End Small Nav -->
+
+		<div class="small-nav">
+			<c:if test="${noticeComponent != null}">
+				<c:forEach items="${noticeComponent.notices}" var="msg">
+					<div class="${msg.tipo.text}"> ${msg.mensagem} </div>
+				</c:forEach>
+<%-- 				${noticeComponent.clearNotices()} --%>
+			</c:if>
+		</div>
+		
 		<decorator:getProperty property="page.breadcrumb"/>
 		
 		<!-- Main -->
