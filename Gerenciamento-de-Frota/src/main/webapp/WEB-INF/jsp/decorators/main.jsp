@@ -1,4 +1,3 @@
-<%@page import="gerenciamentodefrota.infra.NoticeComponent"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -14,10 +13,8 @@
 
 <body>
 
-<!-- Header -->
 <div id="header">
 	<div class="shell">
-		<!-- Logo + Top Nav -->
 		<div id="top">
 			<h1><a href="${pageContext.request.contextPath}/">Sistema de Gerenciamento de Frota</a></h1>
 			<div id="top-navigation">
@@ -30,81 +27,57 @@
 				<a href="#">Log out</a>
 			</div>
 		</div>
-		<!-- End Logo + Top Nav -->
 		
-		<!-- Main Nav -->
 		<div id="navigation">
 			<ul>
 			    <li><a href="${pageContext.request.contextPath}/veiculo"><span>Veículos</span></a></li>
 			    <li><a href="${pageContext.request.contextPath}/combustivel"><span>Combustíveis</span></a></li>
 			</ul>
 		</div>
-		<!-- End Main Nav -->
 	</div>
 </div>
-<!-- End Header -->
 
-<!-- Container -->
 <div id="container">
 	<div class="shell">
 		
-		<!-- Small Nav -->
 		<div class="small-nav">
 			<a href="<c:url value="/" />">Início</a>
 			<span>&gt;</span> Current Articles
 		</div>
-		<!-- End Small Nav -->
-
+		
 		<div class="small-nav">
-			<c:if test="${noticeComponent != null}">
-				<c:forEach items="${noticeComponent.notices}" var="msg">
-					<div class="${msg.tipo.text}"> ${msg.mensagem} </div>
-				</c:forEach>
-<%-- 				${noticeComponent.clearNotices()} --%>
-			</c:if>
+			${notice.html}
 		</div>
-		
+				
 		<decorator:getProperty property="page.breadcrumb"/>
-		
-		<!-- Main -->
+						
 		<div id="main">
 			<div class="cl">&nbsp;</div>
 			
-			<!-- Content -->
 			<div id="content">
 				
 				<decorator:body/>
 
 			</div>
-			<!-- End Content -->
 			
-			<!-- Sidebar -->
 			<div id="sidebar">
 				
-				<!-- Box -->
 				<div class="box">
 					
-					<!-- Box Head -->
 					<div class="box-head">
 						<h2>Management</h2>
 					</div>
-					<!-- End Box Head-->
 					
 					<p>&nbsp;</p>
 					
 				</div>
-				<!-- End Box -->
 			</div>
-			<!-- End Sidebar -->
 			
 			<div class="cl">&nbsp;</div>			
 		</div>
-		<!-- Main -->
 	</div>
 </div>
-<!-- End Container -->
 
-<!-- Footer -->
 <div id="footer">
 	<div class="shell">
 		<span class="left">&copy; 2010 - CompanyName</span>
