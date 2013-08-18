@@ -46,7 +46,7 @@ public class VeiculoController {
 			{
 				that(veiculoDAO.buscaPorPlaca(veiculo.getPlaca()) == null,
 						"veiculo.placa",
-						"Já existe um veiculo cadastrado com esta placa");
+						"JÃ¡ existe um veiculo cadastrado com esta placa");
 			}
 		});
 
@@ -83,7 +83,7 @@ public class VeiculoController {
 				{
 					that(veiculoDAO.buscaPorPlaca(veiculo.getPlaca()) == null,
 							"veiculo.placa",
-							"Já existe um veiculo cadastrado com esta placa");
+							"JÃ¡ existe um veiculo cadastrado com esta placa");
 				}
 			});
 		}
