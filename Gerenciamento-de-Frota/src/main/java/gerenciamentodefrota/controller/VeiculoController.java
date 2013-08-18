@@ -77,8 +77,8 @@ public class VeiculoController {
 		validator.validate(veiculo);
 		
 		Veiculo veiculoValida = veiculoDAO.buscaPorPlaca(veiculo.getPlaca());
-
-		if (!veiculoValida.getId().equals(veiculo.getId())) {
+		
+		if (!veiculoValida.equals(veiculo)) {
 			validator.checking(new Validations() {
 				{
 					that(veiculoDAO.buscaPorPlaca(veiculo.getPlaca()) == null,
