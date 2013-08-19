@@ -33,6 +33,7 @@
 			    <li><a href="${pageContext.request.contextPath}/veiculo"><span>Veículos</span></a></li>
 			    <li><a href="${pageContext.request.contextPath}/combustivel"><span>Combustíveis</span></a></li>
 			    <li><a href="${pageContext.request.contextPath}/funcionario"><span>Funcionários</span></a></li>
+			    <li><a href="${pageContext.request.contextPath}/usuario"><span>Usuários</span></a></li>
 			</ul>
 		</div>
 	</div>
