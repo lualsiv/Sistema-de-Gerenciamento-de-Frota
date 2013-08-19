@@ -29,7 +29,14 @@
 		<label for="funcionario.nome">Nome:</label> 
 		<input type="text" name="funcionario.nome" value="${funcionario.nome}" />
 	</div>
+	
+	<div class="separator">&nbsp;</div>
 
+	<div class="coluna">
+		<label for="funcionario.cargo">Cargo:</label> 
+		<input type="text" name="funcionario.cargo" value="${funcionario.cargo}" />
+	</div>
+	
 	<div class="separator">&nbsp;</div>
 
 	<br />
@@ -49,6 +56,9 @@
 	            },
 	            "funcionario.nome": {
 	                required: true
+	            },
+	            "funcionario.cargo": {
+	                required: true
 	            }
 	        },
 	        messages: {
@@ -57,6 +67,9 @@
 	           },
 	           "funcionario.nome": {
 	                required: "O campo nome é obrigatorio."
+	           },
+	           "funcionario.cargo": {
+	                required: "O campo cargo é obrigatorio."
 	           }
 	       }
 		});

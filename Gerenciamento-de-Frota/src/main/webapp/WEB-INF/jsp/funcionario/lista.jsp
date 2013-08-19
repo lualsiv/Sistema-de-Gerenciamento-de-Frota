@@ -14,7 +14,9 @@
 			<tr>
 				<td>${funcionario.cadastro}</td>
 				<td>${funcionario.nome}</td>
-				<td>&nbsp;</td>
+				<td>
+					<a href='<c:url value='/funcionario/${funcionario.id}/usuario/novo' />'>novo usuário</a>
+				</td>
 			</tr>
 			</c:forEach>
 		</table>

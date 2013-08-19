@@ -27,6 +27,10 @@ public class Funcionario {
 	private String nome;
 	
 	@Column
+	@NotEmpty
+	private String cargo;
+	
+	@Column
 	@NotNull
 	private Boolean situacao;
 	
@@ -65,5 +69,13 @@ public class Funcionario {
 	public void setSituacao(Boolean situacao) {
 		this.situacao = situacao;
 	}
-	
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+		
 }

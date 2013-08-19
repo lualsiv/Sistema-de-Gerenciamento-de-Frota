@@ -10,7 +10,7 @@ public class DAO<T, I extends Serializable> {
 
 	private final EntityManager em;
 	private final Class<T> classe;
-
+	
 	public DAO(EntityManager em, Class<T> classe) {
 		this.em = em;
 		this.classe = classe;
@@ -22,8 +22,7 @@ public class DAO<T, I extends Serializable> {
 
 	@SuppressWarnings("unchecked")
 	public List<T> lista() {
-		Query query = em
-				.createQuery("select e from " + classe.getName() + " e");
+		Query query = em.createQuery("select e from " + classe.getName() + " e");
 		List<T> lista = query.getResultList();
 		return lista;
 	}
