@@ -18,13 +18,14 @@
 		<div id="top">
 			<h1><a href="${pageContext.request.contextPath}/">Sistema de Gerenciamento de Frota</a></h1>
 			<div id="top-navigation">
-				Welcome <a href="#"><strong>Administrator</strong></a>
-				<span>|</span>
-				<a href="#">Help</a>
-				<span>|</span>
-				<a href="#">Profile Settings</a>
-				<span>|</span>
-				<a href="#">Log out</a>
+				<c:if test="${usuarioSession.logado == true}">
+					${usuarioSession.usuario.funcionario.nome}
+					<span>|</span>
+					<a href='<c:url value='/logout' />'>Sair</a>
+				</c:if>
+				<c:if test="${usuarioSession.logado != true}">
+					<a href='<c:url value='/login' />'>Entrar</a>
+				</c:if>
 			</div>
 		</div>
 		

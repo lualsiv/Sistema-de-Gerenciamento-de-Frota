@@ -3,6 +3,7 @@ package gerenciamentodefrota.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import gerenciamentodefrota.annotation.Logged;
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.CombustivelDAO;
 import gerenciamentodefrota.dao.VeiculoDAO;
@@ -30,7 +31,8 @@ public class VeiculoController {
 		this.validator = validator;
 		this.combustivelDAO = combustivelDAO;
 	}
-	
+
+	@Logged
 	@Get
 	@Path(value = "/veiculo/novo", priority = Path.HIGHEST)
 	public void novo() {

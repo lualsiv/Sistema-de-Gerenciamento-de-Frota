@@ -28,6 +28,10 @@ public class DAO<T, I extends Serializable> {
 		return lista;
 	}
 
+	public EntityManager getEm(){
+		return em; 
+	}
+	
 	public void remove(T t) {
 		this.em.remove(t);
 	}
