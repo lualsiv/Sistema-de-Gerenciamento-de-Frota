@@ -8,8 +8,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface Role {
+@Target({ ElementType.TYPE, ElementType.METHOD })
+public @interface Permission {
 	
 	Perfil[] value();
 	
