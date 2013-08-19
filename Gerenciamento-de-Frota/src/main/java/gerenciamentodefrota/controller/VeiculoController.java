@@ -3,6 +3,8 @@ package gerenciamentodefrota.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.CombustivelDAO;
 import gerenciamentodefrota.dao.VeiculoDAO;
@@ -24,7 +26,8 @@ public class VeiculoController {
 	private Validator validator;
 	private CombustivelDAO combustivelDAO;
 
-	public VeiculoController(Result result, VeiculoDAO veiculoDAO, Validator validator, CombustivelDAO combustivelDAO) {
+	public VeiculoController(Result result, VeiculoDAO veiculoDAO,
+			Validator validator, CombustivelDAO combustivelDAO) {
 		this.result = result;
 		this.veiculoDAO = veiculoDAO;
 		this.validator = validator;
@@ -36,12 +39,12 @@ public class VeiculoController {
 	public void novo() {
 		result.include("combustiveis", combustivelDAO.lista());
 	}
-	
+
 	@Transacional
 	@Post("/veiculo/salvar")
 	public void salva(final Veiculo veiculo) {
 		validator.validate(veiculo);
-		
+
 		validator.checking(new Validations() {
 			{
 				that(veiculoDAO.buscaPorPlaca(veiculo.getPlaca()) == null,
@@ -55,29 +58,31 @@ public class VeiculoController {
 		veiculoDAO.adiciona(veiculo);
 		result.redirectTo(this).lista();
 	}
-
+	
 	@Get
 	@Path(value = "/veiculo/{id}", priority = Path.DEFAULT)
 	public void editar(Long id) {
-		Veiculo veiculo = veiculoDAO.busca(id);
-		
-		if (veiculo != null) {
+		Veiculo veiculo;
+		try {
+			veiculo = veiculoDAO.busca(id);
+			
 			result.include("veiculo", veiculo);
-		} else {
+			result.include("combustiveis", combustivelDAO.lista());
+		} catch (EntityNotFoundException enfe) {
+			result.notFound();
+		} catch (Exception e) {
 			result.notFound();
 		}
-		
-		result.include("combustiveis", combustivelDAO.lista());
 	}
-	
+
 	@Transacional
 	@Put
 	@Path(value = "/veiculo/{veiculo.id}", priority = Path.LOWEST)
 	public void alterar(final Veiculo veiculo) {
 		validator.validate(veiculo);
-		
+
 		Veiculo veiculoValida = veiculoDAO.buscaPorPlaca(veiculo.getPlaca());
-		
+
 		if (!veiculoValida.equals(veiculo)) {
 			validator.checking(new Validations() {
 				{
@@ -87,10 +92,10 @@ public class VeiculoController {
 				}
 			});
 		}
-		
+
 		result.include("combustiveis", combustivelDAO.lista());
 		validator.onErrorUsePageOf(this).editar(veiculo.getId());
-		
+
 		veiculoDAO.atualiza(veiculo);
 		result.redirectTo(this).lista();
 	}

@@ -19,7 +19,7 @@
 			<h1><a href="${pageContext.request.contextPath}/">Sistema de Gerenciamento de Frota</a></h1>
 			<div id="top-navigation">
 				<c:if test="${usuarioSession.logado == true}">
-					${usuarioSession.usuario.funcionario.nome}
+					${usuarioSession.usuario.funcionario.nome}(${usuarioSession.usuario.perfil})
 					<span>|</span>
 					<a href='<c:url value='/logout' />'>Sair</a>
 				</c:if>
