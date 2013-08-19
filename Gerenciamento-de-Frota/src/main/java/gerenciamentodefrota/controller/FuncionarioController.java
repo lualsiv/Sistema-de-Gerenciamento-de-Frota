@@ -5,6 +5,7 @@ import java.util.List;
 
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
+import gerenciamentodefrota.infra.Notice;
 import gerenciamentodefrota.model.Funcionario;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -20,12 +21,13 @@ public class FuncionarioController {
 	private FuncionarioDAO funcionarioDAO;
 	private Validator validator;
 	private Result result;
+	private Notice notice;
 
-	public FuncionarioController(FuncionarioDAO funcionarioDAO,
-			Validator validator, Result result) {
+	public FuncionarioController(FuncionarioDAO funcionarioDAO, Validator validator, Result result, Notice notice) {
 		this.funcionarioDAO = funcionarioDAO;
 		this.validator = validator;
 		this.result = result;
+		this.notice = notice;
 	}
 
 	@Get
@@ -45,10 +47,12 @@ public class FuncionarioController {
 						"Já existe um funcionário com este cadastro");
 			}
 		});
-
+		
 		validator.onErrorRedirectTo(this).novo();
 
 		funcionarioDAO.adiciona(funcionario);
+		
+		notice.addSuccess("Funcionário cadastrado com sucesso.");
 		result.redirectTo(this).lista();
 	}
 

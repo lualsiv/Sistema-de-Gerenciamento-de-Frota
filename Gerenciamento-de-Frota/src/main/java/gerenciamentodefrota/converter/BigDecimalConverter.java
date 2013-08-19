@@ -18,8 +18,7 @@ public class BigDecimalConverter implements Converter<BigDecimal> {
 			return null;
 		}
 		try {
-			value = value.replace(',', '.');
-			return new BigDecimal(value);
+			return new BigDecimal(value.replace(',', '.').trim());
 		} catch (NumberFormatException e) {
 			throw new ConversionError(MessageFormat.format(bundle.getString("is_not_a_valid_integer"), value));
 		}

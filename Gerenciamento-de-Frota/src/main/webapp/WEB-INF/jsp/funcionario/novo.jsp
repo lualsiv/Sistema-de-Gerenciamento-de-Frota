@@ -1,10 +1,16 @@
-<ul class="errors">
-	<c:forEach items="${errors}" var="error">
-		<li>${error.category}: <!-- o campo em que ocorreu o erro, ou o tipo do erro -->
-			${error.message} <!-- a mensagem de erro de validação -->
-		</li>
-	</c:forEach>
-</ul>
+<content tag="breadcrumb">
+	<div class="small-nav">
+		<c:if test="${errors != null}">
+			<div class="notice-error">
+				<c:forEach items="${errors}" var="error">
+					<p>${error.category}: <!-- o campo em que ocorreu o erro, ou o tipo do erro -->
+						${error.message} <!-- a mensagem de erro de validação -->
+					</p>
+				</c:forEach>
+			</div>
+		</c:if>
+	</div>
+</content>
 
 <div class="box">
 	<div class="box-head">
