@@ -3,8 +3,6 @@ package gerenciamentodefrota.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.CombustivelDAO;
 import gerenciamentodefrota.dao.VeiculoDAO;
@@ -68,8 +66,6 @@ public class VeiculoController {
 			
 			result.include("veiculo", veiculo);
 			result.include("combustiveis", combustivelDAO.lista());
-		} catch (EntityNotFoundException enfe) {
-			result.notFound();
 		} catch (Exception e) {
 			result.notFound();
 		}
@@ -80,9 +76,9 @@ public class VeiculoController {
 	@Path(value = "/veiculo/{veiculo.id}", priority = Path.LOWEST)
 	public void alterar(final Veiculo veiculo) {
 		validator.validate(veiculo);
-
+		
 		Veiculo veiculoValida = veiculoDAO.buscaPorPlaca(veiculo.getPlaca());
-
+		
 		if (!veiculoValida.equals(veiculo)) {
 			validator.checking(new Validations() {
 				{
@@ -92,10 +88,10 @@ public class VeiculoController {
 				}
 			});
 		}
-
+		
 		result.include("combustiveis", combustivelDAO.lista());
 		validator.onErrorUsePageOf(this).editar(veiculo.getId());
-
+		
 		veiculoDAO.atualiza(veiculo);
 		result.redirectTo(this).lista();
 	}
