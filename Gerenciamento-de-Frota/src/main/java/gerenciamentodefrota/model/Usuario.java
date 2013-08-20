@@ -35,6 +35,14 @@ public class Usuario {
 	@ManyToOne
 	private Funcionario funcionario;
 
+	@Column
+	@NotNull
+	private Boolean situacao;	
+	
+	public Usuario() {
+		this.situacao = true;
+	}
+	
 	public Long getId() {
 		return id;
 	}
