@@ -82,5 +82,13 @@ public class Usuario {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
+
+	public Boolean getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Boolean situacao) {
+		this.situacao = situacao;
+	}
 	
 }

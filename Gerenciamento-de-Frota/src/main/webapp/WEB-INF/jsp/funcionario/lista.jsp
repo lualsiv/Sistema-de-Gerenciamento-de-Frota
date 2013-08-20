@@ -9,6 +9,7 @@
 				<th>Cadastro</th>
 				<th>Nome</th>
 				<th>Cargo</th>
+				<th>Situação</th>
 				<th>Opções</th>
 			</tr>
 			<c:forEach items="${funcionarioList}" var="funcionario">
@@ -16,6 +17,7 @@
 				<td>${funcionario.cadastro}</td>
 				<td>${funcionario.nome}</td>
 				<td>${funcionario.cargo}</td>
+				<td>${funcionario.situacao == true ? 'ativo' : 'inativo' }</td>
 				<td>
 					<a href='<c:url value='/funcionario/${funcionario.id}/usuario/novo' />'>novo usuário</a>
 				</td>

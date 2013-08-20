@@ -2,6 +2,7 @@ package gerenciamentodefrota.dao;
 
 import java.util.List;
 
+import gerenciamentodefrota.infra.MD5;
 import gerenciamentodefrota.model.Usuario;
 
 import javax.persistence.EntityManager;
@@ -19,6 +20,9 @@ public class UsuarioDAO {
 	}
 	
 	public void adiciona(Usuario usuario) {
+		MD5 md5 = new MD5(usuario.getSenha());
+		usuario.setSenha(md5.getPassword());
+		
 		dao.adiciona(usuario);
 	}
 
@@ -32,6 +36,9 @@ public class UsuarioDAO {
 	
 	@SuppressWarnings("unchecked")
 	public Usuario autentica(String login, String senha) {
+		MD5 md5 = new MD5(senha);
+		senha = md5.getPassword();
+		
 		StringBuilder builder = new StringBuilder();
 		builder.append("select o from Usuario o where login = :login and senha = :senha");
 		
