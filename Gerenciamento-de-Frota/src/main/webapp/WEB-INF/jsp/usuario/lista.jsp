@@ -10,6 +10,7 @@
 				<th>Login</th>
 				<th>Perfil</th>
 				<th>Situação</th>
+				<th>Cadastro</th>
 				<th>Opções</th>
 			</tr>
 			<c:forEach items="${usuarioList}" var="usuario">
@@ -18,6 +19,7 @@
 				<td>${usuario.login}</td>
 				<td>${usuario.perfil}</td>
 				<td>${usuario.situacao == true ? 'ativo' : 'inativo' }</td>
+				<td>${usuario.dataCadastro}</td>
 				<td>&nbsp;</td>
 			</tr>
 			</c:forEach>

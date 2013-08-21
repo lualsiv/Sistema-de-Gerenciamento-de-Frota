@@ -11,7 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.joda.time.DateTime;
 
 @Entity
 @SequenceGenerator(sequenceName = "SEQ_USUARIO", name = "SEQ_USUARIO")
@@ -35,12 +37,16 @@ public class Usuario {
 	@ManyToOne
 	private Funcionario funcionario;
 
-	@Column
 	@NotNull
 	private Boolean situacao;	
 	
+	@NotNull
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	private DateTime dataCadastro;
+	
 	public Usuario() {
 		this.situacao = true;
+		this.dataCadastro = DateTime.now();
 	}
 	
 	public Long getId() {
@@ -89,6 +95,14 @@ public class Usuario {
 
 	public void setSituacao(Boolean situacao) {
 		this.situacao = situacao;
+	}
+
+	public DateTime getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(DateTime dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 	
 }
