@@ -20,6 +20,7 @@
 				<td>${funcionario.situacao == true ? 'ativo' : 'inativo' }</td>
 				<td>
 					<a href='<c:url value='/funcionario/${funcionario.id}/usuario/novo' />'>novo usuário</a>
+					<a href='<c:url value='/funcionario/${funcionario.id}/motorista/novo' />'>novo motorista</a>
 				</td>
 			</tr>
 			</c:forEach>

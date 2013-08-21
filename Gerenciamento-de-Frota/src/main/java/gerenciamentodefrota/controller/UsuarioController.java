@@ -41,7 +41,8 @@ public class UsuarioController {
 		usuario.setFuncionario(funcionarioDAO.busca(usuario.getFuncionario().getId()));
 		validator.validate(usuario);
 		
-		validator.onErrorRedirectTo(this).novo(usuario.getFuncionario().getId());
+		result.include("funcionario", usuario.getFuncionario());
+		validator.onErrorUsePageOf(this).novo(usuario.getFuncionario().getId());
 		
 		usuarioDAO.adiciona(usuario);
 		result.redirectTo(this).lista();

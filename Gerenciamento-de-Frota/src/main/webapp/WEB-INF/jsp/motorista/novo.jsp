@@ -8,12 +8,12 @@
 
 <div class="box">
 	<div class="box-head">
-		<h2 class="left">Cadastrar novo usuário</h2>
+		<h2 class="left">Cadastrar novo motorista</h2>
 	</div>
 
-<form action="${linkTo[UsuarioController].salva}" method="post" name="form_usuario" id="form_usuario">
+<form action="${linkTo[MotoristaController].salva}" method="post" name="form_motorista" id="form_motorista">
 	
-	<input type="hidden" name="usuario.funcionario.id" value="${funcionario.id}" />
+	<input type="hidden" name="motorista.funcionario.id" value="${funcionario.id}" />
 
 	<div class="coluna">
 		<label for="funcionario.nome">Funcionário:</label>
@@ -28,26 +28,31 @@
 	<div class="separator">&nbsp;</div>
 	
 	<div class="coluna">
-		<label for="usuario.login">Login:</label>
-		<input type="text" name="usuario.login" value="${usuario.login}" />
+		<label for="motorista.numero">Número:</label>
+		<input type="text" name="motorista.numero" value="${motorista.numero}" />
 	</div>
 	
 	<div class="coluna">
-		<label for="usuario.senha">Senha:</label>
-		<input type="password" name="usuario.senha" value="${usuario.senha}" />
+		<label for="motorista.registro">Registro:</label>
+		<input type="text" name="motorista.registro" value="${motorista.registro}" />
 	</div>
 	
 	<div class="separator">&nbsp;</div>
-
+	
 	<div class="coluna">
-		<label for="usuario.perfil">Perfil:</label>
-		<select name="usuario.perfil">
-			<option value="CONSULTA" ${usuario.perfil == 'CONSULTA' ? 'selected' : ''}>consulta</option>
-			<option value="USUARIO" ${usuario.perfil == 'USUARIO' ? 'selected' : ''}>usuário</option>
-			<option value="ADMINISTRADOR" ${usuario.perfil == 'ADMINISTRADOR' ? 'selected' : ''}>administrador</option>
+		<label for="motorista.categoria">Categoria:</label>
+		<select name="motorista.categoria">
+			<option value="A" ${motorista.categoria == 'A' ? 'selected' : ''}>A</option>
+			<option value="B" ${motorista.categoria == 'B' ? 'selected' : ''}>B</option>
+			<option value="AB" ${motorista.categoria == 'AB' ? 'selected' : ''}>AB</option>
 		</select>
 	</div>
+
+	<div class="separator">&nbsp;</div>
 	
+	<label for="motorista.observacao">Observação:</label>
+	<textarea name="motorista.observacao" rows="10" cols="40">${motorista.observacao}</textarea>
+		
 	<div class="separator">&nbsp;</div>
 	
 	<br />
