@@ -8,7 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.joda.time.LocalDateTime;
 
 @Entity
 @SequenceGenerator(sequenceName = "SEQ_FUNCIONARIO", name = "SEQ_FUNCIONARIO")
@@ -33,6 +35,12 @@ public class Funcionario {
 	@Column
 	@NotNull
 	private Boolean situacao;
+	
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+	private LocalDateTime dataAdmissao;
+	
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+	private LocalDateTime dataExoneracao;
 	
 	public Funcionario() {
 		this.situacao = true;
@@ -76,6 +84,22 @@ public class Funcionario {
 
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
+	}
+
+	public LocalDateTime getDataAdmissao() {
+		return dataAdmissao;
+	}
+
+	public void setDataAdmissao(LocalDateTime dataAdmissao) {
+		this.dataAdmissao = dataAdmissao;
+	}
+
+	public LocalDateTime getDataExoneracao() {
+		return dataExoneracao;
+	}
+
+	public void setDataExoneracao(LocalDateTime dataExoneracao) {
+		this.dataExoneracao = dataExoneracao;
 	}
 		
 }

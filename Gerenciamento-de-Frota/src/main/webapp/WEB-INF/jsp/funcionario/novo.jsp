@@ -37,6 +37,11 @@
 		<input type="text" name="funcionario.cargo" value="${funcionario.cargo}" />
 	</div>
 	
+	<div class="coluna">
+		<label for="funcionario.dataAdmissao">Data de admissão:</label> 
+		<input type="text" name="funcionario.dataAdmissao" value="${funcionario.dataAdmissao}" />
+	</div>
+	
 	<div class="separator">&nbsp;</div>
 
 	<br />

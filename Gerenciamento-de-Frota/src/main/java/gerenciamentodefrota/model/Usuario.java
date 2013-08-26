@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 
 @Entity
 @SequenceGenerator(sequenceName = "SEQ_USUARIO", name = "SEQ_USUARIO")
@@ -41,12 +41,12 @@ public class Usuario {
 	private Boolean situacao;	
 	
 	@NotNull
-	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	private DateTime dataCadastro;
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+	private LocalDateTime dataCadastro;
 	
 	public Usuario() {
 		this.situacao = true;
-		this.dataCadastro = DateTime.now();
+		this.dataCadastro = LocalDateTime.now();
 	}
 	
 	public Long getId() {
@@ -97,11 +97,11 @@ public class Usuario {
 		this.situacao = situacao;
 	}
 
-	public DateTime getDataCadastro() {
+	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
 	}
 
-	public void setDataCadastro(DateTime dataCadastro) {
+	public void setDataCadastro(LocalDateTime dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 	
