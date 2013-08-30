@@ -44,7 +44,6 @@
 <div class="coluna">
 	<label for="veiculo.chassi">Chassi:</label>
 	<input type="text" name="veiculo.chassi" value="${veiculo.chassi}" />
-	</li>
 </div>
 
 <div class="separator">&nbsp;</div>

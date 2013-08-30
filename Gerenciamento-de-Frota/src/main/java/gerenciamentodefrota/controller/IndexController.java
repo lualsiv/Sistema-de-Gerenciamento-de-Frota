@@ -1,5 +1,6 @@
 package gerenciamentodefrota.controller;
 
+import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.infra.Notice;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Resource;
@@ -16,10 +17,10 @@ public class IndexController {
 		this.notice = notice;
 	}
 	
+	@Transacional
 	@Get("/")
 	public void index() {
 		notice.addInfo("Página principal");
-		
 		result.include("texto", "VRaptor");
 	}
 	

@@ -50,9 +50,11 @@
 
 	<div class="separator">&nbsp;</div>
 	
-	<label for="motorista.observacao">Observação:</label>
-	<textarea name="motorista.observacao" rows="10" cols="40">${motorista.observacao}</textarea>
-		
+	<div class="coluna">
+		<label for="motorista.observacao">Observação:</label>
+		<textarea name="motorista.observacao" rows="10" cols="40">${motorista.observacao}</textarea>
+	</div>
+
 	<div class="separator">&nbsp;</div>
 	
 	<br />

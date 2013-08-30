@@ -35,6 +35,8 @@
 			    <li><a href="${pageContext.request.contextPath}/combustivel"><span>Combustíveis</span></a></li>
 			    <li><a href="${pageContext.request.contextPath}/funcionario"><span>Funcionários</span></a></li>
 			    <li><a href="${pageContext.request.contextPath}/usuario"><span>Usuários</span></a></li>
+			    <li><a href="${pageContext.request.contextPath}/motorista"><span>Motoristas</span></a></li>
+			    <li><a href="${pageContext.request.contextPath}/veiculo/registrarquilometragem"><span>Hodometro</span></a></li>
 			</ul>
 		</div>
 	</div>
