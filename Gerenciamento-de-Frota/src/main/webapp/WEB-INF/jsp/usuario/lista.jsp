@@ -18,8 +18,12 @@
 				<td>${usuario.funcionario.nome}</td>
 				<td>${usuario.login}</td>
 				<td>${usuario.perfil}</td>
-				<td>${usuario.situacao == true ? 'ativo' : 'inativo' }</td>
-				<td>${usuario.dataCadastro}</td>
+				<td>
+					${usuario.situacao == true ? 'ativo' : 'inativo' }
+				</td>
+				<td>
+					<joda:format value="${usuario.dataCadastro}" pattern="dd/MM/yyyy" />
+				</td>
 				<td>&nbsp;</td>
 			</tr>
 			</c:forEach>

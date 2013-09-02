@@ -26,7 +26,7 @@
 	
 	<div class="coluna">
 		<label for="hodometro.dataLeitura">Data da leitura: </label>
-		<input type="text" name="hodometro.dataLeitura" value="${hodometro.dataLeitura}" />
+		<input type="text" name="hodometro.dataLeitura" value='<joda:format value="${hodometro.dataLeitura}" />' />
 	</div>
 	
 	<div class="separator">&nbsp;</div>

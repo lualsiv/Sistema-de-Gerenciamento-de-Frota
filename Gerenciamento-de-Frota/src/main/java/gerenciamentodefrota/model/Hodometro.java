@@ -14,16 +14,16 @@ import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 
 @Entity
-@SequenceGenerator(sequenceName = "SEQ_QUILOMETRAGEM", name = "SEQ_QUILOMETRAGEM")
+@SequenceGenerator(sequenceName = "SEQ_HODOMETRO", name = "SEQ_HODOMETRO")
 public class Hodometro {
 
 	@Id
-	@GeneratedValue(generator = "SEQ_QUILOMETRAGEM", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "SEQ_HODOMETRO", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
 	@NotNull
 	private BigDecimal quilometragem;
-
+	
 	@ManyToOne
 	private Veiculo veiculo;
 	
@@ -37,7 +37,7 @@ public class Hodometro {
 	
 	@ManyToOne
 	private Funcionario funcionario;
-
+	
 	public Hodometro() {
 		this.dataGravacao = LocalDateTime.now();
 	}
@@ -49,7 +49,7 @@ public class Hodometro {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public BigDecimal getQuilometragem() {
 		return quilometragem;
 	}

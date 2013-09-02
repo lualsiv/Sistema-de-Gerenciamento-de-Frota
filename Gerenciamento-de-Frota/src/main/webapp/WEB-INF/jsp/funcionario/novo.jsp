@@ -39,7 +39,7 @@
 	
 	<div class="coluna">
 		<label for="funcionario.dataAdmissao">Data de admissão:</label> 
-		<input type="text" name="funcionario.dataAdmissao" value="${funcionario.dataAdmissao}" />
+		<input type="text" name="funcionario.dataAdmissao" value='<joda:format value="${funcionario.dataAdmissao}"/>' />
 	</div>
 	
 	<div class="separator">&nbsp;</div>
