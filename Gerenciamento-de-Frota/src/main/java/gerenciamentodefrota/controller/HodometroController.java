@@ -60,7 +60,7 @@ public class HodometroController {
 		
 		validator.onErrorUsePageOf(this).novoRegistro();
 		
-		hodometro.setFuncionario(usuarioSession.getUsuario().getFuncionario());
+		hodometro.setUsuario(usuarioSession.getUsuario());
 		hodometroDAO.adiciona(hodometro);
 		result.redirectTo(this).lista();		
 	}

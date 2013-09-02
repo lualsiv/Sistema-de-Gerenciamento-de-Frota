@@ -36,7 +36,7 @@ public class Hodometro {
 	private LocalDateTime dataGravacao;
 	
 	@ManyToOne
-	private Funcionario funcionario;
+	private Usuario usuario;
 	
 	public Hodometro() {
 		this.dataGravacao = LocalDateTime.now();
@@ -82,12 +82,12 @@ public class Hodometro {
 		this.dataGravacao = dataGravacao;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 	
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 }
