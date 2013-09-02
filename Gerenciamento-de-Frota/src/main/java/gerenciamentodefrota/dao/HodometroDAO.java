@@ -1,7 +1,6 @@
 package gerenciamentodefrota.dao;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import gerenciamentodefrota.model.Hodometro;
@@ -43,6 +42,7 @@ public class HodometroDAO {
 		
 		Query query = dao.getEm().createQuery(builder.toString());
 		query.setParameter("id", veiculo.getId());
+		query.setMaxResults(1);
 		
 		List<Hodometro> hodometros = query.getResultList();
 		
@@ -52,9 +52,24 @@ public class HodometroDAO {
 			return BigDecimal.ZERO;
 	}
 	
-	public List<Hodometro> ultimaQuilometragemPorVeiculo() {
-		// TODO Implementar
-		return new ArrayList<>();
+	@SuppressWarnings("unchecked")
+	public Hodometro ultimaRegistroDoVeiculo(Veiculo veiculo) {
+		if(veiculo == null)
+			return null;
+		
+		StringBuilder builder = new StringBuilder("select o from " + Hodometro.class.getName() + " o ");
+		builder.append("where o.veiculo.id = :id order by o.quilometragem desc");
+		
+		Query query = dao.getEm().createQuery(builder.toString());
+		query.setParameter("id", veiculo.getId());
+		query.setMaxResults(1);
+
+		List<Hodometro> hodometros = query.getResultList();
+		
+		if (hodometros.size() > 0)
+			return hodometros.get(0);
+		else
+			return null;
 	}
 	
 }
