@@ -14,11 +14,10 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@SequenceGenerator(sequenceName = "SEQ_MOTORISTA", name = "SEQ_MOTORISTA")
 public class Motorista {
 
 	@Id
-	@GeneratedValue(generator = "SEQ_MOTORISTA", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	@Column

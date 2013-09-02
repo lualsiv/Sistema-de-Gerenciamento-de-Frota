@@ -13,11 +13,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDateTime;
 
 @Entity
-@SequenceGenerator(sequenceName = "SEQ_FUNCIONARIO", name = "SEQ_FUNCIONARIO")
 public class Funcionario {
 
 	@Id
-	@GeneratedValue(generator = "SEQ_FUNCIONARIO", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
 	@Column(unique = true)

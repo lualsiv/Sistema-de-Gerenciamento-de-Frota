@@ -14,11 +14,10 @@ import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 
 @Entity
-@SequenceGenerator(sequenceName = "SEQ_HODOMETRO", name = "SEQ_HODOMETRO")
 public class Hodometro {
 
 	@Id
-	@GeneratedValue(generator = "SEQ_HODOMETRO", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
 	@NotNull

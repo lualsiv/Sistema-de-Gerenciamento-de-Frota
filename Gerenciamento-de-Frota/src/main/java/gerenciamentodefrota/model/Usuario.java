@@ -16,11 +16,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDateTime;
 
 @Entity
-@SequenceGenerator(sequenceName = "SEQ_USUARIO", name = "SEQ_USUARIO")
 public class Usuario {
 
 	@Id
-	@GeneratedValue(generator = "SEQ_USUARIO", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
 	@Column(unique = true)
