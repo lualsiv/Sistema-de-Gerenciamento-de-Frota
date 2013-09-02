@@ -60,22 +60,7 @@
 			<div class="cl">&nbsp;</div>
 			
 			<div id="content">
-				
 				<decorator:body/>
-
-			</div>
-			
-			<div id="sidebar">
-				
-				<div class="box">
-					
-					<div class="box-head">
-						<h2>Management</h2>
-					</div>
-					
-					<p>&nbsp;</p>
-					
-				</div>
 			</div>
 			
 			<div class="cl">&nbsp;</div>			
