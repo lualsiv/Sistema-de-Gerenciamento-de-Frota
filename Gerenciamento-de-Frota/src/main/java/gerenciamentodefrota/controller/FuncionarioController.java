@@ -1,8 +1,5 @@
 package gerenciamentodefrota.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
 import gerenciamentodefrota.infra.Notice;
@@ -53,16 +50,15 @@ public class FuncionarioController {
 		funcionarioDAO.adiciona(funcionario);
 		
 		notice.addSuccess("Funcionário cadastrado com sucesso.");
-		result.redirectTo(this).lista();
+		result.redirectTo(this).lista(null, 1);
 	}
-
+	
 	@Get("/funcionario")
-	public List<Funcionario> lista() {
-		try {
-			return funcionarioDAO.lista();
-		} catch (Exception e) {
-			return new ArrayList<Funcionario>();
-		}
+	public void lista(String nome, Integer pagina) {
+		result.include("nome", nome);
+		result.include("link", "/funcionario?");
+		
+		result.include("funcionarios", funcionarioDAO.lista(nome, pagina, 10));
 	}
-
+	
 }

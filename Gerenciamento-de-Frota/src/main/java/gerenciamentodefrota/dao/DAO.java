@@ -1,5 +1,7 @@
 package gerenciamentodefrota.dao;
 
+import gerenciamentodefrota.infra.Pagination;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -66,5 +68,13 @@ public class DAO<T, I extends Serializable> {
 		List<T> listReturn = query.getResultList();
 		return listReturn;
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	public Pagination<T> listaComPaginacao(Query query, Query queryCount, Integer paginaAtual, Integer registrosPorPagina) {
+		Long totalRegistros = (Long) queryCount.getSingleResult();
+		Integer totalPaginas = (int) Math.ceil(totalRegistros / (double)registrosPorPagina);
+		
+		return new Pagination<T>(query.getResultList(), registrosPorPagina, paginaAtual, totalPaginas, totalRegistros.intValue());
+	}
+	
 }

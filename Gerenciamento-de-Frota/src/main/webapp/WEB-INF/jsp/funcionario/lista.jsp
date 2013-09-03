@@ -1,8 +1,22 @@
 <div class="box">
 	<div class="box-head">
-		<h2 class="left">Lista de funcionários</h2>
+		<h2 class="left">Pesquisa avançada</h2>
 	</div>
 
+	<div class="table">
+		<form method="get">
+			<input type="text" name="nome" id="nome" value="${nome}" />
+			<input type="submit" value="Pesquisar" />
+		</form>
+	</div>
+
+</div>
+
+<div class="box">
+	<div class="box-head">
+		<h2 class="left">Lista de funcionários</h2>
+	</div>
+	
 	<div class="table">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
@@ -12,7 +26,7 @@
 				<th>Situação</th>
 				<th>Opções</th>
 			</tr>
-			<c:forEach items="${funcionarioList}" var="funcionario">
+			<c:forEach items="${funcionarios.list}" var="funcionario">
 			<tr>
 				<td>${funcionario.cadastro}</td>
 				<td>${funcionario.nome}</td>
@@ -28,6 +42,9 @@
 	</div>
 
 </div>
+
+<span>Página atual: ${funcionarios.pageNum}</span>
+<span>Total de páginas ${funcionarios.totalPage}</span>
 
 <content tag="breadcrumb">
 	<div class="small-nav">
