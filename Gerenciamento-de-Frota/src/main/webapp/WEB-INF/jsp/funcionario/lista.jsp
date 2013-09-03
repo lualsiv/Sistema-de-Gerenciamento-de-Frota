@@ -2,7 +2,7 @@
 	<div class="box-head">
 		<h2 class="left">Pesquisa avançada</h2>
 	</div>
-
+	
 	<div class="table">
 		<form method="get">
 			<input type="text" name="nome" id="nome" value="${nome}" />
@@ -40,11 +40,12 @@
 			</c:forEach>
 		</table>
 	</div>
-
+		
 </div>
 
-<span>Página atual: ${funcionarios.pageNum}</span>
-<span>Total de páginas ${funcionarios.totalPage}</span>
+<tag:paginacao 	totalPaginas="${funcionarios.totalPage}" 
+				link="${linkTo[FuncionarioController].lista}?nome=${nome}&pagina=#" 
+				paginaAtual="${funcionarios.pageNum}" />
 
 <content tag="breadcrumb">
 	<div class="small-nav">

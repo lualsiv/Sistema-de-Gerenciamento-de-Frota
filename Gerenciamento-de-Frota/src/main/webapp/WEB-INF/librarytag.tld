@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>2.0</jspversion>
+	<shortname>paginacao</shortname>
+	<info>tag</info>
+	<uri>http://gerenciamentodefrota/taglib</uri>
+	<tag>
+		<name>paginacao</name>
+		<tagclass>gerenciamentodefrota.taglib.TagPaginacao</tagclass>
+		<info>Paginação</info>
+		<attribute>
+			<name>link</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>paginaAtual</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>totalPaginas</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib> 

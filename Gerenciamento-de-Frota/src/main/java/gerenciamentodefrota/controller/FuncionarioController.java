@@ -56,9 +56,8 @@ public class FuncionarioController {
 	@Get("/funcionario")
 	public void lista(String nome, Integer pagina) {
 		result.include("nome", nome);
-		result.include("link", "/funcionario?");
 		
-		result.include("funcionarios", funcionarioDAO.lista(nome, pagina, 10));
+		result.include("funcionarios", funcionarioDAO.lista(nome, pagina, 5));
 	}
 	
 }
