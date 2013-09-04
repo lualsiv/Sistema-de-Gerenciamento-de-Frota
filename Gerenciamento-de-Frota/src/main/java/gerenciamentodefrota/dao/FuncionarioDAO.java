@@ -31,7 +31,7 @@ public class FuncionarioDAO {
 		return dao.lista();
 	}
 	
-	public Pagination<Funcionario> lista(String nome, Integer paginaAtual, Integer registrosPorPagina) {
+	public Pagination<Funcionario> lista(String nome, String ordem, Integer paginaAtual, Integer registrosPorPagina) {
 		paginaAtual = (paginaAtual == null) ? 1 : paginaAtual;
 		
 		String hql = "select e from " + Funcionario.class.getName() + " e where 1=1 ";
@@ -40,12 +40,17 @@ public class FuncionarioDAO {
 			if (!nome.isEmpty())
 				hql += " and e.nome like :nome ";
 		}
+
+		Query queryCount = dao.getEm().createQuery(hql.replaceAll("select e ", "select count(*) "));
+		
+		if(ordem != null) {
+			if (!ordem.isEmpty())
+				hql += " order by e." + ordem;
+		}
 		
 		Query query = dao.getEm().createQuery(hql);
 		query.setFirstResult(((paginaAtual - 1) * registrosPorPagina));
 		query.setMaxResults(registrosPorPagina);
-
-		Query queryCount = dao.getEm().createQuery(hql.replaceAll("select e ", "select count(*) "));
 		
 		if(nome != null) {
 			if (!nome.isEmpty())

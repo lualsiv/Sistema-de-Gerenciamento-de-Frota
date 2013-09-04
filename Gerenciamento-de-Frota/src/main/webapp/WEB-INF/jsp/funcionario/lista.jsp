@@ -20,10 +20,18 @@
 	<div class="table">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
-				<th>Cadastro</th>
-				<th>Nome</th>
-				<th>Cargo</th>
-				<th>Situação</th>
+				<th>
+					<a href="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=cadastro" >Cadastro</a>
+				</th>
+				<th>
+					<a href="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=nome" >Nome</a>
+				</th>
+				<th>
+					<a href="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=cargo" >Cargo</a>
+				</th>
+				<th>
+					<a href="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=situacao" >Situação</a>
+				</th>
 				<th>Opções</th>
 			</tr>
 			<c:forEach items="${funcionarios.list}" var="funcionario">
@@ -44,7 +52,7 @@
 </div>
 
 <tag:paginacao 	totalPaginas="${funcionarios.totalPage}" 
-				link="${linkTo[FuncionarioController].lista}?nome=${nome}&pagina=#" 
+				link="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=${ordem}&pagina=#" 
 				paginaAtual="${funcionarios.pageNum}" />
 
 <content tag="breadcrumb">

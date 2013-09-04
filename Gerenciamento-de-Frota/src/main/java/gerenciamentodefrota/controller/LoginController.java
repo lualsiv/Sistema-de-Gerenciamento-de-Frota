@@ -17,28 +17,35 @@ public class LoginController {
 	private Result result;
 	private UsuarioDAO usuarioDAO;
 	private Notice notice;
-
+	
 	public LoginController(UsuarioDAO usuarioDAO, UsuarioSession usuarioSession, Result result, Notice notice) {
 		this.usuarioDAO = usuarioDAO;
 		this.usuarioSession = usuarioSession;
 		this.result = result;
 		this.notice = notice;
 	}
-
+	
 	@Get("/login")
 	public void login() {
 		if (usuarioSession.isLogado()) {
 			result.redirectTo("/");
 		}
 	}
-
+	
 	@Post("/login")
 	public void login(Usuario usuario) {
 		usuario = usuarioDAO.autentica(usuario.getLogin(), usuario.getSenha());
-
+		
 		if (usuario != null) {
-			usuarioSession.login(usuario);
-			result.redirectTo(IndexController.class).index();
+			if (usuario.getSituacao() == true) {
+				usuarioSession.login(usuario);
+				result.redirectTo(IndexController.class).index();
+			}
+			else
+			{
+				notice.addWarning("Cadastro de usuário está desativado.");
+				result.redirectTo(this).login();
+			}
 		} else {
 			notice.addWarning("Login ou senha inválidos.");
 			result.redirectTo(this).login();

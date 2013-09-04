@@ -17,14 +17,21 @@
 			<tr>
 				<td>${usuario.funcionario.nome}</td>
 				<td>${usuario.login}</td>
-				<td>${usuario.perfil}</td>
+				<td><c:out value="${usuario.perfil}" /></td>
 				<td>
 					${usuario.situacao == true ? 'ativo' : 'inativo' }
 				</td>
 				<td>
 					<joda:format value="${usuario.dataCadastro}" pattern="dd/MM/yyyy" />
 				</td>
-				<td>&nbsp;</td>
+				<td>
+					<c:if test="${usuario.situacao == true }">
+						<a href="${linkTo[UsuarioController].bloquear[usuario.id]}">bloquear</a>
+					</c:if>
+					<c:if test="${usuario.situacao == false }">
+						<a href="${linkTo[UsuarioController].desbloquear[usuario.id]}">desbloquear</a>
+					</c:if>
+				</td>
 			</tr>
 			</c:forEach>
 		</table>

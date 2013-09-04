@@ -3,9 +3,12 @@ package gerenciamentodefrota.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import gerenciamentodefrota.annotation.Permission;
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
 import gerenciamentodefrota.dao.UsuarioDAO;
+import gerenciamentodefrota.infra.Notice;
+import gerenciamentodefrota.model.Perfil;
 import gerenciamentodefrota.model.Usuario;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -21,12 +24,14 @@ public class UsuarioController {
 	private Validator validator;
 	private FuncionarioDAO funcionarioDAO;
 	private Result result;
+	private Notice notice;
 
-	public UsuarioController(UsuarioDAO usuarioDAO, FuncionarioDAO funcionarioDAO, Validator validator, Result result) {
+	public UsuarioController(UsuarioDAO usuarioDAO, FuncionarioDAO funcionarioDAO, Validator validator, Result result, Notice notice) {
 		this.usuarioDAO = usuarioDAO;
 		this.funcionarioDAO = funcionarioDAO;
 		this.validator = validator;
 		this.result = result;
+		this.notice = notice;
 	}
 
 	@Get
@@ -57,4 +62,32 @@ public class UsuarioController {
 		}
 	}
 
+	@Permission(Perfil.ADMINISTRADOR)
+	@Transacional
+	@Get("/usuario/{id}/bloquear")
+	public void bloquear(Long id) {
+		try {
+			usuarioDAO.bloquear(id);
+			notice.addSuccess("Usuário bloqueado com sucesso.");
+		} catch (Exception e) {
+			notice.addWarning("Usuário não encontrado");
+		}
+		
+		result.redirectTo(this).lista();
+	}
+	
+	@Permission(Perfil.ADMINISTRADOR)
+	@Transacional
+	@Get("/usuario/{id}/desbloquear")
+	public void desbloquear(Long id) {
+		try {
+			usuarioDAO.desbloquear(id);
+			notice.addSuccess("Usuário desbloqueado com sucesso.");
+		} catch (Exception e) {
+			notice.addWarning("Usuário não encontrado");
+		}
+		
+		result.redirectTo(this).lista();
+	}
+	
 }

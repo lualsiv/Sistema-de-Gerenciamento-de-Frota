@@ -50,14 +50,15 @@ public class FuncionarioController {
 		funcionarioDAO.adiciona(funcionario);
 		
 		notice.addSuccess("Funcionário cadastrado com sucesso.");
-		result.redirectTo(this).lista(null, 1);
+		result.redirectTo(this).lista(null,null, 1);
 	}
 	
 	@Get("/funcionario")
-	public void lista(String nome, Integer pagina) {
+	public void lista(String nome, String ordem, Integer pagina) {
 		result.include("nome", nome);
+		result.include("ordem", ordem);
 		
-		result.include("funcionarios", funcionarioDAO.lista(nome, pagina, 5));
+		result.include("funcionarios", funcionarioDAO.lista(nome, ordem, pagina, 5));
 	}
 	
 }

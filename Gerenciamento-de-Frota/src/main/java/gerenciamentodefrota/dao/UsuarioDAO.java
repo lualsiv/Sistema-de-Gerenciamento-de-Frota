@@ -30,6 +30,18 @@ public class UsuarioDAO {
 		return dao.busca(id);
 	}
 	
+	public void bloquear(Long id) {
+		Usuario u = dao.busca(id);
+		u.setSituacao(false);
+		dao.alterar(u);
+	}
+
+	public void desbloquear(Long id) {
+		Usuario u = dao.busca(id);
+		u.setSituacao(true);
+		dao.alterar(u);
+	}
+
 	public List<Usuario> lista() {
 		return dao.lista();
 	}
