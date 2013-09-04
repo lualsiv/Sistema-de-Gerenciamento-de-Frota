@@ -9,6 +9,7 @@ import gerenciamentodefrota.model.Combustivel;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
@@ -38,6 +39,27 @@ public class CombustivelController {
 		validator.onErrorRedirectTo(this).novo();
 		
 		combustivelDAO.adiciona(combustivel);
+		result.redirectTo(this).lista();
+	}
+
+	@Get
+	@Path(value = "/combustivel/{id}")
+	public void editar(Long id) {
+		try {
+			Combustivel combustivel = combustivelDAO.busca(id);
+			result.include("combustivel", combustivel);
+		} catch (Exception e) {
+			result.notFound();
+		}
+	}
+	
+	@Transacional
+	@Put
+	@Path(value = "/combustivel/{combustivel.id}")
+	public void alterar(final Combustivel combustivel) {
+		validator.validate(combustivel);
+		validator.onErrorUsePageOf(this).editar(combustivel.getId());
+		combustivelDAO.atualiza(combustivel);
 		result.redirectTo(this).lista();
 	}
 	

@@ -21,6 +21,10 @@ public class CombustivelDAO {
 		dao.adiciona(combustivel);
 	}
 
+	public void atualiza(Combustivel combustivel) {
+		dao.alterar(combustivel);
+	}
+	
 	public Combustivel busca(Long id) {
 		return dao.busca(id);
 	}

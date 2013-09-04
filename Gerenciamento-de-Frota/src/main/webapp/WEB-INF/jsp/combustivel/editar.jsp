@@ -8,10 +8,12 @@
 
 <div class="box">
 	<div class="box-head">
-		<h2 class="left">Cadastrar novo combustível</h2>
+		<h2 class="left">Editar combustível</h2>
 	</div>
 
-<form action="${linkTo[CombustivelController].salva}" method="post" name="form_combustivel" id="form_combustivel">
+<form action="${pageContext.request.contextPath}/combustivel/${combustivel.id}" method="post" name="form_combustivel" id="form_combustivel">
+	<input type="hidden" name="_method" value="put" />
+
 	<input type="hidden" name="combustivel.id" value="${combustivel.id}" />
 	
 	<div class="coluna">

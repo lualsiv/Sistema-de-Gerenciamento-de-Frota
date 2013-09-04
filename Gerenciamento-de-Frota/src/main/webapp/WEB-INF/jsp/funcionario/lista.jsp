@@ -21,16 +21,16 @@
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<th>
-					<a href="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=cadastro" >Cadastro</a>
+					<a href="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=cadastro&pagina=${funcionarios.pageNum}" >Cadastro</a>
 				</th>
 				<th>
-					<a href="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=nome" >Nome</a>
+					<a href="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=nome&pagina=${funcionarios.pageNum}" >Nome</a>
 				</th>
 				<th>
-					<a href="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=cargo" >Cargo</a>
+					<a href="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=cargo&pagina=${funcionarios.pageNum}" >Cargo</a>
 				</th>
 				<th>
-					<a href="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=situacao" >Situação</a>
+					<a href="${linkTo[FuncionarioController].lista}?nome=${nome}&ordem=situacao&pagina=${funcionarios.pageNum}" >Situação</a>
 				</th>
 				<th>Opções</th>
 			</tr>

@@ -14,7 +14,9 @@
 			<tr>
 				<td>${combustivel.descricao}</td>
 				<td><fmt:formatNumber>${combustivel.preco}</fmt:formatNumber></td>
-				<td>&nbsp;</td>
+				<td>
+					<a href="${pageContext.request.contextPath}/combustivel/${combustivel.id}">editar</a>
+				</td>
 			</tr>
 			</c:forEach>
 		</table>
