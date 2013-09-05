@@ -83,7 +83,7 @@
 		</span>
 	</div>
 </div>
-	
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/all.min.js"></script>
 <decorator:getProperty property="page.scripts"/>
 
