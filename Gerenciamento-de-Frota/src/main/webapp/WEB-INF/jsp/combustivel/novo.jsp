@@ -1,11 +1,3 @@
-<ul class="errors">
-	<c:forEach items="${errors}" var="error">
-		<li>${error.category}: <!-- o campo em que ocorreu o erro, ou o tipo do erro -->
-			${error.message} <!-- a mensagem de erro de validação -->
-		</li>
-	</c:forEach>
-</ul>
-
 <div class="box">
 	<div class="box-head">
 		<h2 class="left">Cadastrar novo combustível</h2>

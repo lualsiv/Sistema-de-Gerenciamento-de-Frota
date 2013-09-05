@@ -10,10 +10,10 @@ import br.com.caelum.vraptor.ioc.SessionScoped;
 @Component
 @SessionScoped
 public class Notice implements Serializable {
-
+	
 	private static final long serialVersionUID = 196531140096146750L;
 	private List<NoticeItem> notices = new ArrayList<NoticeItem>();
-
+	
 	public Notice() {
 		this.notices = new ArrayList<NoticeItem>();
 	}
@@ -21,7 +21,7 @@ public class Notice implements Serializable {
 	public void clearNotices() {
 		this.notices.clear();
 	}
-
+	
 	public void addNotice(String mensagem, NoticeEnum tipo) {
 		NoticeItem n = new NoticeItem(mensagem, tipo);
 		this.notices.add(n);
@@ -45,22 +45,6 @@ public class Notice implements Serializable {
 	
 	public List<NoticeItem> getNotices() {
 		return notices;
-	}
-	
-	private String render(){
-		StringBuilder html = new StringBuilder();
-		
-		for (NoticeItem item : notices) {
-			html.append(String.format("<div class=\"%s\"> %s </div>", item.getTipo().getText(), item.getMensagem()));
-		}
-		
-		this.clearNotices();
-		
-		return html.toString();
-	}
-	
-	public String getHtml() {
-		return this.render();
 	}
 	
 }

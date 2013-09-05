@@ -11,6 +11,7 @@ encoding//src/main/webapp/WEB-INF/jsp/combustivel/novo.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/decorators/main.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/funcionario/lista.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/funcionario/novo.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/hodometro/lista.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/hodometro/novoRegistro.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/login/login.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/motorista/lista.jsp=UTF-8

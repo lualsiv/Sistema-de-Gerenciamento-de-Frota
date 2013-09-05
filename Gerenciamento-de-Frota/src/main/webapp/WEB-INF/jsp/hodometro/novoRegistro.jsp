@@ -1,17 +1,3 @@
-<content tag="breadcrumb">
-	<div class="small-nav">
-		<c:if test="${errors != null}">
-			<div class="notice-error">
-				<c:forEach items="${errors}" var="error">
-					<p>${error.category}: <!-- o campo em que ocorreu o erro, ou o tipo do erro -->
-						${error.message} <!-- a mensagem de erro de validação -->
-					</p>
-				</c:forEach>
-			</div>
-		</c:if>
-	</div>
-</content>
-
 <div class="box">
 	<div class="box-head">
 		<h2 class="left">Registrar nova quilometragem</h2>

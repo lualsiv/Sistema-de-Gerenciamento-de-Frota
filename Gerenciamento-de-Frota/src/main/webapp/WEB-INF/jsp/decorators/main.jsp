@@ -7,7 +7,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><decorator:title default="Sistema de Gerenciamento de Frota"/></title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/stylesheets/all.min.css"/>
-	
 	<decorator:head/>
 </head>
 
@@ -36,7 +35,7 @@
 			    <li><a href="${pageContext.request.contextPath}/funcionario"><span>Funcionários</span></a></li>
 			    <li><a href="${pageContext.request.contextPath}/usuario"><span>Usuários</span></a></li>
 			    <li><a href="${pageContext.request.contextPath}/motorista"><span>Motoristas</span></a></li>
-			    <li><a href="${pageContext.request.contextPath}/veiculo/registrarquilometragem"><span>Hodometro</span></a></li>
+			    <li><a href="${pageContext.request.contextPath}/hodometro"><span>Hodometro</span></a></li>
 			</ul>
 		</div>
 	</div>
@@ -49,13 +48,21 @@
 			<a href="<c:url value="/" />">Início</a>
 			<span>&gt;</span> Current Articles
 		</div>
-		
-		<div class="small-nav">
-			${notice.html}
-		</div>
 				
+		<div class="small-nav">
+			<tag:notice notices="${notice}" />
+			
+			<c:if test="${errors != null}">
+				<div class="notice-error">
+					<c:forEach items="${errors}" var="error">
+						<p>${error.category}: ${error.message}</p>
+					</c:forEach>
+				</div>
+			</c:if>
+		</div>
+		
 		<decorator:getProperty property="page.breadcrumb"/>
-						
+		
 		<div id="main">
 			<div class="cl">&nbsp;</div>
 			
@@ -77,8 +84,8 @@
 	</div>
 </div>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/all.min.js"></script>
-	<decorator:getProperty property="page.scripts"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascripts/all.min.js"></script>
+<decorator:getProperty property="page.scripts"/>
 
 </body>
 </html>

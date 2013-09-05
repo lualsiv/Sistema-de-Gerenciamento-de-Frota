@@ -1,6 +1,7 @@
 package gerenciamentodefrota.dao;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import gerenciamentodefrota.model.Hodometro;
@@ -70,6 +71,11 @@ public class HodometroDAO {
 			return hodometros.get(0);
 		else
 			return null;
+	}
+
+	public List<Hodometro> ultimoRegistroCadaVeiculo() {
+		// TODO Implementar
+		return new ArrayList<Hodometro>();
 	}
 	
 }

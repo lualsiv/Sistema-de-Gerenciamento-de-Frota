@@ -25,4 +25,16 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+
+	<tag>
+		<name>notice</name>
+		<tagclass>gerenciamentodefrota.taglib.TagNotice</tagclass>
+		<info>Notice</info>
+		<attribute>
+			<name>notices</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
 </taglib> 

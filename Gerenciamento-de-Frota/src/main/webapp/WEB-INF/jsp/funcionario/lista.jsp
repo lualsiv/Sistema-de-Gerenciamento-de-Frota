@@ -4,7 +4,8 @@
 	</div>
 	
 	<div class="table">
-		<form method="get">
+		<form method="get" id="form_pesquisa">
+			<label for="nome" >Nome: </label>
 			<input type="text" name="nome" id="nome" value="${nome}" />
 			<input type="submit" value="Pesquisar" />
 		</form>
@@ -16,7 +17,7 @@
 	<div class="box-head">
 		<h2 class="left">Lista de funcionários</h2>
 	</div>
-	
+		
 	<div class="table">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
@@ -59,4 +60,14 @@
 	<div class="small-nav">
 		<a href="${pageContext.request.contextPath}/funcionario/novo">Cadastrar funcionário</a>
 	</div>
+</content>
+
+<content tag="scripts">
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("select, input").uniform();
+	}); 
+	</script>
+
 </content>
