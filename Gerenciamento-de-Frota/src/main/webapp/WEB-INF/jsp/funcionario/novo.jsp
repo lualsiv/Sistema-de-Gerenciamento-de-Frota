@@ -25,7 +25,7 @@
 	
 	<div class="coluna">
 		<label for="funcionario.dataAdmissao">Data de admissão:</label> 
-		<input type="text" name="funcionario.dataAdmissao" value='<joda:format value="${funcionario.dataAdmissao}"/>' />
+		<input type="text" name="funcionario.dataAdmissao" class="datetimepicker" value='<joda:format value="${funcionario.dataAdmissao}"/>' />
 	</div>
 	
 	<div class="separator">&nbsp;</div>
@@ -65,8 +65,27 @@
 	       }
 		});
 		
-		$("select, input").uniform();
+// 		$("select, input").uniform();
+		
 	}); 
 	</script>
-
+	
+	<script type="text/javascript">
+	$(function() {
+		$( ".datepicker" ).datepicker({
+		    dateFormat: 'dd/mm/yy',
+		    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+		    dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+		    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+		    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+		    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+		    nextText: 'Próximo',
+		    prevText: 'Anterior'
+		});
+	
+		$(".datetimepicker").datetimepicker();
+		
+	});
+	</script>
+	
 </content>
