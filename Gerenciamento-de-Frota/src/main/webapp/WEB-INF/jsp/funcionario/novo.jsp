@@ -22,14 +22,15 @@
 		<label for="funcionario.cargo">Cargo:</label> 
 		<input type="text" name="funcionario.cargo" value="${funcionario.cargo}" />
 	</div>
-	
+		
 	<div class="coluna">
-		<label for="funcionario.dataAdmissao">Data de admissão:</label> 
-		<input type="text" name="funcionario.dataAdmissao" class="datetimepicker" value='<joda:format value="${funcionario.dataAdmissao}"/>' />
+		<label for="funcionario.dataAdmissao">Data de admissão:</label>
+		<joda:format value="${funcionario.dataAdmissao}" pattern="dd/MM/yyyy HH:mm" var="dataAdmissao" />
+		<input type="text" name="funcionario.dataAdmissao" class="datetimepicker" value="${dataAdmissao}" />
 	</div>
 	
 	<div class="separator">&nbsp;</div>
-
+	
 	<br />
 	<input type="submit" value="Salvar" />
 </form>
@@ -65,27 +66,11 @@
 	       }
 		});
 		
-// 		$("select, input").uniform();
+		$("select, input").uniform();
 		
 	}); 
 	</script>
 	
-	<script type="text/javascript">
-	$(function() {
-		$( ".datepicker" ).datepicker({
-		    dateFormat: 'dd/mm/yy',
-		    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-		    dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
-		    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
-		    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-		    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
-		    nextText: 'Próximo',
-		    prevText: 'Anterior'
-		});
-	
-		$(".datetimepicker").datetimepicker();
+	<tag:datetimepicker id=".datetimepicker" />
 		
-	});
-	</script>
-	
 </content>

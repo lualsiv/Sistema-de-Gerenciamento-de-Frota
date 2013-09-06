@@ -14,7 +14,9 @@
 			<c:forEach items="${hodometroList}" var="hodometro">
 			<tr>
 				<td>${hodometro.veiculo.descricao}</td>
-				<td><joda:format value="${hodometro.dataLeitura}" pattern="dd/MM/yyyy HH:mm" /> </td>
+				<td>
+					<joda:format value="${hodometro.dataLeitura}" pattern="dd/MM/yyyy HH:mm" />
+				</td>
 				<td><fmt:formatNumber>${hodometro.quilometragem}</fmt:formatNumber></td>
 				<td>&nbsp;</td>
 			</tr>

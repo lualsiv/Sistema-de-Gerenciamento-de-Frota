@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
@@ -19,7 +20,8 @@ public class Hodometro {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
-	@NotNull
+	@NotNull(message = "{campo.obrigatorio}")
+	@DecimalMin(value="0.01", message="{campo.maior.que}")
 	private BigDecimal quilometragem;
 	
 	@ManyToOne

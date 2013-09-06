@@ -5,6 +5,7 @@ import java.util.List;
 
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.CombustivelDAO;
+import gerenciamentodefrota.infra.Notice;
 import gerenciamentodefrota.model.Combustivel;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -20,11 +21,13 @@ public class CombustivelController {
 	private CombustivelDAO combustivelDAO;
 	private Validator validator;
 	private Result result;
+	private Notice notice;
 
-	public CombustivelController(CombustivelDAO combustivelDAO, Validator validator, Result result) {
+	public CombustivelController(CombustivelDAO combustivelDAO, Validator validator, Result result, Notice notice) {
 		this.combustivelDAO = combustivelDAO;
 		this.validator = validator;
 		this.result = result;
+		this.notice = notice;
 	}
 
 	@Get
@@ -39,6 +42,7 @@ public class CombustivelController {
 		validator.onErrorRedirectTo(this).novo();
 		
 		combustivelDAO.adiciona(combustivel);
+		notice.addSuccess("Combustível cadastrado com sucesso.");
 		result.redirectTo(this).lista();
 	}
 

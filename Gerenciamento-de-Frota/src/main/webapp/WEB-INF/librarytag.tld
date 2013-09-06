@@ -36,5 +36,15 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+
+	<tag>
+		<name>datetimepicker</name>
+		<tagclass>gerenciamentodefrota.taglib.TagDateTimePicker</tagclass>
+		<info>datetimepicker</info>
+		<attribute>
+			<name>id</name>
+			<required>true</required>
+		</attribute>
+	</tag>
 	
 </taglib> 
