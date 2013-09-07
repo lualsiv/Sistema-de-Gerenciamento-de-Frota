@@ -47,4 +47,33 @@
 		</attribute>
 	</tag>
 	
+	<tag>
+		<name>linkpermission</name>
+		<tagclass>gerenciamentodefrota.taglib.TagLinkPermission</tagclass>
+		<info>datetimepicker</info>
+		<attribute>
+			<name>perfis</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>link</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>titulo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>exibir</name>
+		</attribute>
+		<attribute>
+			<name>usuarioSession</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
 </taglib> 
