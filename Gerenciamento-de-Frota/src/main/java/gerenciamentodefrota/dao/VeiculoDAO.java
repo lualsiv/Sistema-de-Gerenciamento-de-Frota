@@ -3,6 +3,7 @@ package gerenciamentodefrota.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 import gerenciamentodefrota.model.Veiculo;
 import br.com.caelum.vraptor.ioc.Component;
@@ -37,16 +38,11 @@ public class VeiculoDAO {
 	}
 
 	public Veiculo buscaPorPlaca(String placa) {
-		if (placa == null)
+		try {
+			return dao.findByField("placa", placa.toUpperCase());
+		} catch (NoResultException e) {
 			return null;
-
-		List<Veiculo> veiculos;
-		veiculos = dao.listAllByField("placa", placa.toUpperCase());
-
-		if (veiculos.size() > 0)
-			return veiculos.get(0);
-		else
-			return null;
+		}
 	}
 
 	public List<Veiculo> lista() {
