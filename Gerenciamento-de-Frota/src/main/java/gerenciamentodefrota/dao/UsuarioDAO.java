@@ -20,8 +20,8 @@ public class UsuarioDAO {
 	}
 	
 	public void adiciona(Usuario usuario) {
-		MD5 md5 = new MD5(usuario.getSenha());
-		usuario.setSenha(md5.getPassword());
+		MD5 md5 = new MD5();
+		usuario.setSenha(md5.hash(usuario.getSenha()));
 		
 		dao.adiciona(usuario);
 	}
@@ -48,8 +48,8 @@ public class UsuarioDAO {
 	
 	@SuppressWarnings("unchecked")
 	public Usuario autentica(String login, String senha) {
-		MD5 md5 = new MD5(senha);
-		senha = md5.getPassword();
+		MD5 md5 = new MD5();
+		senha = md5.hash(senha);
 		
 		StringBuilder builder = new StringBuilder();
 		builder.append("select o from Usuario o where login = :login and senha = :senha");

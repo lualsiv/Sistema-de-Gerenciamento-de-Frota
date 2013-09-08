@@ -6,13 +6,10 @@ import java.security.NoSuchAlgorithmException;
 
 public class MD5 {
 
-	private String password;
-
-	public MD5(String password) {
-		this.password = password;
-	}
-
-	private String hash() {
+	public String hash(String password) {
+		if (password == null)
+			throw new IllegalArgumentException();
+		
 		MessageDigest md = null;
 		
 		try {
@@ -24,10 +21,6 @@ public class MD5 {
 		BigInteger hash = new BigInteger(1, md.digest(password.getBytes()));
 		
 		return hash.toString(16);
-	}
-
-	public String getPassword(){
-		return this.hash();
 	}
 	
 }
