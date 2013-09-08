@@ -2,7 +2,7 @@
 	<div class="box-head">
 		<h2 class="left">Lista de veículos</h2>
 	</div>
-
+	
 	<div class="table">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
@@ -27,13 +27,13 @@
 			</c:forEach>
 		</table>
 	</div>
-
+	
 </div>
 
 <content tag="breadcrumb">
 <div class="small-nav">
 	<tag:linkpermission perfis="USUARIO,ADMINISTRADOR"
 		link="${pageContext.request.contextPath}/veiculo/novo" exibir="true"
-		titulo="Cadastrar veículo" usuarioSession="${usuarioSession}" />
+		titulo="Cadastrar veículo" />
 </div>
 </content>

@@ -69,11 +69,6 @@
 		<attribute>
 			<name>exibir</name>
 		</attribute>
-		<attribute>
-			<name>usuarioSession</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
 	</tag>
 	
 </taglib> 

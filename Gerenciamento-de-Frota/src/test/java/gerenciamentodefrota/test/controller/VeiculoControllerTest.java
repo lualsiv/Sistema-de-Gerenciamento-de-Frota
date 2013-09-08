@@ -2,16 +2,11 @@ package gerenciamentodefrota.test.controller;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-
 import org.junit.Assert;
 import org.junit.Test;
 
 import gerenciamentodefrota.controller.VeiculoController;
 import gerenciamentodefrota.dao.CombustivelDAO;
-import gerenciamentodefrota.dao.EntityManagerCreator;
-import gerenciamentodefrota.dao.EntityManagerFactoryCreator;
 import gerenciamentodefrota.dao.VeiculoDAO;
 import gerenciamentodefrota.model.Combustivel;
 import gerenciamentodefrota.model.Veiculo;
