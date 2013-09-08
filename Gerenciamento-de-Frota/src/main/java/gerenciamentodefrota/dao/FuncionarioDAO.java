@@ -4,6 +4,7 @@ import java.util.List;
 
 import gerenciamentodefrota.infra.Pagination;
 import gerenciamentodefrota.model.Funcionario;
+import gerenciamentodefrota.util.StringUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -36,28 +37,23 @@ public class FuncionarioDAO {
 		
 		String hql = "select e from " + Funcionario.class.getName() + " e where 1=1 ";
 		
-		if(nome != null) {
-			if (!nome.isEmpty())
-				hql += " and e.nome like :nome ";
+		if (StringUtil.notNullOrEmpty(nome)) {
+			hql += " and e.nome like :nome ";
 		}
-
+		
 		Query queryCount = dao.getEm().createQuery(hql.replaceAll("select e ", "select count(*) "));
 		
-		if(ordem != null) {
-			if (!ordem.isEmpty())
-				hql += " order by e." + ordem;
+		if (StringUtil.notNullOrEmpty(ordem)) {
+			hql += " order by e." + ordem;
 		}
 		
 		Query query = dao.getEm().createQuery(hql);
 		query.setFirstResult(((paginaAtual - 1) * registrosPorPagina));
 		query.setMaxResults(registrosPorPagina);
 		
-		if(nome != null) {
-			if (!nome.isEmpty())
-			{
-				query.setParameter("nome", "%" + nome + "%");
-				queryCount.setParameter("nome", "%" + nome + "%");
-			}
+		if (StringUtil.notNullOrEmpty(nome)) {
+			query.setParameter("nome", "%" + nome + "%");
+			queryCount.setParameter("nome", "%" + nome + "%");
 		}
 		
 		return dao.listaComPaginacao(query, queryCount, paginaAtual, registrosPorPagina);
