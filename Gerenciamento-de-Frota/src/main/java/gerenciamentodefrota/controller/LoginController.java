@@ -12,7 +12,7 @@ import gerenciamentodefrota.model.UsuarioSession;
 
 @Resource
 public class LoginController {
-
+	
 	private UsuarioSession usuarioSession;
 	private Result result;
 	private UsuarioDAO usuarioDAO;
@@ -43,7 +43,7 @@ public class LoginController {
 			}
 			else
 			{
-				notice.addWarning("Cadastro de usuário está desativado.");
+				notice.addWarning("O usuário está desativado.");
 				result.redirectTo(this).login();
 			}
 		} else {
@@ -51,12 +51,12 @@ public class LoginController {
 			result.redirectTo(this).login();
 		}
 	}
-
+	
 	@Logged
 	@Get("/logout")
 	public void logout() {
 		usuarioSession.logoff();
 		result.redirectTo(LoginController.class).login();
 	}
-
+	
 }

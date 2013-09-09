@@ -6,6 +6,7 @@ import gerenciamentodefrota.infra.MD5;
 import gerenciamentodefrota.model.Usuario;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.caelum.vraptor.ioc.Component;
@@ -15,21 +16,21 @@ public class UsuarioDAO {
 
 	private DAO<Usuario, Long> dao;
 
-	public UsuarioDAO(EntityManager em){
+	public UsuarioDAO(EntityManager em) {
 		this.dao = new DAO<Usuario, Long>(em, Usuario.class);
 	}
-	
+
 	public void adiciona(Usuario usuario) {
 		MD5 md5 = new MD5();
 		usuario.setSenha(md5.hash(usuario.getSenha()));
-		
+
 		dao.adiciona(usuario);
 	}
 
 	public Usuario busca(Long id) {
 		return dao.busca(id);
 	}
-	
+
 	public void bloquear(Long id) {
 		Usuario u = dao.busca(id);
 		u.setSituacao(false);
@@ -45,22 +46,21 @@ public class UsuarioDAO {
 	public List<Usuario> lista() {
 		return dao.lista();
 	}
-	
-	@SuppressWarnings("unchecked")
-	public Usuario autentica(String login, String senha) {
-		MD5 md5 = new MD5();
-		senha = md5.hash(senha);
-		
-		StringBuilder builder = new StringBuilder();
-		builder.append("select o from Usuario o where login = :login and senha = :senha");
-		
-		Query query = dao.getEm().createQuery(builder.toString());
-		query.setParameter("login", login);
-		query.setParameter("senha", senha);
-		
-		List<Usuario> listReturn = query.getResultList();
 
-		return ( listReturn.size() > 0 ) ? listReturn.get(0) : null;
+	public Usuario autentica(String login, String senha) {
+		senha = new MD5().hash(senha);
+
+		String builder = "select o from Usuario o where login = :login and senha = :senha";
+
+		Query query = dao.getEm().createQuery(builder)
+								 .setParameter("login", login)
+								 .setParameter("senha", senha);
+
+		try {
+			return (Usuario) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
-	
+
 }

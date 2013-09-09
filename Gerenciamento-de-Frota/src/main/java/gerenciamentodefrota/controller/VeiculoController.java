@@ -60,9 +60,8 @@ public class VeiculoController {
 	@Get
 	@Path(value = "/veiculo/{id}", priority = Path.DEFAULT)
 	public void editar(Long id) {
-		Veiculo veiculo;
 		try {
-			veiculo = veiculoDAO.busca(id);
+			Veiculo veiculo = veiculoDAO.busca(id);
 			
 			result.include("veiculo", veiculo);
 			result.include("combustiveis", combustivelDAO.lista());

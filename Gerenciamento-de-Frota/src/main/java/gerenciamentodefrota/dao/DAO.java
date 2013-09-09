@@ -25,8 +25,7 @@ public class DAO<T, I extends Serializable> {
 	@SuppressWarnings("unchecked")
 	public List<T> lista() {
 		Query query = em.createQuery("select e from " + classe.getName() + " e");
-		List<T> lista = query.getResultList();
-		return lista;
+		return query.getResultList();
 	}
 	
 	public EntityManager getEm(){

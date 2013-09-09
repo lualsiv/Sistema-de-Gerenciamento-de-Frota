@@ -11,7 +11,7 @@ public class UsuarioSession implements Serializable {
 
 	private static final long serialVersionUID = 906625873661089523L;
 
-	private Usuario usuario;
+	private Usuario usuario = null;
 	
 	public void login(Usuario usuario) {
 		this.usuario = usuario;
