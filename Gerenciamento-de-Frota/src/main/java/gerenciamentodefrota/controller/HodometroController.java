@@ -65,7 +65,7 @@ public class HodometroController {
 		Hodometro registroAnterior = hodometroDAO.ultimoRegistroDoVeiculo(hodometro.getVeiculo());
 		BigDecimal quilometragemAnterior = registroAnterior == null ? BigDecimal.ZERO : registroAnterior.getQuilometragem();
 		LocalDateTime dataAnterior = registroAnterior == null ? new LocalDateTime() : registroAnterior.getDataLeitura();
-
+		
 		if (!hodometro.getDataLeitura().isAfter(dataAnterior)) {
 			validator.add(new ValidationMessage("A data da leitura deve ser maior que o registro anterior.","hodometro.dataLeitura"));
 		}
@@ -75,7 +75,6 @@ public class HodometroController {
 		}
 		
 		validator.onErrorUsePageOf(this).novoRegistro();
-		
 	}
 
 	@Get("/hodometro")

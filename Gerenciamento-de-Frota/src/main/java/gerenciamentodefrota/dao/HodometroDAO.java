@@ -51,7 +51,7 @@ public class HodometroDAO {
 		}
 	}
 	
-	public Hodometro ultimaRegistroDoVeiculo(Veiculo veiculo) {
+	public Hodometro ultimoRegistroDoVeiculo(Veiculo veiculo) {
 		if(veiculo == null)
 			return null;
 		

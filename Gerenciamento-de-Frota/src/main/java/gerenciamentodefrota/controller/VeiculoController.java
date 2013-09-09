@@ -41,6 +41,13 @@ public class VeiculoController {
 	@Transacional
 	@Post("/veiculo/salvar")
 	public void salva(final Veiculo veiculo) {
+		validaNovoVeiculo(veiculo);
+
+		veiculoDAO.adiciona(veiculo);
+		result.redirectTo(this).lista();
+	}
+	
+	private void validaNovoVeiculo(final Veiculo veiculo) {
 		validator.validate(veiculo);
 
 		validator.checking(new Validations() {
@@ -52,11 +59,8 @@ public class VeiculoController {
 		});
 
 		validator.onErrorRedirectTo(this).novo();
-
-		veiculoDAO.adiciona(veiculo);
-		result.redirectTo(this).lista();
 	}
-	
+
 	@Get
 	@Path(value = "/veiculo/{id}", priority = Path.DEFAULT)
 	public void editar(Long id) {
@@ -74,6 +78,13 @@ public class VeiculoController {
 	@Put
 	@Path(value = "/veiculo/{veiculo.id}", priority = Path.LOWEST)
 	public void alterar(final Veiculo veiculo) {
+		validaEditarVeiculo(veiculo);
+		
+		veiculoDAO.atualiza(veiculo);
+		result.redirectTo(this).lista();
+	}
+
+	private void validaEditarVeiculo(final Veiculo veiculo) {
 		validator.validate(veiculo);
 		
 		Veiculo veiculoValida = veiculoDAO.buscaPorPlaca(veiculo.getPlaca());
@@ -90,9 +101,6 @@ public class VeiculoController {
 		
 		result.include("combustiveis", combustivelDAO.lista());
 		validator.onErrorUsePageOf(this).editar(veiculo.getId());
-		
-		veiculoDAO.atualiza(veiculo);
-		result.redirectTo(this).lista();
 	}
 
 	@Get("/veiculo")

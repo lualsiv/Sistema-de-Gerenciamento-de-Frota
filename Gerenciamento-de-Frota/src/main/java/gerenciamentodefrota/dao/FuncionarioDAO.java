@@ -33,6 +33,9 @@ public class FuncionarioDAO {
 		return dao.lista();
 	}
 	
+	public Pagination<Funcionario> lista(String nome, String ordem, Integer paginaAtual) {
+		return lista(nome, ordem, paginaAtual, Pagination.PAGESIZE);
+	}
 	public Pagination<Funcionario> lista(String nome, String ordem, Integer paginaAtual, Integer registrosPorPagina) {
 		paginaAtual = (paginaAtual == null) ? 1 : paginaAtual;
 		

@@ -49,8 +49,7 @@ public class DAO<T, I extends Serializable> {
 		StringBuilder builder = new StringBuilder("select o from " + classe.getName() + " o ");
 		builder.append("where ").append(campo).append(" = :valor");
 		
-		Query query = em.createQuery(builder.toString());
-		query.setParameter("valor", valor);
+		Query query = em.createQuery(builder.toString()).setParameter("valor", valor);
 		
 		return (T)query.getSingleResult();
 	}
@@ -60,8 +59,7 @@ public class DAO<T, I extends Serializable> {
 		StringBuilder builder = new StringBuilder("select o from " + classe.getName() + " o ");
 		builder.append("where ").append(campo).append(" = :valor");
 		
-		Query query = em.createQuery(builder.toString());
-		query.setParameter("valor", valor);
+		Query query = em.createQuery(builder.toString()).setParameter("valor", valor);
 		
 		List<T> listReturn = query.getResultList();
 		return listReturn;
@@ -72,8 +70,7 @@ public class DAO<T, I extends Serializable> {
 		StringBuilder builder = new StringBuilder("select o from " + classe.getName() + " o ");
 		builder.append("where ").append(campo).append(" like :valor");
 		
-		Query query = em.createQuery(builder.toString());
-		query.setParameter("valor", "%" + valor + "%");
+		Query query = em.createQuery(builder.toString()).setParameter("valor", "%" + valor + "%");
 		
 		List<T> listReturn = query.getResultList();
 		return listReturn;
