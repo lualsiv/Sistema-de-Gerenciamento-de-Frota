@@ -55,12 +55,12 @@ public class Veiculo {
 	@Column
 	@NotEmpty
 	private String renavam;
-	
+
 	@Column
 	@NotNull
 	@Min(value = 1)
 	private Integer capacidadeTanque;
-	
+
 	@Column
 	private String observacao;
 
@@ -74,7 +74,7 @@ public class Veiculo {
 
 	@ManyToOne
 	private Combustivel combustivel;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -88,7 +88,11 @@ public class Veiculo {
 	}
 
 	public void setPlaca(String placa) {
-		this.placa = placa == null ? null : placa.toUpperCase();
+		if (placa != null) {
+			if (placa.matches("^[a-zA-Z]{3}\\-\\d{4}$")) {
+				this.placa = placa.toUpperCase();
+			}
+		}
 	}
 
 	public Integer getAnoFabricacao() {
@@ -194,7 +198,7 @@ public class Veiculo {
 	public void setCombustivel(Combustivel combustivel) {
 		this.combustivel = combustivel;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -219,5 +223,5 @@ public class Veiculo {
 			return false;
 		return true;
 	}
-	
+
 }

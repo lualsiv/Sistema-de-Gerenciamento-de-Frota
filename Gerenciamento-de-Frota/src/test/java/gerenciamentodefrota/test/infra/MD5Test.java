@@ -1,3 +1,5 @@
+package gerenciamentodefrota.test.infra;
+
 import gerenciamentodefrota.infra.MD5;
 
 import org.junit.Assert;
