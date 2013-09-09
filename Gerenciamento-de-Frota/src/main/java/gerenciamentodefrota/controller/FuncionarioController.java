@@ -3,7 +3,6 @@ package gerenciamentodefrota.controller;
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
 import gerenciamentodefrota.infra.Notice;
-import gerenciamentodefrota.infra.Pagination;
 import gerenciamentodefrota.model.Funcionario;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -51,7 +50,7 @@ public class FuncionarioController {
 		if (funcionarioDAO.buscaPorCadastro(funcionario.getCadastro()) != null) {
 			validator.add(new ValidationMessage("Já existe um funcionário com este cadastro.", "funcionario.cadastro"));
 		}
-
+		
 		validator.onErrorRedirectTo(this).novo();
 	}
 

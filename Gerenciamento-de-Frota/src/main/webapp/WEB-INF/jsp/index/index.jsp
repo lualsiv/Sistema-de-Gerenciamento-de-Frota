@@ -1,1 +1,0 @@
-O ${texto} funfou!

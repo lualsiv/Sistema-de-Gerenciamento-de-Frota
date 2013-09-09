@@ -21,6 +21,11 @@ public class TagLinkPermission extends TagSupport {
 	private Boolean exibir = false;
 	private UsuarioSession usuarioSession;
 	
+	public TagLinkPermission() {
+		super();
+		getUsuarioSession();
+	}
+
 	private void getUsuarioSession() {
 		try {
 			HttpSession session = pageContext.getSession();
@@ -32,24 +37,20 @@ public class TagLinkPermission extends TagSupport {
 	
 	@Override
 	public int doStartTag() throws JspException {
-		getUsuarioSession();
-		
 		try {
 			JspWriter out = pageContext.getOut();
 			
 			if (usuarioSession != null) {
-				if (usuarioSession.isLogado() && hasAccess(usuarioSession.getUsuario().getPerfil())) {
+				if (usuarioSession.isLogado() && hasAccess()) {
 					out.println("<a href=\"" + link + "\">" + titulo + "</a>");
 				} else {
-					if (exibir) {
+					if (exibir)
 						out.println("<span>" + titulo + "</span>");
-					}
 				}
 			}
 			else {
-				if (exibir) {
+				if (exibir)
 					out.println("<span>" + titulo + "</span>");
-				}
 			}
 			
 		} catch (Exception e) {
@@ -63,12 +64,15 @@ public class TagLinkPermission extends TagSupport {
 		String[] lista = perfis.split(",");
 		for (String string : lista) {
 			try {
-				Perfil perfil = EnumType.valueOf(Perfil.class, string.trim());
-				this.perfis.add(perfil);
+				this.perfis.add(create(string));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	private Perfil create(String perfil) {
+		return EnumType.valueOf(Perfil.class, perfil.trim());
 	}
 	
 	public void setLink(String link) {
@@ -83,7 +87,7 @@ public class TagLinkPermission extends TagSupport {
 		this.titulo = titulo;
 	}
 
-	private Boolean hasAccess(Perfil perfil) {
-		return perfis.contains(perfil);
+	private Boolean hasAccess() {
+		return perfis.contains(usuarioSession.getUsuario().getPerfil());
 	}
 }
