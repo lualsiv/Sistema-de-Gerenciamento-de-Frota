@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.LocalDateTime;
+
 import gerenciamentodefrota.annotation.Permission;
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.HodometroDAO;
@@ -44,27 +46,38 @@ public class HodometroController {
 	@Transacional
 	@Post("/veiculo/registrarquilometragem")
 	public void novoRegistro(Hodometro hodometro) {
-		hodometro.setVeiculo(veiculoDAO.buscaPorPlaca(hodometro.getVeiculo().getPlaca()));
-		
-		if (hodometro.getVeiculo() == null) {
-			validator.add(new ValidationMessage("Não existe veículo com esta placa nos registro.","veiculo.placa"));
-		}
-		
-		validator.onErrorUsePageOf(this).novoRegistro();
-		
-		BigDecimal numero = hodometroDAO.ultimaQuilometragem(hodometro.getVeiculo());
-		
-		if (hodometro.getQuilometragem().compareTo(numero) != 1) {
-			validator.add(new ValidationMessage("A quilometragem deve ser maior que o registro anterior.","hodometro.quilometragem"));
-		}
-		
-		validator.onErrorUsePageOf(this).novoRegistro();
+		validaNovoHodometro(hodometro);
 		
 		hodometro.setUsuario(usuarioSession.getUsuario());
 		hodometroDAO.adiciona(hodometro);
 		result.redirectTo(this).lista();		
 	}
 	
+	private void validaNovoHodometro(Hodometro hodometro) {
+		hodometro.setVeiculo(veiculoDAO.buscaPorPlaca(hodometro.getVeiculo().getPlaca()));
+		
+		if (hodometro.getVeiculo() == null) {
+			validator.add(new ValidationMessage("Não existe veículo com esta placa nos registros.","veiculo.placa"));
+		}
+		
+		validator.onErrorUsePageOf(this).novoRegistro();
+		
+		Hodometro registroAnterior = hodometroDAO.ultimoRegistroDoVeiculo(hodometro.getVeiculo());
+		BigDecimal quilometragemAnterior = registroAnterior == null ? BigDecimal.ZERO : registroAnterior.getQuilometragem();
+		LocalDateTime dataAnterior = registroAnterior == null ? new LocalDateTime() : registroAnterior.getDataLeitura();
+
+		if (!hodometro.getDataLeitura().isAfter(dataAnterior)) {
+			validator.add(new ValidationMessage("A data da leitura deve ser maior que o registro anterior.","hodometro.dataLeitura"));
+		}
+		
+		if (hodometro.getQuilometragem().compareTo(quilometragemAnterior) != 1) {
+			validator.add(new ValidationMessage("A quilometragem deve ser maior que o registro anterior.","hodometro.quilometragem"));
+		}
+		
+		validator.onErrorUsePageOf(this).novoRegistro();
+		
+	}
+
 	@Get("/hodometro")
 	public List<Hodometro> lista() {
 		try {

@@ -12,7 +12,8 @@
 	
 	<div class="coluna">
 		<label for="hodometro.dataLeitura">Data da leitura: </label>
-		<input type="text" name="hodometro.dataLeitura" value='<joda:format value="${hodometro.dataLeitura}" />' />
+		<joda:format value="${hodometro.dataLeitura}" pattern="dd/MM/yyyy HH:mm" var="dataLeitura" />
+		<input type="text" class="datetimepicker" name="hodometro.dataLeitura" value="${dataLeitura}" />
 	</div>
 	
 	<div class="separator">&nbsp;</div>
@@ -38,5 +39,7 @@
 		$("select, input").uniform();
 	}); 
 	</script>
+
+	<tag:datetimepicker id=".datetimepicker" />
 
 </content>
