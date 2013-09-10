@@ -44,8 +44,16 @@ public class DAO<T, I extends Serializable> {
 		this.em.merge(t);
 	}
 	
+	public T findByField(String campo, String valor) {
+		try {
+			return this.listAllByField(campo, valor).get(0);			
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
-	public List<T> findByField(String campo, String valor) {
+	public List<T> listAllByField(String campo, Object valor) {
 		StringBuilder builder = new StringBuilder("select o from " + classe.getName() + " o ");
 		builder.append("where ").append(campo).append(" = :valor");
 		
@@ -56,22 +64,12 @@ public class DAO<T, I extends Serializable> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<T> listAllByField(String campo, Object valor) {
-		StringBuilder builder = new StringBuilder("select o from " + classe.getName() + " o ");
-		builder.append("where ").append(campo).append(" = :valor");
-		
-		Query query = em.createQuery(builder.toString()).setParameter("valor", valor);
-		
-		List<T> listReturn = query.getResultList();
-		return listReturn;
-	}
-	
-	@SuppressWarnings("unchecked")
 	public List<T> listAllByFieldUsingLike(String campo, Object valor) {
 		StringBuilder builder = new StringBuilder("select o from " + classe.getName() + " o ");
 		builder.append("where ").append(campo).append(" like :valor");
 		
-		Query query = em.createQuery(builder.toString()).setParameter("valor", "%" + valor + "%");
+		Query query = em.createQuery(builder.toString())
+						.setParameter("valor", "%" + valor + "%");
 		
 		List<T> listReturn = query.getResultList();
 		return listReturn;

@@ -7,7 +7,6 @@ import gerenciamentodefrota.model.Funcionario;
 import gerenciamentodefrota.util.StringUtil;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.caelum.vraptor.ioc.Component;
@@ -66,9 +65,7 @@ public class FuncionarioDAO {
 	
 	public Funcionario buscaPorCadastro(String cadastro) {
 		try {
-			return dao.findByField("cadastro", cadastro).get(0);
-		} catch (NoResultException e) {
-			return null;
+			return dao.findByField("cadastro", cadastro);
 		}
 		catch (Exception e) {
 			return null;

@@ -26,7 +26,12 @@ public class Combustivel {
 	@NotNull
 	private BigDecimal preco;
 
-	public Combustivel() {
+	@SuppressWarnings("unused")
+	private Combustivel() {
+	}
+
+	public Combustivel(Long id) {
+		this.id = id;
 	}
 
 	public Combustivel(String descricao, BigDecimal preco) {
@@ -44,10 +49,6 @@ public class Combustivel {
 
 	public BigDecimal getPreco() {
 		return preco;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 }
