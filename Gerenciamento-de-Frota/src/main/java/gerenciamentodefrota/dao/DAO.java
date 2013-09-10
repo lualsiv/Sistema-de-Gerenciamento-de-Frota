@@ -28,7 +28,7 @@ public class DAO<T, I extends Serializable> {
 		return query.getResultList();
 	}
 	
-	public EntityManager getEm(){
+	public EntityManager getEntityManager(){
 		return em; 
 	}
 	
@@ -45,13 +45,14 @@ public class DAO<T, I extends Serializable> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public T findByField(String campo, Object valor) {
+	public List<T> findByField(String campo, String valor) {
 		StringBuilder builder = new StringBuilder("select o from " + classe.getName() + " o ");
 		builder.append("where ").append(campo).append(" = :valor");
 		
-		Query query = em.createQuery(builder.toString()).setParameter("valor", valor);
+		Query query = em.createQuery(builder.toString())
+						.setParameter("valor", valor);
 		
-		return (T)query.getSingleResult();
+		return (List<T>) query.getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")

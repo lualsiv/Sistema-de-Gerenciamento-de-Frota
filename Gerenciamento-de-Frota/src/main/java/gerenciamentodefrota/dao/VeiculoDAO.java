@@ -39,8 +39,11 @@ public class VeiculoDAO {
 
 	public Veiculo buscaPorPlaca(String placa) {
 		try {
-			return dao.findByField("placa", placa.toUpperCase());
+			return dao.findByField("placa", placa.toUpperCase()).get(0);
 		} catch (NoResultException e) {
+			return null;
+		}
+		catch (Exception e) {
 			return null;
 		}
 	}

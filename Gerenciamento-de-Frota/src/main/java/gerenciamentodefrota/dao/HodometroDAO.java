@@ -40,7 +40,7 @@ public class HodometroDAO {
 		StringBuilder builder = new StringBuilder("select o from " + Hodometro.class.getName() + " o ");
 		builder.append("where o.veiculo.id = :id order by o.quilometragem desc");
 		
-		Query query = dao.getEm().createQuery(builder.toString())
+		Query query = dao.getEntityManager().createQuery(builder.toString())
 								 .setParameter("id", veiculo.getId())
 								 .setMaxResults(1);
 		
@@ -58,7 +58,7 @@ public class HodometroDAO {
 		StringBuilder builder = new StringBuilder("select o from " + Hodometro.class.getName() + " o ");
 		builder.append("where o.veiculo.id = :id order by o.quilometragem desc");
 		
-		Query query = dao.getEm().createQuery(builder.toString());
+		Query query = dao.getEntityManager().createQuery(builder.toString());
 		query.setParameter("id", veiculo.getId());
 		query.setMaxResults(1);
 

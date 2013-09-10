@@ -56,7 +56,6 @@ public class TagLinkPermission extends TagSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return SKIP_BODY;
 	}
 	
@@ -64,14 +63,14 @@ public class TagLinkPermission extends TagSupport {
 		String[] lista = perfis.split(",");
 		for (String string : lista) {
 			try {
-				this.perfis.add(create(string));
+				this.perfis.add(createEnumPerfil(string));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
 	
-	private Perfil create(String perfil) {
+	private Perfil createEnumPerfil(String perfil) {
 		return EnumType.valueOf(Perfil.class, perfil.trim());
 	}
 	

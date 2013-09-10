@@ -71,4 +71,19 @@
 		</attribute>
 	</tag>
 	
+	<tag>
+		<name>enumtocombobox</name>
+		<tagclass>gerenciamentodefrota.taglib.TagEnumToComboBox</tagclass>
+		<info>Notice</info>
+		<attribute>
+			<name>valor</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+		</attribute>
+	</tag>
+	
 </taglib> 

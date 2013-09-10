@@ -43,7 +43,7 @@ public class PermissionInterceptor implements Interceptor {
 			if (this.hasAccess(methodPermission) && this.hasAccess(controllerPermission)) {
 				stack.next(method, controller);
 			} else {
-				result.use(Results.http()).sendError(403, "Você não tem permissão para tal ação!");
+				result.use(Results.http()).sendError(403, "Você não tem permissão para esta ação!");
 			}
 		}
 		else {
@@ -53,12 +53,10 @@ public class PermissionInterceptor implements Interceptor {
 	}
 
 	private Boolean hasAccess(Permission permission) {
-		if (permission == null) {
-			return true;
-		}
-
+		if (permission == null)
+			return false;
+		
 		Collection<Perfil> perfilList = Arrays.asList(permission.value());
-
 		return perfilList.contains(usuarioSession.getUsuario().getPerfil());
 	}
 

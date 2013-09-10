@@ -52,7 +52,7 @@ public class UsuarioDAO {
 
 		String builder = "select o from Usuario o where login = :login and senha = :senha";
 
-		Query query = dao.getEm().createQuery(builder)
+		Query query = dao.getEntityManager().createQuery(builder)
 								 .setParameter("login", login)
 								 .setParameter("senha", senha);
 
