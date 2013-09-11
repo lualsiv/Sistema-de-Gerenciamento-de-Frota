@@ -45,6 +45,7 @@ public class Usuario {
 	public Usuario() {
 		this.situacao = true;
 		this.dataCadastro = LocalDateTime.now();
+		this.perfil = Perfil.CONSULTA;
 	}
 	
 	public Long getId() {

@@ -63,4 +63,13 @@ public class UsuarioDAO {
 		}
 	}
 
+	public Usuario buscaPorCadastro(String cadastro) {
+		try {
+			return dao.findByField("funcionario.cadastro", cadastro);
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
+
 }

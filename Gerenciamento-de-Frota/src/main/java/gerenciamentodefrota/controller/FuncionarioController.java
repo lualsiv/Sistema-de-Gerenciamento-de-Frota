@@ -11,6 +11,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.ValidationMessage;
+import br.com.caelum.vraptor.view.Results;
 
 @Resource
 public class FuncionarioController {
@@ -59,6 +60,17 @@ public class FuncionarioController {
 		result.include("nome", nome);
 		result.include("ordem", ordem);
 		result.include("funcionarios", funcionarioDAO.lista(nome, ordem, pagina));
+	}
+	
+	@Get("/funcionario/busca.json")
+	public void funcionarioJson(String cadastro) {
+		try {
+			Funcionario funcionario = funcionarioDAO.buscaPorCadastro(cadastro);
+			result.use(Results.json()).from(funcionario).serialize();
+		} catch (Exception e) {
+			result.use(Results.http()).sendError(404);
+		}
+
 	}
 	
 }

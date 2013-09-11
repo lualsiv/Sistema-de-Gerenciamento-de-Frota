@@ -4,17 +4,14 @@
 	</div>
 
 <form action="${linkTo[UsuarioController].salva}" method="post" name="form_usuario" id="form_usuario">
-	
-	<input type="hidden" name="usuario.funcionario.id" value="${funcionario.id}" />
 
 	<div class="coluna">
-		<label for="funcionario.nome">Funcionário:</label>
-		<input type="text" id="funcionario.nome" name="funcionario.nome" value="${funcionario.nome}" disabled="disabled" />
+		<label for="usuario.funcionario.cadastro">Cadastro do funcionário:</label>
+		<input type="text" id="usuario.funcionario.cadastro" class="cadastro" name="usuario.funcionario.cadastro" value="${usuario.funcionario.cadastro}" />
 	</div>
 	
 	<div class="coluna">
-		<label for="funcionario.cargo">Cargo:</label>
-		<input type="text" id="funcionario.cargo" name="funcionario.cargo" value="${funcionario.cargo}" disabled="disabled" />
+		 <div id="texto"></div>
 	</div>
 	
 	<div class="separator">&nbsp;</div>
@@ -33,11 +30,7 @@
 
 	<div class="coluna">
 		<label for="usuario.perfil">Perfil:</label>
-		<select name="usuario.perfil">
-			<option value="CONSULTA" ${usuario.perfil == 'CONSULTA' ? 'selected' : ''}>consulta</option>
-			<option value="USUARIO" ${usuario.perfil == 'USUARIO' ? 'selected' : ''}>usuário</option>
-			<option value="ADMINISTRADOR" ${usuario.perfil == 'ADMINISTRADOR' ? 'selected' : ''}>administrador</option>
-		</select>
+		<tag:enumtocombobox name="usuario.perfil" valor="${usuario.perfil}" />
 	</div>
 	
 	<div class="separator">&nbsp;</div>
@@ -55,5 +48,30 @@
 		$("select, input").uniform();
 	}); 
 	</script>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+        $(".cadastro").keyup(function () {
+            var $input = $(this);
+            if ($input.val() != "") {
+            	$.ajax({
+                    type: "GET",
+                    dataType  : 'json',
+                    data: { cadastro: $input.val() },
+                    url: '${pageContext.request.contextPath}/funcionario/busca.json',
+					success: function (data) {
+                        $("#texto").html(data.funcionario.nome);
+                    },
+                    error: function () {
+                    	$("#texto").html("");
+                    }
+                });
+            } else {
+                $("#texto").html("");
+            }
+        });
+    });
+
+</script>
 	
 </content>

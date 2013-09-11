@@ -25,7 +25,7 @@ public class DAO<T, I extends Serializable> {
 	@SuppressWarnings("unchecked")
 	public List<T> lista() {
 		Query query = em.createQuery("select e from " + classe.getName() + " e");
-		return query.getResultList();
+		return (List<T>) query.getResultList();
 	}
 	
 	public EntityManager getEntityManager(){
@@ -44,12 +44,15 @@ public class DAO<T, I extends Serializable> {
 		this.em.merge(t);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public T findByField(String campo, String valor) {
-		try {
-			return this.listAllByField(campo, valor).get(0);			
-		} catch (Exception e) {
-			return null;
-		}
+		StringBuilder builder = new StringBuilder("select o from " + classe.getName() + " o ");
+		builder.append("where ").append(campo).append(" = :valor");
+		
+		Query query = em.createQuery(builder.toString())
+						.setParameter("valor", valor);
+
+		return (T) query.getSingleResult();			
 	}
 	
 	@SuppressWarnings("unchecked")

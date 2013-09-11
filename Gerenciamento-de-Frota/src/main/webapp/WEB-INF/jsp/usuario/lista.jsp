@@ -38,3 +38,9 @@
 	</div>
 
 </div>
+
+<content tag="breadcrumb">
+	<div class="small-nav">
+		<a href="${pageContext.request.contextPath}/usuario/novo">Cadastrar usuário</a>
+	</div>
+</content>

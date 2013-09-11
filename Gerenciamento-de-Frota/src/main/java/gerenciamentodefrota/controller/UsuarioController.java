@@ -11,11 +11,11 @@ import gerenciamentodefrota.infra.Notice;
 import gerenciamentodefrota.model.Perfil;
 import gerenciamentodefrota.model.Usuario;
 import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.validator.ValidationMessage;
 
 @Resource
 public class UsuarioController {
@@ -34,23 +34,36 @@ public class UsuarioController {
 		this.notice = notice;
 	}
 
-	@Get
-	@Path(value = "/funcionario/{id}/usuario/novo", priority = Path.HIGHEST)
-	public void novo(Long id) {
-		result.include("funcionario", funcionarioDAO.busca(id));
+	@Get("/usuario/novo")
+	public void novo() {
+		result.include("usuario", new Usuario());
 	}
-
+	
 	@Transacional
-	@Post("/usuario/salvar")
-	public void salva(final Usuario usuario) {
-		usuario.setFuncionario(funcionarioDAO.busca(usuario.getFuncionario().getId()));
-		validator.validate(usuario);
-		
-		result.include("funcionario", usuario.getFuncionario());
-		validator.onErrorUsePageOf(this).novo(usuario.getFuncionario().getId());
+	@Post("/usuario/novo")
+	public void salva(Usuario usuario) {
+		validaNovoUsuario(usuario);
 		
 		usuarioDAO.adiciona(usuario);
 		result.redirectTo(this).lista();
+	}
+	
+	private void validaNovoUsuario(Usuario usuario) {
+		Usuario usuarioJaCadastrado = usuarioDAO.buscaPorCadastro(usuario.getFuncionario().getCadastro());
+		
+		if (usuarioJaCadastrado != null) {
+			validator.add(new ValidationMessage("Já existe um usuário do sistema cadastrado para este funcionario.", "funcionario"));
+		}
+		
+		usuario.setFuncionario(funcionarioDAO.buscaPorCadastro(usuario.getFuncionario().getCadastro()));
+		
+		if(usuario.getFuncionario() == null) {
+			validator.add(new ValidationMessage("Funcionario não encontrado.", "funcionario"));
+		}
+		
+		validator.validate(usuario);
+		
+		validator.onErrorUsePageOf(this).novo();
 	}
 
 	@Get("/usuario")

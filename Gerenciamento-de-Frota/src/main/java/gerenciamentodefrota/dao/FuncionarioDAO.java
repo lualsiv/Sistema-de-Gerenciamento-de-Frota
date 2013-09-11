@@ -51,9 +51,9 @@ public class FuncionarioDAO {
 			hql += " order by e." + ordem;
 		}
 		
-		Query query = dao.getEntityManager().createQuery(hql);
-		query.setFirstResult(((paginaAtual - 1) * registrosPorPagina));
-		query.setMaxResults(registrosPorPagina);
+		Query query = dao.getEntityManager().createQuery(hql)
+											.setFirstResult(((paginaAtual - 1) * registrosPorPagina))
+											.setMaxResults(registrosPorPagina);
 		
 		if (StringUtil.notNullOrEmpty(nome)) {
 			query.setParameter("nome", "%" + nome + "%");
@@ -70,7 +70,6 @@ public class FuncionarioDAO {
 		catch (Exception e) {
 			return null;
 		}
-		
 	}
 	
 }
