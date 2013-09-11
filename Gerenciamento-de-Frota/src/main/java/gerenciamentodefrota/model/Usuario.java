@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -23,6 +24,7 @@ public class Usuario {
 	
 	@Column(unique = true)
 	@NotEmpty
+	@Pattern(regexp="^[a-zA-Z][a-zA-Z0-9.\\-_]{5,}$", message="Login inválido. O login deve ter pelo menos 6 caracteres, somente letras números e os caracteres _ e - ")
 	private String login;
 	
 	@NotEmpty
@@ -61,7 +63,7 @@ public class Usuario {
 	}
 
 	public void setLogin(String login) {
-		this.login = login;
+		this.login = login == null ? null : login.toLowerCase();
 	}
 
 	public String getSenha() {

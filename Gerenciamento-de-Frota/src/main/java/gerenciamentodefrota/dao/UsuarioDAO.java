@@ -72,4 +72,13 @@ public class UsuarioDAO {
 		}
 	}
 
+	public Usuario buscaPorLogin(String login) {
+		try {
+			return dao.findByField("login", login);
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
+	
 }
