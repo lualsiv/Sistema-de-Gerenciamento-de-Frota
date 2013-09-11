@@ -3,7 +3,7 @@
 		<h2 class="left">Cadastrar novo usuário</h2>
 	</div>
 
-<form action="${linkTo[UsuarioController].salva}" method="post" name="form_usuario" id="form_usuario">
+<form action="${linkTo[UsuarioController].novo}" method="post" name="form_usuario" id="form_usuario">
 
 	<div class="coluna">
 		<label for="usuario.funcionario.cadastro">Cadastro do funcionário:</label>
@@ -71,7 +71,6 @@
             }
         });
     });
-
-</script>
+	</script>
 	
 </content>

@@ -5,16 +5,13 @@
 
 <form action="${linkTo[MotoristaController].salva}" method="post" name="form_motorista" id="form_motorista">
 	
-	<input type="hidden" name="motorista.funcionario.id" value="${funcionario.id}" />
-
 	<div class="coluna">
-		<label for="funcionario.nome">Funcionário:</label>
-		<input type="text" id="funcionario.nome" name="funcionario.nome" value="${funcionario.nome}" disabled="disabled" />
+		<label for="motorista.funcionario.cadastro">Cadastro do funcionário:</label>
+		<input type="text" id="motorista.funcionario.cadastro" class="cadastro" name="motorista.funcionario.cadastro" value="${motorista.funcionario.cadastro}" />
 	</div>
 	
 	<div class="coluna">
-		<label for="funcionario.cargo">Cargo:</label>
-		<input type="text" id="funcionario.cargo" name="funcionario.cargo" value="${funcionario.cargo}" disabled="disabled" />
+		 <div id="texto"></div>
 	</div>
 	
 	<div class="separator">&nbsp;</div>
@@ -61,6 +58,30 @@
 	$(document).ready(function(){
 		$("select, input").uniform();
 	}); 
+	</script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+        $(".cadastro").keyup(function () {
+            var $input = $(this);
+            if ($input.val() != "") {
+            	$.ajax({
+                    type: "GET",
+                    dataType  : 'json',
+                    data: { cadastro: $input.val() },
+                    url: '${pageContext.request.contextPath}/funcionario/busca.json',
+					success: function (data) {
+                        $("#texto").html(data.funcionario.nome);
+                    },
+                    error: function () {
+                    	$("#texto").html("");
+                    }
+                });
+            } else {
+                $("#texto").html("");
+            }
+        });
+    });
 	</script>
 	
 </content>

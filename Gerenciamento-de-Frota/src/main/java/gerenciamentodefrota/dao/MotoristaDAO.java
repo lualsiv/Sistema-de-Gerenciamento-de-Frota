@@ -28,4 +28,13 @@ public class MotoristaDAO {
 		return dao.lista();
 	}
 	
+	public Motorista buscaPorCadastro(String cadastro) {
+		try {
+			return dao.findByField("funcionario.cadastro", cadastro);
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
+	
 }
