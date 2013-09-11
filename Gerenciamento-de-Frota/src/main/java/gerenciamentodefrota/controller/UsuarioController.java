@@ -3,6 +3,7 @@ package gerenciamentodefrota.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import gerenciamentodefrota.annotation.Logged;
 import gerenciamentodefrota.annotation.Permission;
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
@@ -34,11 +35,13 @@ public class UsuarioController {
 		this.notice = notice;
 	}
 
+	@Permission(Perfil.ADMINISTRADOR)
 	@Get("/usuario/novo")
 	public void novo() {
 		result.include("usuario", new Usuario());
 	}
 	
+	@Permission(Perfil.ADMINISTRADOR)
 	@Transacional
 	@Post("/usuario/novo")
 	public void salva(Usuario usuario) {
@@ -66,6 +69,7 @@ public class UsuarioController {
 		validator.onErrorUsePageOf(this).novo();
 	}
 
+	@Logged
 	@Get("/usuario")
 	public List<Usuario> lista() {
 		try {
@@ -74,7 +78,7 @@ public class UsuarioController {
 			return new ArrayList<Usuario>();
 		}
 	}
-
+	
 	@Permission(Perfil.ADMINISTRADOR)
 	@Transacional
 	@Get("/usuario/{id}/bloquear")
@@ -85,7 +89,6 @@ public class UsuarioController {
 		} catch (Exception e) {
 			notice.addWarning("Usuário não encontrado");
 		}
-		
 		result.redirectTo(this).lista();
 	}
 	

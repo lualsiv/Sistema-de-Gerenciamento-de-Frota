@@ -5,7 +5,6 @@ import gerenciamentodefrota.dao.FuncionarioDAO;
 import gerenciamentodefrota.infra.Notice;
 import gerenciamentodefrota.model.Funcionario;
 import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
@@ -21,21 +20,19 @@ public class FuncionarioController {
 	private Result result;
 	private Notice notice;
 
-	public FuncionarioController(FuncionarioDAO funcionarioDAO,
-			Validator validator, Result result, Notice notice) {
+	public FuncionarioController(FuncionarioDAO funcionarioDAO, Validator validator, Result result, Notice notice) {
 		this.funcionarioDAO = funcionarioDAO;
 		this.validator = validator;
 		this.result = result;
 		this.notice = notice;
 	}
 
-	@Get
-	@Path(value = "/funcionario/novo", priority = Path.HIGHEST)
+	@Get("/funcionario/novo")
 	public void novo() {
 	}
 
 	@Transacional
-	@Post("/funcionario/salvar")
+	@Post("/funcionario/novo")
 	public void salva(final Funcionario funcionario) {
 		validaNovoFuncionario(funcionario);
 
@@ -63,14 +60,13 @@ public class FuncionarioController {
 	}
 	
 	@Get("/funcionario/busca.json")
-	public void funcionarioJson(String cadastro) {
+	public void buscaPorCadastroJson(String cadastro) {
 		try {
 			Funcionario funcionario = funcionarioDAO.buscaPorCadastro(cadastro);
 			result.use(Results.json()).from(funcionario).serialize();
 		} catch (Exception e) {
 			result.use(Results.http()).sendError(404);
 		}
-
 	}
 	
 }

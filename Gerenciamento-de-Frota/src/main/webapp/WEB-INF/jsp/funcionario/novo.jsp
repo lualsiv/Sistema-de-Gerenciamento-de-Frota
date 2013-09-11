@@ -3,7 +3,7 @@
 		<h2 class="left">Cadastrar novo funcionário</h2>
 	</div>
 
-<form action="${linkTo[FuncionarioController].salva}" method="post" name="form_funcionario" id="form_funcionario">
+<form action="${linkTo[FuncionarioController].novo}" method="post" name="form_funcionario" id="form_funcionario">
 	<input type="hidden" name="funcionario.id" value="${funcionario.id}" />
 	
 	<div class="coluna">
