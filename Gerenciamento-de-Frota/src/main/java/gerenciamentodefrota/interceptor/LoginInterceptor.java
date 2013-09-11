@@ -42,7 +42,7 @@ public class LoginInterceptor implements Interceptor {
 			String uri = request.getRequestURL().toString();
 			usuarioSession.setUrl(uri);
 			
-			notice.addInfo("Você deve logar no sistema para executar esta operação.");
+			notice.info("Você deve logar no sistema para executar esta operação.");
 			result.redirectTo(LoginController.class).login();
 		}
 	}

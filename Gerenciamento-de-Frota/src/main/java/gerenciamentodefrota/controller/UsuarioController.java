@@ -91,9 +91,9 @@ public class UsuarioController {
 	public void bloquear(Long id) {
 		try {
 			usuarioDAO.bloquear(id);
-			notice.addSuccess("Usuário bloqueado com sucesso.");
+			notice.success("Usuário bloqueado com sucesso.");
 		} catch (Exception e) {
-			notice.addWarning("Usuário não encontrado");
+			notice.warning("Usuário não encontrado");
 		}
 		result.redirectTo(this).lista();
 	}
@@ -104,9 +104,9 @@ public class UsuarioController {
 	public void desbloquear(Long id) {
 		try {
 			usuarioDAO.desbloquear(id);
-			notice.addSuccess("Usuário desbloqueado com sucesso.");
+			notice.success("Usuário desbloqueado com sucesso.");
 		} catch (Exception e) {
-			notice.addWarning("Usuário não encontrado");
+			notice.warning("Usuário não encontrado");
 		}
 		
 		result.redirectTo(this).lista();

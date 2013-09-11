@@ -38,7 +38,7 @@ public class FuncionarioController {
 
 		funcionarioDAO.adiciona(funcionario);
 
-		notice.addSuccess("Funcionário cadastrado com sucesso.");
+		notice.success("Funcionário cadastrado com sucesso.");
 		result.redirectTo(this).lista(null, null, 1);
 	}
 

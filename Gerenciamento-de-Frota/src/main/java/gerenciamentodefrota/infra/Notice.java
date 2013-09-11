@@ -17,30 +17,30 @@ public class Notice implements Serializable {
 	public Notice() {
 		this.notices = new ArrayList<NoticeItem>();
 	}
-	
-	public void clearNotices() {
+
+	public void clear() {
 		this.notices.clear();
 	}
 	
-	public void addNotice(String mensagem, NoticeEnum tipo) {
+	private void addNotice(String mensagem, NoticeEnum tipo) {
 		NoticeItem n = new NoticeItem(mensagem, tipo);
 		this.notices.add(n);
 	}
 	
-	public void addSuccess(String mensagem) {
+	public void success(String mensagem) {
 		this.addNotice(mensagem, NoticeEnum.SUCCESS);
 	}
 	
-	public void addError(String mensagem) {
-		this.addNotice(mensagem, NoticeEnum.ERROR);
-	}
-	
-	public void addInfo(String mensagem) {
+	public void info(String mensagem) {
 		this.addNotice(mensagem, NoticeEnum.INFO);
 	}
 	
-	public void addWarning(String mensagem) {
+	public void warning(String mensagem) {
 		this.addNotice(mensagem, NoticeEnum.WARNING);
+	}
+	
+	public void error(String mensagem) {
+		this.addNotice(mensagem, NoticeEnum.ERROR);
 	}
 	
 	public List<NoticeItem> getNotices() {

@@ -42,7 +42,7 @@ public class CombustivelController {
 		validator.onErrorRedirectTo(this).novo();
 		
 		combustivelDAO.adiciona(combustivel);
-		notice.addSuccess("Combustível cadastrado com sucesso.");
+		notice.success("Combustível cadastrado com sucesso.");
 		result.redirectTo(this).lista();
 	}
 

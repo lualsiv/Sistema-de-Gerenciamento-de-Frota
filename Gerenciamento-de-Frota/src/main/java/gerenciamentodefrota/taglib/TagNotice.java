@@ -30,7 +30,7 @@ public class TagNotice extends TagSupport {
 				out.println(String.format("<div class=\"%s\"> %s </div>", notice.getTipo().toString(), notice.getMensagem()));
 			}
 			
-			notices.clearNotices();
+			notices.clear();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

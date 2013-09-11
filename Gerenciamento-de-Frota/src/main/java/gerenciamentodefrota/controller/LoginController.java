@@ -44,11 +44,11 @@ public class LoginController {
 				usuarioSession.login(usuario);
 				result.redirectTo(uri);
 			} else {
-				notice.addWarning("O usuário está desativado.");
+				notice.warning("O usuário está desativado.");
 				result.redirectTo("/");
 			}
 		} else {
-			notice.addWarning("Login ou senha inválidos.");
+			notice.warning("Login ou senha inválidos.");
 			result.redirectTo(this).login();
 		}
 	}

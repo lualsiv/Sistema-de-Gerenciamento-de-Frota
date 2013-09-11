@@ -42,7 +42,7 @@ public class MotoristaController {
 		validaNovoMotorista(motorista);
 		
 		motoristaDAO.adiciona(motorista);
-		notice.addSuccess("Motorista cadastrado com sucesso.");
+		notice.success("Motorista cadastrado com sucesso.");
 		result.redirectTo(this).lista();
 	}
 	
