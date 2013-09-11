@@ -45,14 +45,14 @@ public class PermissionInterceptor implements Interceptor {
 			if (this.hasAccess(methodPermission)) {
 				stack.next(method, controller);
 			} else {
-				notice.addWarning("Seu usuário não tem permissão para usar este recurso do sistema.");
+				notice.warning("Seu usuário não tem permissão para usar este recurso do sistema.");
 				result.redirectTo("/");
 			}
 		}
 		else {
 			String uri = request.getRequestURL().toString();
 			usuarioSession.setUrl(uri);
-			notice.addInfo("Você deve logar no sistema para executar esta operação.");
+			notice.info("Você deve logar no sistema para executar esta operação.");
 			result.redirectTo(LoginController.class).login();
 		}
 	}
