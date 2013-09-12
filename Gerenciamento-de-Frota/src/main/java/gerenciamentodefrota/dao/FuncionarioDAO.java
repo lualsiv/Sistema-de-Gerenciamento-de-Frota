@@ -21,19 +21,23 @@ public class FuncionarioDAO {
 	}
 	
 	public void adiciona(Funcionario funcionario) {
-		dao.adiciona(funcionario);
+		dao.create(funcionario);
 	}
 	
 	public Funcionario busca(Long id) {
-		return dao.busca(id);
+		return dao.find(id);
 	}
 	
 	public List<Funcionario> lista() {
-		return dao.lista();
+		return dao.list();
 	}
 	
-	public Pagination<Funcionario> lista(String nome, String ordem, Integer paginaAtual) {
-		return lista(nome, ordem, paginaAtual, Pagination.PAGESIZE);
+	public Pagination<Funcionario> lista(Integer paginaAtual, Integer registrosPorPagina) {
+		return dao.listPagination(paginaAtual, registrosPorPagina);
+	}
+	
+	public Pagination<Funcionario> lista(String ordem, Integer paginaAtual, Integer registrosPorPagina) {
+		return dao.listPagination(ordem, paginaAtual, registrosPorPagina);
 	}
 	
 	public Pagination<Funcionario> lista(String nome, String ordem, Integer paginaAtual, Integer registrosPorPagina) {
@@ -44,9 +48,9 @@ public class FuncionarioDAO {
 		if (StringUtil.notNullOrEmpty(nome)) {
 			hql += " and e.nome like :nome ";
 		}
-		
+
 		Query queryCount = dao.getEntityManager().createQuery(hql.replaceAll("select e ", "select count(*) "));
-		
+
 		if (StringUtil.notNullOrEmpty(ordem)) {
 			hql += " order by e." + ordem;
 		}
@@ -60,7 +64,7 @@ public class FuncionarioDAO {
 			queryCount.setParameter("nome", "%" + nome + "%");
 		}
 		
-		return dao.listaComPaginacao(query, queryCount, paginaAtual, registrosPorPagina);
+		return dao.listPagination(query, queryCount, paginaAtual, registrosPorPagina);
 	}
 	
 	public Funcionario buscaPorCadastro(String cadastro) {

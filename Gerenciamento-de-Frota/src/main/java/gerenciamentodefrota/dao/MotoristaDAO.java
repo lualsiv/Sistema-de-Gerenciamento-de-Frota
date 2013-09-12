@@ -17,15 +17,15 @@ public class MotoristaDAO {
 	}
 	
 	public void adiciona(Motorista motorista) {
-		dao.adiciona(motorista);
+		dao.create(motorista);
 	}
 
 	public Motorista busca(Long id) {
-		return dao.busca(id);
+		return dao.find(id);
 	}
 	
 	public List<Motorista> lista() {
-		return dao.lista();
+		return dao.list();
 	}
 	
 	public Motorista buscaPorCadastro(String cadastro) {

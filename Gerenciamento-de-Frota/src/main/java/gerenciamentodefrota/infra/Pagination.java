@@ -10,11 +10,11 @@ public class Pagination<T> {
 	private Integer totalPage;
 	private Integer totalCount;
 	public static final int PAGESIZE = 10;
-
-	public Pagination(List<T> list, Integer pageSize, Integer pageNum,
-			Integer totalPage, Integer totalCount) {
+	
+	@SuppressWarnings("static-access")
+	public Pagination(List<T> list, Integer pageSize, Integer pageNum, Integer totalPage, Integer totalCount) {
 		this.list = list;
-		this.pageSize = pageSize;
+		this.pageSize = pageSize == null ? this.PAGESIZE : pageSize;
 		this.pageNum = pageNum;
 		this.totalPage = totalPage;
 		this.totalCount = totalCount;

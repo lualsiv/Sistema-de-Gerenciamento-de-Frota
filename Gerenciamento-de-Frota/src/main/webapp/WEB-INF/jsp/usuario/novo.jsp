@@ -30,7 +30,12 @@
 
 	<div class="coluna">
 		<label for="usuario.perfil">Perfil:</label>
-		<tag:enumtocombobox name="usuario.perfil" valor="${usuario.perfil}" />
+		<select name="usuario.perfil">
+			<option value="" ${usuario.perfil == null ? 'selected' : ''}>Selecione um perfil</option>
+			<option value="CONSULTA" ${usuario.perfil == 'CONSULTA' ? 'selected' : ''}>consulta</option>
+			<option value="USUARIO" ${usuario.perfil == 'USUARIO' ? 'selected' : ''}>usuário</option>
+			<option value="ADMINISTRADOR" ${usuario.perfil == 'ADMINISTRADOR' ? 'selected' : ''}>admimistrador</option>
+		</select>
 	</div>
 	
 	<div class="separator">&nbsp;</div>

@@ -17,23 +17,23 @@ public class VeiculoDAO {
 	}
 
 	public void adiciona(Veiculo veiculo) {
-		dao.adiciona(veiculo);
+		dao.create(veiculo);
 	}
 
 	public void alterar(Veiculo veiculo) {
-		dao.alterar(veiculo);
+		dao.update(veiculo);
 	}
 
 	public void atualiza(Veiculo veiculo) {
 		if (veiculo.getId() != null) {
-			dao.alterar(veiculo);
+			dao.update(veiculo);
 		} else {
-			dao.adiciona(veiculo);
+			dao.create(veiculo);
 		}
 	}
 
 	public Veiculo busca(Long id) {
-		return dao.busca(id);
+		return dao.find(id);
 	}
 
 	public Veiculo buscaPorPlaca(String placa) {
@@ -46,7 +46,7 @@ public class VeiculoDAO {
 	}
 
 	public List<Veiculo> lista() {
-		return dao.lista();
+		return dao.list();
 	}
 
 }

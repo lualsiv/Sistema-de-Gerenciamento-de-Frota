@@ -22,15 +22,15 @@ public class HodometroDAO {
 	}
 	
 	public void adiciona(Hodometro hodometro) {
-		dao.adiciona(hodometro);
+		dao.create(hodometro);
 	}
 	
 	public Hodometro busca(Long id) {
-		return dao.busca(id);
+		return dao.find(id);
 	}
 	
 	public List<Hodometro> lista() {
-		return dao.lista();
+		return dao.list();
 	}
 	
 	public BigDecimal ultimaQuilometragem(Veiculo veiculo) {

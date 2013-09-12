@@ -7,13 +7,13 @@ import br.com.caelum.vraptor.Result;
 import gerenciamentodefrota.annotation.Logged;
 import gerenciamentodefrota.dao.UsuarioDAO;
 import gerenciamentodefrota.infra.Notice;
+import gerenciamentodefrota.infra.UsuarioSession;
 import gerenciamentodefrota.model.Usuario;
-import gerenciamentodefrota.model.UsuarioSession;
 import gerenciamentodefrota.util.StringUtil;
 
 @Resource
 public class LoginController {
-
+	
 	private UsuarioSession usuarioSession;
 	private Result result;
 	private UsuarioDAO usuarioDAO;

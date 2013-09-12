@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import gerenciamentodefrota.annotation.Logged;
 import gerenciamentodefrota.controller.LoginController;
 import gerenciamentodefrota.infra.Notice;
-import gerenciamentodefrota.model.UsuarioSession;
+import gerenciamentodefrota.infra.UsuarioSession;
 import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;

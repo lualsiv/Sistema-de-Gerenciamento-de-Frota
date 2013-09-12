@@ -9,16 +9,16 @@ import br.com.caelum.vraptor.ioc.ComponentFactory;
 
 @Component
 @ApplicationScoped
-public class EntityManagerFactoryCreator implements ComponentFactory<EntityManagerFactory>{
+public class EntityManagerFactoryCreator implements ComponentFactory<EntityManagerFactory> {
 
-        private final EntityManagerFactory entityManagerFactory;
-       
-        public EntityManagerFactoryCreator(){
-                entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        }
+	private final EntityManagerFactory entityManagerFactory;
 
-        public EntityManagerFactory getInstance() {
-                return entityManagerFactory;
-        }
+	public EntityManagerFactoryCreator() {
+		entityManagerFactory = Persistence.createEntityManagerFactory("default");
+	}
+
+	public EntityManagerFactory getInstance() {
+		return entityManagerFactory;
+	}
 
 }

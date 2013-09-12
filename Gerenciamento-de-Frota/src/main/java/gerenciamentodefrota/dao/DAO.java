@@ -1,6 +1,7 @@
 package gerenciamentodefrota.dao;
 
 import gerenciamentodefrota.infra.Pagination;
+import gerenciamentodefrota.util.StringUtil;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,12 +19,12 @@ public class DAO<T, I extends Serializable> {
 		this.classe = classe;
 	}
 	
-	public T busca(I id) {
+	public T find(I id) {
 		return em.getReference(classe, id);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<T> lista() {
+	public List<T> list() {
 		Query query = em.createQuery("select e from " + classe.getName() + " e");
 		return (List<T>) query.getResultList();
 	}
@@ -32,15 +33,15 @@ public class DAO<T, I extends Serializable> {
 		return em; 
 	}
 	
-	public void remove(T t) {
+	public void delete(T t) {
 		this.em.remove(t);
 	}
 	
-	public void adiciona(T t) {
+	public void create(T t) {
 		this.em.persist(t);
 	}
 	
-	public void alterar(T t) {
+	public void update(T t) {
 		this.em.merge(t);
 	}
 	
@@ -78,8 +79,30 @@ public class DAO<T, I extends Serializable> {
 		return listReturn;
 	}
 	
+	public Pagination<T> listPagination(Integer paginaAtual, Integer registrosPorPagina) {
+		return listPagination(null, paginaAtual, registrosPorPagina);
+	}
+	
+	public Pagination<T> listPagination(String ordem, Integer paginaAtual, Integer registrosPorPagina) {
+		paginaAtual = (paginaAtual == null) ? 1 : paginaAtual;
+		
+		String hql = "select e from " + classe.getName() + " e ";
+		
+		Query queryCount = em.createQuery(hql.replaceAll("select e ", "select count(*) "));
+
+		if (StringUtil.notNullOrEmpty(ordem)) {
+			hql += " order by e." + ordem;
+		}
+
+		Query query = em.createQuery(hql)
+				.setFirstResult(((paginaAtual - 1) * registrosPorPagina))
+				.setMaxResults(registrosPorPagina);
+		
+		return listPagination(query, queryCount, paginaAtual, registrosPorPagina);
+	}
+	
 	@SuppressWarnings("unchecked")
-	public Pagination<T> listaComPaginacao(Query query, Query queryCount, Integer paginaAtual, Integer registrosPorPagina) {
+	public Pagination<T> listPagination(Query query, Query queryCount, Integer paginaAtual, Integer registrosPorPagina) {
 		Long totalRegistros = (Long) queryCount.getSingleResult();
 		Integer totalPaginas = (int) Math.ceil(totalRegistros / (double)registrosPorPagina);
 		

@@ -1,6 +1,6 @@
 package gerenciamentodefrota.annotation;
 
-import gerenciamentodefrota.model.Perfil;
+import gerenciamentodefrota.model.enums.Perfil;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.RetentionPolicy;

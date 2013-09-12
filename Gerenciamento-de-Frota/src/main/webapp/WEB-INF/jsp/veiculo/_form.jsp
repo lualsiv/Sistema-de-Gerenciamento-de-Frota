@@ -62,12 +62,22 @@
 
 <div class="coluna">
 	<label for="veiculo.propriedade">Propriedade:</label>
-	<tag:enumtocombobox valor="${veiculo.propriedade}" name="veiculo.propriedade" />
+	<select name="veiculo.propriedade">
+		<option value="" ${veiculo.propriedade == null ? 'selected' : ''}>Selecione ...</option>
+		<option value="PROPRIO" ${veiculo.propriedade == 'PROPRIO' ? 'selected' : ''}>próprio</option>
+		<option value="ARRENDADO" ${veiculo.propriedade == 'ARRENDADO' ? 'selected' : ''}>arrendado</option>
+	</select>
 </div>
 
 <div class="coluna">
 	<label for="veiculo.situacao">Situação:</label>
-	<tag:enumtocombobox valor="${veiculo.situacao}" name="veiculo.situacao" />
+	<select name="veiculo.situacao">
+		<option value="" ${veiculo.situacao == null ? 'selected' : ''}>Selecione ...</option>
+		<option value="EM_USO" ${veiculo.situacao == 'EM_USO' ? 'selected' : ''}>em uso</option>
+		<option value="VENDIDO" ${veiculo.situacao == 'VENDIDO' ? 'selected' : ''}>vendido</option>
+		<option value="LEILOADO" ${veiculo.situacao == 'LEILOADO' ? 'selected' : ''}>leiloado</option>
+		<option value="DOADO" ${veiculo.situacao == 'DOADO' ? 'selected' : ''}>doado</option>
+	</select>
 </div>
 
 <div class="separator">&nbsp;</div>

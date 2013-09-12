@@ -1,4 +1,4 @@
-package gerenciamentodefrota.model;
+package gerenciamentodefrota.model.enums;
 
 public enum Perfil {
 

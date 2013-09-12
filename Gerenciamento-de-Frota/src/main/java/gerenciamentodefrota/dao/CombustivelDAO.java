@@ -18,19 +18,19 @@ public class CombustivelDAO {
 	}
 	
 	public void adiciona(Combustivel combustivel) {
-		dao.adiciona(combustivel);
+		dao.create(combustivel);
 	}
 
 	public void atualiza(Combustivel combustivel) {
-		dao.alterar(combustivel);
+		dao.update(combustivel);
 	}
 	
 	public Combustivel busca(Long id) {
-		return dao.busca(id);
+		return dao.find(id);
 	}
 	
 	public List<Combustivel> lista() {
-		return dao.lista();
+		return dao.list();
 	}
 
 }

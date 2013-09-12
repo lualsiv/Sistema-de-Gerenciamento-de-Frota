@@ -1,5 +1,7 @@
 package gerenciamentodefrota.model;
 
+import gerenciamentodefrota.model.enums.CategoriaCNH;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

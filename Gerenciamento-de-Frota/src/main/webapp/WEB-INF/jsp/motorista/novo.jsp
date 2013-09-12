@@ -31,12 +31,19 @@
 	<div class="coluna">
 		<label for="motorista.categoria">Categoria:</label>
 		<select name="motorista.categoria">
+			<option value="" ${motorista.categoria == null ? 'selected' : ''}>Selecione uma categoria</option>
 			<option value="A" ${motorista.categoria == 'A' ? 'selected' : ''}>A</option>
 			<option value="B" ${motorista.categoria == 'B' ? 'selected' : ''}>B</option>
 			<option value="AB" ${motorista.categoria == 'AB' ? 'selected' : ''}>AB</option>
+			<option value="C" ${motorista.categoria == 'C' ? 'selected' : ''}>C</option>
+			<option value="AC" ${motorista.categoria == 'AC' ? 'selected' : ''}>AC</option>
+			<option value="D" ${motorista.categoria == 'D' ? 'selected' : ''}>D</option>
+			<option value="AD" ${motorista.categoria == 'AD' ? 'selected' : ''}>AD</option>
+			<option value="E" ${motorista.categoria == 'E' ? 'selected' : ''}>E</option>
+			<option value="AE" ${motorista.categoria == 'AE' ? 'selected' : ''}>AE</option>
 		</select>
 	</div>
-
+	
 	<div class="separator">&nbsp;</div>
 	
 	<div class="coluna">

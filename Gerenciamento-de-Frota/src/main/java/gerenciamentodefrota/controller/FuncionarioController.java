@@ -3,6 +3,7 @@ package gerenciamentodefrota.controller;
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
 import gerenciamentodefrota.infra.Notice;
+import gerenciamentodefrota.infra.Pagination;
 import gerenciamentodefrota.model.Funcionario;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
@@ -37,7 +38,6 @@ public class FuncionarioController {
 		validaNovoFuncionario(funcionario);
 
 		funcionarioDAO.adiciona(funcionario);
-
 		notice.success("Funcionário cadastrado com sucesso.");
 		result.redirectTo(this).lista(null, null, 1);
 	}
@@ -56,7 +56,7 @@ public class FuncionarioController {
 	public void lista(String nome, String ordem, Integer pagina) {
 		result.include("nome", nome);
 		result.include("ordem", ordem);
-		result.include("funcionarios", funcionarioDAO.lista(nome, ordem, pagina));
+		result.include("funcionarios", funcionarioDAO.lista(nome, ordem, pagina, Pagination.PAGESIZE));
 	}
 	
 	@Get("/funcionario/busca.json")

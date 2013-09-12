@@ -24,27 +24,27 @@ public class UsuarioDAO {
 		MD5 md5 = new MD5();
 		usuario.setSenha(md5.hash(usuario.getSenha()));
 
-		dao.adiciona(usuario);
+		dao.create(usuario);
 	}
 
 	public Usuario busca(Long id) {
-		return dao.busca(id);
+		return dao.find(id);
 	}
 
 	public void bloquear(Long id) {
-		Usuario u = dao.busca(id);
+		Usuario u = dao.find(id);
 		u.setSituacao(false);
-		dao.alterar(u);
+		dao.update(u);
 	}
 
 	public void desbloquear(Long id) {
-		Usuario u = dao.busca(id);
+		Usuario u = dao.find(id);
 		u.setSituacao(true);
-		dao.alterar(u);
+		dao.update(u);
 	}
 
 	public List<Usuario> lista() {
-		return dao.lista();
+		return dao.list();
 	}
 
 	public Usuario autentica(String login, String senha) {

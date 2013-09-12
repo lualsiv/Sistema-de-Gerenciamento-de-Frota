@@ -1,5 +1,7 @@
 package gerenciamentodefrota.model;
 
+import gerenciamentodefrota.model.enums.Perfil;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -47,7 +49,6 @@ public class Usuario {
 	public Usuario() {
 		this.situacao = true;
 		this.dataCadastro = LocalDateTime.now();
-		this.perfil = Perfil.CONSULTA;
 	}
 	
 	public Long getId() {

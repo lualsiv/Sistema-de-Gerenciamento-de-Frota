@@ -1,7 +1,7 @@
-package gerenciamentodefrota.taglib;
+	package gerenciamentodefrota.taglib;
 
-import gerenciamentodefrota.model.Perfil;
-import gerenciamentodefrota.model.UsuarioSession;
+import gerenciamentodefrota.infra.UsuarioSession;
+import gerenciamentodefrota.model.enums.Perfil;
 
 import java.util.ArrayList;
 import java.util.List;

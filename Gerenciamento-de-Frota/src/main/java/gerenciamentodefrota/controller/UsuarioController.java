@@ -9,8 +9,8 @@ import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
 import gerenciamentodefrota.dao.UsuarioDAO;
 import gerenciamentodefrota.infra.Notice;
-import gerenciamentodefrota.model.Perfil;
 import gerenciamentodefrota.model.Usuario;
+import gerenciamentodefrota.model.enums.Perfil;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
@@ -38,7 +38,6 @@ public class UsuarioController {
 	@Permission(Perfil.ADMINISTRADOR)
 	@Get("/usuario/novo")
 	public void novo() {
-		result.include("usuario", new Usuario());
 	}
 	
 	@Permission(Perfil.ADMINISTRADOR)
@@ -46,32 +45,27 @@ public class UsuarioController {
 	@Post("/usuario/novo")
 	public void salva(Usuario usuario) {
 		validaNovoUsuario(usuario);
-		
 		usuarioDAO.adiciona(usuario);
 		result.redirectTo(this).lista();
 	}
 	
 	private void validaNovoUsuario(Usuario usuario) {
 		Usuario usuarioJaCadastrado = usuarioDAO.buscaPorCadastro(usuario.getFuncionario().getCadastro());
-		
 		if (usuarioJaCadastrado != null) {
 			validator.add(new ValidationMessage("Já existe um usuário do sistema cadastrado para este funcionario.", "funcionario"));
 		}
 		
 		usuarioJaCadastrado = usuarioDAO.buscaPorLogin(usuario.getLogin());
-		
 		if (usuarioJaCadastrado != null) {
 			validator.add(new ValidationMessage("Já existe um usuário com este login.", "login"));
 		}
 		
 		usuario.setFuncionario(funcionarioDAO.buscaPorCadastro(usuario.getFuncionario().getCadastro()));
-		
 		if(usuario.getFuncionario() == null) {
 			validator.add(new ValidationMessage("Funcionario não encontrado.", "funcionario"));
 		}
 		
 		validator.validate(usuario);
-		
 		validator.onErrorUsePageOf(this).novo();
 	}
 

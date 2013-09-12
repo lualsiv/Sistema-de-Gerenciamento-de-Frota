@@ -1,8 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/main/java/gerenciamentodefrota/controller/IndexController.java=UTF-8
-encoding//src/main/java/gerenciamentodefrota/model/Propriedade.java=UTF-8
-encoding//src/main/java/gerenciamentodefrota/model/SituacaoVeiculo.java=UTF-8
 encoding//src/main/java/gerenciamentodefrota/model/Veiculo.java=UTF-8
+encoding//src/main/java/gerenciamentodefrota/model/enums/Propriedade.java=UTF-8
+encoding//src/main/java/gerenciamentodefrota/model/enums/SituacaoVeiculo.java=UTF-8
 encoding//src/main/resources/ValidationMessages.properties=UTF-8
 encoding//src/main/resources/messages.properties=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/combustivel/editar.jsp=UTF-8

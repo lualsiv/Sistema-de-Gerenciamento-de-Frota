@@ -1,4 +1,6 @@
-package gerenciamentodefrota.model;
+package gerenciamentodefrota.infra;
+
+import gerenciamentodefrota.model.Usuario;
 
 import java.io.Serializable;
 

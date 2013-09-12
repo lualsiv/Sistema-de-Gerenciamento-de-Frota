@@ -1,5 +1,8 @@
 package gerenciamentodefrota.model;
 
+import gerenciamentodefrota.model.enums.Propriedade;
+import gerenciamentodefrota.model.enums.SituacaoVeiculo;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
