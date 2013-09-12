@@ -2,7 +2,7 @@
 <taglib>
 	<tlibversion>1.0</tlibversion>
 	<jspversion>2.0</jspversion>
-	<shortname>paginacao</shortname>
+	<shortname>taglib</shortname>
 	<info>tag</info>
 	<uri>http://gerenciamentodefrota/taglib</uri>
 	<tag>
@@ -30,11 +30,6 @@
 		<name>notice</name>
 		<tagclass>gerenciamentodefrota.taglib.TagNotice</tagclass>
 		<info>Notice</info>
-		<attribute>
-			<name>notices</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
 	</tag>
 
 	<tag>
@@ -83,6 +78,14 @@
 		<attribute>
 			<name>name</name>
 			<required>true</required>
+		</attribute>
+		<attribute>
+			<name>classe</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>selecione</name>
 		</attribute>
 	</tag>
 	

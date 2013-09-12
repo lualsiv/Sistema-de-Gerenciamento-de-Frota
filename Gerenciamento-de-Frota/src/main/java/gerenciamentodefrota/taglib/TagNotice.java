@@ -3,6 +3,7 @@ package gerenciamentodefrota.taglib;
 import gerenciamentodefrota.infra.Notice;
 import gerenciamentodefrota.infra.NoticeItem;
 
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -17,19 +18,28 @@ public class TagNotice extends TagSupport {
 		return notices;
 	}
 
-	public void setNotices(Notice notices) {
-		this.notices = notices;
+	public void getNoticesFromSession() {
+		try {
+			HttpSession session = pageContext.getSession();
+			notices = (Notice) session.getAttribute("notice");
+		} catch (Exception e) {
+			notices = null;
+		}
 	}
 
 	@Override
 	public int doStartTag() throws JspException {
+		getNoticesFromSession();
+		
 		try {
 			JspWriter out = pageContext.getOut();
-			
-			for (NoticeItem notice : notices.getNotices()) {
-				out.println(String.format("<div class=\"%s\"> %s </div>", notice.getTipo().toString(), notice.getMensagem()));
+
+			if (notices != null) {
+				for (NoticeItem notice : notices.getNotices()) {
+					out.println(String.format("<div class=\"%s\"> %s </div>", notice.getTipo().toString(), notice.getMensagem()));
+				}
 			}
-			
+
 			notices.clear();
 			
 		} catch (Exception e) {

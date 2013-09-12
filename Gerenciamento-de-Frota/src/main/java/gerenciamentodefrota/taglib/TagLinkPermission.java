@@ -23,7 +23,6 @@ public class TagLinkPermission extends TagSupport {
 	
 	public TagLinkPermission() {
 		super();
-		getUsuarioSession();
 	}
 
 	private void getUsuarioSession() {
@@ -37,6 +36,8 @@ public class TagLinkPermission extends TagSupport {
 	
 	@Override
 	public int doStartTag() throws JspException {
+		getUsuarioSession();
+		
 		try {
 			JspWriter out = pageContext.getOut();
 			

@@ -50,7 +50,7 @@
 		</div>
 				
 		<div class="small-nav">
-			<tag:notice notices="${notice}" />
+			<tag:notice />
 			
 			<c:if test="${errors != null}">
 				<div class="notice-error">

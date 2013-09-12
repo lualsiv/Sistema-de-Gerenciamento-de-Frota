@@ -26,7 +26,7 @@ public class Usuario {
 	
 	@Column(unique = true)
 	@NotEmpty
-	@Pattern(regexp="^[a-zA-Z][a-zA-Z0-9.\\-_]{5,}$", message="Login inválido. O login deve ter pelo menos 6 caracteres, somente letras números e os caracteres _ e - ")
+	@Pattern(regexp="^[a-zA-Z0-9][a-zA-Z0-9.\\-_]{5,}$", message="Login inválido. O login deve ter pelo menos 6 caracteres, somente letras números e os caracteres _ e - ")
 	private String login;
 	
 	@NotEmpty

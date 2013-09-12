@@ -1,3 +1,4 @@
+<%@page import="gerenciamentodefrota.model.enums.Perfil"%>
 <div class="box">
 	<div class="box-head">
 		<h2 class="left">Cadastrar novo usuário</h2>

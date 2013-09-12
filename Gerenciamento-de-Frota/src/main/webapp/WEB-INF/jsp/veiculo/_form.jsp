@@ -1,3 +1,4 @@
+<%@page import="gerenciamentodefrota.model.enums.SituacaoVeiculo"%>
 <input type="hidden" name="veiculo.id" value="${veiculo.id}" />
 
 <div class="coluna">
@@ -71,13 +72,16 @@
 
 <div class="coluna">
 	<label for="veiculo.situacao">Situação:</label>
-	<select name="veiculo.situacao">
-		<option value="" ${veiculo.situacao == null ? 'selected' : ''}>Selecione ...</option>
-		<option value="EM_USO" ${veiculo.situacao == 'EM_USO' ? 'selected' : ''}>em uso</option>
-		<option value="VENDIDO" ${veiculo.situacao == 'VENDIDO' ? 'selected' : ''}>vendido</option>
-		<option value="LEILOADO" ${veiculo.situacao == 'LEILOADO' ? 'selected' : ''}>leiloado</option>
-		<option value="DOADO" ${veiculo.situacao == 'DOADO' ? 'selected' : ''}>doado</option>
-	</select>
+<!-- 	<select name="veiculo.situacao"> -->
+<%-- 		<option value="" ${veiculo.situacao == null ? 'selected' : ''}>Selecione ...</option> --%>
+<%-- 		<option value="EM_USO" ${veiculo.situacao == 'EM_USO' ? 'selected' : ''}>em uso</option> --%>
+<%-- 		<option value="VENDIDO" ${veiculo.situacao == 'VENDIDO' ? 'selected' : ''}>vendido</option> --%>
+<%-- 		<option value="LEILOADO" ${veiculo.situacao == 'LEILOADO' ? 'selected' : ''}>leiloado</option> --%>
+<%-- 		<option value="DOADO" ${veiculo.situacao == 'DOADO' ? 'selected' : ''}>doado</option> --%>
+<!-- 	</select> -->
+	
+	<tag:enumtocombobox name="veiculo.situacao" valor="${veiculo.situacao}" classe="<%= SituacaoVeiculo.class %>" selecione="Selecione ..." />
+	
 </div>
 
 <div class="separator">&nbsp;</div>
