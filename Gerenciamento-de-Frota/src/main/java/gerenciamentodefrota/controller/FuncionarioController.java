@@ -51,7 +51,7 @@ public class FuncionarioController {
 		
 		validator.onErrorRedirectTo(this).novo();
 	}
-
+	
 	@Get("/funcionario")
 	public void lista(String nome, String ordem, Integer pagina) {
 		result.include("nome", nome);

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -25,6 +26,7 @@ public class Veiculo {
 
 	@Column(unique = true, length = 8)
 	@NotEmpty
+	@Pattern(regexp="^[a-zA-Z]{3}\\-\\d{4}$", message="Placa inválida")
 	private String placa;
 
 	@Column
@@ -92,9 +94,7 @@ public class Veiculo {
 
 	public void setPlaca(String placa) {
 		if (placa != null) {
-			if (placa.matches("^[a-zA-Z]{3}\\-\\d{4}$")) {
-				this.placa = placa.toUpperCase();
-			}
+			this.placa = placa.toUpperCase();
 		}
 	}
 
@@ -209,7 +209,7 @@ public class Veiculo {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

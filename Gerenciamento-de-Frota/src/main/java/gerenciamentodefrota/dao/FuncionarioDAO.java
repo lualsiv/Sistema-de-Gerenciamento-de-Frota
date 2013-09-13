@@ -4,10 +4,8 @@ import java.util.List;
 
 import gerenciamentodefrota.infra.Pagination;
 import gerenciamentodefrota.model.Funcionario;
-import gerenciamentodefrota.util.StringUtil;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import br.com.caelum.vraptor.ioc.Component;
 
@@ -32,39 +30,13 @@ public class FuncionarioDAO {
 		return dao.list();
 	}
 	
-	public Pagination<Funcionario> lista(Integer paginaAtual, Integer registrosPorPagina) {
-		return dao.listPagination(paginaAtual, registrosPorPagina);
-	}
-	
-	public Pagination<Funcionario> lista(String ordem, Integer paginaAtual, Integer registrosPorPagina) {
-		return dao.listPagination(ordem, paginaAtual, registrosPorPagina);
-	}
-	
 	public Pagination<Funcionario> lista(String nome, String ordem, Integer paginaAtual, Integer registrosPorPagina) {
-		paginaAtual = (paginaAtual == null) ? 1 : paginaAtual;
+		HQLBuilder<Funcionario, Long> hqlB = new HQLBuilder<Funcionario, Long>(dao, Funcionario.class);
+		hqlB.from()
+			.andStringLikeContainsIf("nome", nome)
+			.orderBy(ordem);
 		
-		String hql = "select e from " + Funcionario.class.getName() + " e where 1=1 ";
-		
-		if (StringUtil.notNullOrEmpty(nome)) {
-			hql += " and e.nome like :nome ";
-		}
-
-		Query queryCount = dao.getEntityManager().createQuery(hql.replaceAll("select e ", "select count(*) "));
-
-		if (StringUtil.notNullOrEmpty(ordem)) {
-			hql += " order by e." + ordem;
-		}
-		
-		Query query = dao.getEntityManager().createQuery(hql)
-											.setFirstResult(((paginaAtual - 1) * registrosPorPagina))
-											.setMaxResults(registrosPorPagina);
-		
-		if (StringUtil.notNullOrEmpty(nome)) {
-			query.setParameter("nome", "%" + nome + "%");
-			queryCount.setParameter("nome", "%" + nome + "%");
-		}
-		
-		return dao.listPagination(query, queryCount, paginaAtual, registrosPorPagina);
+		return hqlB.listPagination(paginaAtual, registrosPorPagina);
 	}
 	
 	public Funcionario buscaPorCadastro(String cadastro) {

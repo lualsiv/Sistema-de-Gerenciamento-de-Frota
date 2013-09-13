@@ -34,19 +34,9 @@ public class HodometroDAO {
 	}
 	
 	public BigDecimal ultimaQuilometragem(Veiculo veiculo) {
-		if(veiculo == null)
-			return null;
-		
-		StringBuilder builder = new StringBuilder("select o from " + Hodometro.class.getName() + " o ");
-		builder.append("where o.veiculo.id = :id order by o.quilometragem desc");
-		
-		Query query = dao.getEntityManager().createQuery(builder.toString())
-								 .setParameter("id", veiculo.getId())
-								 .setMaxResults(1);
-		
 		try {
-			return ((Hodometro)query.getSingleResult()).getQuilometragem();
-		} catch (NoResultException e) {
+			return this.ultimoRegistroDoVeiculo(veiculo).getQuilometragem();
+		} catch (Exception e) {
 			return BigDecimal.ZERO;
 		}
 	}
@@ -58,9 +48,9 @@ public class HodometroDAO {
 		StringBuilder builder = new StringBuilder("select o from " + Hodometro.class.getName() + " o ");
 		builder.append("where o.veiculo.id = :id order by o.quilometragem desc");
 		
-		Query query = dao.getEntityManager().createQuery(builder.toString());
-		query.setParameter("id", veiculo.getId());
-		query.setMaxResults(1);
+		Query query = dao.getEntityManager().createQuery(builder.toString())
+											.setParameter("id", veiculo.getId())
+											.setMaxResults(1);
 
 		try {
 			return (Hodometro) query.getSingleResult();
