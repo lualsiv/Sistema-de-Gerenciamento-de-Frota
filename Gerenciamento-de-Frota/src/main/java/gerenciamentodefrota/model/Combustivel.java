@@ -26,19 +26,6 @@ public class Combustivel {
 	@NotNull
 	private BigDecimal preco;
 
-	@SuppressWarnings("unused")
-	private Combustivel() {
-	}
-
-	public Combustivel(Long id) {
-		this.id = id;
-	}
-
-	public Combustivel(String descricao, BigDecimal preco) {
-		this.descricao = descricao;
-		this.preco = preco;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -49,6 +36,18 @@ public class Combustivel {
 
 	public BigDecimal getPreco() {
 		return preco;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
 	}
 
 }

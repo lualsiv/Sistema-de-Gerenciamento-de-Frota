@@ -27,14 +27,19 @@ public class CombustivelDAOTest extends DAOTest {
 		super.setup();
 		dbunitmanager.cleanAndInsert(arquivo);
 		combustivelDAO = new CombustivelDAO(entitymanager);
-		
 		entitymanager.getTransaction().begin();
 	}
 	
 	@Override
 	@After
 	public void finalize() {
-		entitymanager.getTransaction().commit();
+		try {
+			entitymanager.getTransaction().commit();
+		} catch (Exception e) {
+			if (entitymanager.getTransaction().isActive()) {
+				entitymanager.getTransaction().rollback();
+			}
+		}
 		
 		super.finalize();
 		combustivelDAO = null;
@@ -48,19 +53,26 @@ public class CombustivelDAOTest extends DAOTest {
 	
 	@Test
 	public void buscaPorId() {
-//		Combustivel combustivel = combustivelDAO.busca((long)2);
-		
-		Combustivel combustivel = entitymanager.getReference(Combustivel.class, (long)1 );
-		
+		Combustivel combustivel = combustivelDAO.busca((long)1);
 		Assert.assertEquals(new BigDecimal("3.07"), combustivel.getPreco());
 	}
 	
 	@Test
 	public void cadastraCombustivel() {
-		Combustivel combustivel = new Combustivel("Alcool", new BigDecimal("2.55"));
+		Combustivel combustivel = new Combustivel();
+		combustivel.setDescricao("ALCOOL");
+		combustivel.setPreco(new BigDecimal("2.55"));
 		combustivelDAO.adiciona(combustivel);
-		
 		Assert.assertEquals(3, combustivelDAO.lista().size());
 	}
 	
+	@Test
+	public void alteraCombustivel() {
+		Combustivel combustivel1 = combustivelDAO.busca((long)1);
+		combustivel1.setPreco(new BigDecimal("4.00"));
+		combustivelDAO.atualiza(combustivel1);
+		
+		Combustivel combustivel2 = combustivelDAO.busca((long)1);
+		Assert.assertEquals(new BigDecimal("4.00"), combustivel2.getPreco());
+	}
 }
