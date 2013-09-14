@@ -26,12 +26,6 @@ public class HQLBuilder<T> {
 		this.alias = "a";
 	}
 	
-	public HQLBuilder(EntityManager em, Class<T> classe, String alias) {
-		this.em = em;
-		this.classe = classe;
-		this.alias = alias;
-	}
-	
 	private String getHQL() {
 		clearHQL();
 		return "select " + alias + " " + hql + ordem;
@@ -282,7 +276,7 @@ public class HQLBuilder<T> {
 	private Query getQuery() {
 		return em.createQuery(getHQL());
 	}
-	
+
 	private Query getQuery(Integer paginaAtual, Integer registrosPorPagina) {
 		return em.createQuery(getHQL())
 				 .setFirstResult(((paginaAtual - 1) * registrosPorPagina))

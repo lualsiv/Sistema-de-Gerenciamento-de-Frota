@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<COMBUSTIVEL ID="1" DESCRICAO="GASOLINA" PRECO="3.07" />
+	<COMBUSTIVEL ID="2" DESCRICAO="DIESEL" PRECO="2.47" />
+</dataset>
