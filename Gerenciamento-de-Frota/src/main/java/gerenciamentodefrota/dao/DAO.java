@@ -1,8 +1,5 @@
 package gerenciamentodefrota.dao;
 
-import gerenciamentodefrota.infra.Pagination;
-import gerenciamentodefrota.util.StringUtil;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -77,36 +74,6 @@ public class DAO<T, I extends Serializable> {
 		
 		List<T> listReturn = query.getResultList();
 		return listReturn;
-	}
-	
-	public Pagination<T> listPagination(Integer paginaAtual, Integer registrosPorPagina) {
-		return listPagination(null, paginaAtual, registrosPorPagina);
-	}
-	
-	public Pagination<T> listPagination(String ordem, Integer paginaAtual, Integer registrosPorPagina) {
-		paginaAtual = (paginaAtual == null) ? 1 : paginaAtual;
-		
-		String hql = "select e from " + classe.getName() + " e ";
-		
-		Query queryCount = em.createQuery(hql.replaceAll("select e ", "select count(*) "));
-
-		if (StringUtil.notNullOrEmpty(ordem)) {
-			hql += " order by e." + ordem;
-		}
-
-		Query query = em.createQuery(hql)
-				.setFirstResult(((paginaAtual - 1) * registrosPorPagina))
-				.setMaxResults(registrosPorPagina);
-		
-		return listPagination(query, queryCount, paginaAtual, registrosPorPagina);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public Pagination<T> listPagination(Query query, Query queryCount, Integer paginaAtual, Integer registrosPorPagina) {
-		Long totalRegistros = (Long) queryCount.getSingleResult();
-		Integer totalPaginas = (int) Math.ceil(totalRegistros / (double)registrosPorPagina);
-		
-		return new Pagination<T>(query.getResultList(), registrosPorPagina, paginaAtual, totalPaginas, totalRegistros.intValue());
 	}
 	
 }

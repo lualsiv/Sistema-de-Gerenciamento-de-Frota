@@ -13,9 +13,11 @@ import br.com.caelum.vraptor.ioc.Component;
 public class FuncionarioDAO {
 
 	private DAO<Funcionario, Long> dao;
-
+	private HQLBuilder<Funcionario> hql;
+	
 	public FuncionarioDAO(EntityManager em){
 		this.dao = new DAO<Funcionario, Long>(em, Funcionario.class);
+		this.hql = new HQLBuilder<Funcionario>(dao.getEntityManager(), Funcionario.class);
 	}
 	
 	public void adiciona(Funcionario funcionario) {
@@ -31,12 +33,11 @@ public class FuncionarioDAO {
 	}
 	
 	public Pagination<Funcionario> lista(String nome, String ordem, Integer paginaAtual, Integer registrosPorPagina) {
-		HQLBuilder<Funcionario, Long> hqlB = new HQLBuilder<Funcionario, Long>(dao, Funcionario.class);
-		hqlB.from()
+		hql.from()
 			.andStringLikeContainsIf("nome", nome)
 			.orderBy(ordem);
 		
-		return hqlB.listPagination(paginaAtual, registrosPorPagina);
+		return hql.listPagination(paginaAtual, registrosPorPagina);
 	}
 	
 	public Funcionario buscaPorCadastro(String cadastro) {
