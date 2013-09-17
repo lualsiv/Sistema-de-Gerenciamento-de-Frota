@@ -24,19 +24,19 @@ public class Pagination<T> {
 		return list;
 	}
 
-	public Integer getPageSize() {
+	public int getPageSize() {
 		return pageSize;
 	}
 
-	public Integer getTotalPage() {
+	public int getTotalPage() {
 		return totalPage;
 	}
 
-	public Integer getTotalCount() {
+	public int getTotalCount() {
 		return totalCount;
 	}
 
-	public Integer getPageNum() {
+	public int getPageNum() {
 		return pageNum;
 	}
 

@@ -3,6 +3,7 @@ package gerenciamentodefrota.dao;
 import gerenciamentodefrota.infra.Pagination;
 import gerenciamentodefrota.util.StringUtil;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -236,21 +237,35 @@ public class HQLBuilder<T> {
 			return orNotEquals(campo, valor);
 		return this;
 	}
-
+	
+	public HQLBuilder<T> andIntegerIn(String campo, List<Integer> valores) {
+		return andIn(campo, Arrays.asList(valores.toArray()));
+	}
+	
+	public HQLBuilder<T> andLongIn(String campo, List<Long> valores) {
+		return andIn(campo, Arrays.asList(valores.toArray()));
+	}
+	
+	public HQLBuilder<T> andIn(String campo, List<Object> valores) {
+		if (valores != null) {
+			if (valores.size() > 0)
+				this.hql += " and " + alias + "." + campo + " in " + this.listObjectToString(valores);
+		}
+		return this;
+	}
+	
 	public HQLBuilder<T> andStringIn(String campo, List<String> valores) {
 		if (valores != null) {
-			if (valores.size() > 0) {
+			if (valores.size() > 0)
 				this.hql += " and " + alias + "." + campo + " in " + this.listStringToString(valores);
-			}
 		}
 		return this;
 	}
 	
 	public HQLBuilder<T> andStringNotIn(String campo, List<String> valores) {
 		if (valores != null) {
-			if (valores.size() > 0) {
+			if (valores.size() > 0)
 				this.hql += " and " + alias + "." + campo + " not in " + this.listStringToString(valores);
-			}
 		}
 		return this;
 	}
@@ -267,6 +282,18 @@ public class HQLBuilder<T> {
 		return retorno.replace(",)", ")");
 	}
 
+	private String listObjectToString(List<Object> valores) {
+		String retorno = "";
+		
+		retorno = "(";
+		for (Object valor : valores) {
+			retorno += valor.toString() + ",";
+		}
+		retorno += ")";
+
+		return retorno.replace(",)", ")");
+	}
+	
 	public HQLBuilder<T> orderBy(String ordem) {
 		if (StringUtil.notNullOrEmpty(ordem))
 			this.ordem = " order by " + alias + "." + ordem;

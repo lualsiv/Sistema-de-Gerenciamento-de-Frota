@@ -67,7 +67,7 @@ public class FuncionarioControllerTest extends DAOTest {
 	public void deveRetornarListaCom2Paginas() {
 		controller.lista(null, null, 1);
 		Pagination<Funcionario> lista = (Pagination<Funcionario>) result.included().get("funcionarios");
-		Assert.assertEquals(new Integer(2), lista.getTotalPage());
+		Assert.assertEquals(lista.getTotalPage(), 2);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -75,15 +75,15 @@ public class FuncionarioControllerTest extends DAOTest {
 	public void deveRetornarListaCom23Registros() {
 		controller.lista(null, null, 1);
 		Pagination<Funcionario> lista = (Pagination<Funcionario>) result.included().get("funcionarios");
-		Assert.assertEquals(new Integer(23), lista.getTotalCount());
+		Assert.assertEquals(lista.getTotalCount(), 23);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Test
 	public void deveRetornarListaNaPagina2() {
 		controller.lista(null, null, 2);
 		Pagination<Funcionario> lista = (Pagination<Funcionario>) result.included().get("funcionarios");
-		Assert.assertEquals(new Integer(2), lista.getPageNum());
+		Assert.assertEquals(lista.getPageNum(), 2);
 	}
 	
 }
