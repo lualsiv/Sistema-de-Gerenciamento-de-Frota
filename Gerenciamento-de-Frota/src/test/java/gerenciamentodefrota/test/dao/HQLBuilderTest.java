@@ -13,6 +13,7 @@ import org.junit.Test;
 import br.com.triadworks.dbunit.dataset.FileSystemDataSetSource;
 import gerenciamentodefrota.dao.HQLBuilder;
 import gerenciamentodefrota.infra.Pagination;
+import gerenciamentodefrota.infra.Select;
 import gerenciamentodefrota.model.Funcionario;
 import gerenciamentodefrota.test.utils.DAOTest;
 
@@ -161,6 +162,17 @@ public class HQLBuilderTest extends DAOTest {
 												  .andIsTrue("situacao")
 												  .listPagination(1, Pagination.PAGESIZE);
 		Assert.assertEquals(funcionarios.getTotalCount(), 20);
+	}
+	
+	@Test
+	public void deveMontarUmListSelectComTodosOsRegistrosEOsCamposIdENome() {
+		List<Select> funcionarios = hql.from()
+									   .orderBy("id")
+									   .listSelect("id", "nome");
+		
+		Assert.assertEquals(funcionarios.size(), 23);
+		Assert.assertEquals((long)funcionarios.get(0).getValue(), (long)1);
+		Assert.assertEquals((String)funcionarios.get(0).getText(), (String)"Vagner");
 	}
 	
 }

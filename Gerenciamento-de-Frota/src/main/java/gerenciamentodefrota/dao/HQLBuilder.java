@@ -1,6 +1,7 @@
 package gerenciamentodefrota.dao;
 
 import gerenciamentodefrota.infra.Pagination;
+import gerenciamentodefrota.infra.Select;
 import gerenciamentodefrota.util.StringUtil;
 
 import java.util.Arrays;
@@ -30,6 +31,16 @@ public class HQLBuilder<T> {
 	private String getHQL() {
 		clearHQL();
 		return "select " + alias + " " + hql + ordem;
+	}
+	
+	private String getHQLSelect(String value, String text) {
+		clearHQL();
+		String hqlSelect = "select new #select#(#value#,#text#) "
+						   .replaceAll("#select#", Select.class.getName())
+						   .replaceAll("#value#", value)
+						   .replaceAll("#text#", text);
+		
+		return hqlSelect + hql;
 	}
 	
 	private String getHQLCount() {
@@ -345,4 +356,12 @@ public class HQLBuilder<T> {
 		return new Pagination<T>(query.getResultList(), registrosPorPagina, paginaAtual, totalPaginas, totalRegistros.intValue());
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Select> listSelect(String valor, String texto) {
+		Query query = em.createQuery(getHQLSelect(valor, texto));
+		
+		List<Select> selectList = query.getResultList();
+		return selectList;
+	}
+	
 }
