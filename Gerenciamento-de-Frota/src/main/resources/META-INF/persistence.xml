@@ -16,7 +16,6 @@
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/frotadeveiculos_teste" />
 			<property name="hibernate.connection.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
-			
 			<property name="hibernate.query.substitutions" value="true=1, false=0" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>

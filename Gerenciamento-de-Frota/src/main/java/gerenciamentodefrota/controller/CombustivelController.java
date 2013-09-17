@@ -63,7 +63,9 @@ public class CombustivelController {
 	public void alterar(final Combustivel combustivel) {
 		validator.validate(combustivel);
 		validator.onErrorUsePageOf(this).editar(combustivel.getId());
+		
 		combustivelDAO.atualiza(combustivel);
+		notice.success("Combustível alterado com sucesso.");
 		result.redirectTo(this).lista();
 	}
 	

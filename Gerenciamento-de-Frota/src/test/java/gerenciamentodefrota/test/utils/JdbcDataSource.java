@@ -1,4 +1,4 @@
-package gerenciamentodefrota.test.dao;
+package gerenciamentodefrota.test.utils;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

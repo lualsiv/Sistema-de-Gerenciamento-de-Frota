@@ -9,7 +9,7 @@ public class Pagination<T> {
 	private Integer pageNum;
 	private Integer totalPage;
 	private Integer totalCount;
-	public static final int PAGESIZE = 10;
+	public static final int PAGESIZE = 15;
 	
 	@SuppressWarnings("static-access")
 	public Pagination(List<T> list, Integer pageSize, Integer pageNum, Integer totalPage, Integer totalCount) {

@@ -1,4 +1,4 @@
-package gerenciamentodefrota.test.dao;
+package gerenciamentodefrota.test.utils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,19 +14,29 @@ public abstract class DAOTest {
 	protected PostgreSqlDbUnitManagerImpl dbunitmanager;
 	public EntityManagerFactory factory;
 	public EntityManager entitymanager;
-
+	
+	protected void commitOrRallBack() {
+		try {
+			entitymanager.getTransaction().commit();
+		} catch (Exception e) {
+			if (entitymanager.getTransaction().isActive()) {
+				entitymanager.getTransaction().rollback();
+			}
+		}
+	}
+	
 	@Before
 	public void setup() {
 		factory = Persistence.createEntityManagerFactory("test");
 		entitymanager = factory.createEntityManager();
 		dbunitmanager = new PostgreSqlDbUnitManagerImpl(new JdbcDataSource());
 	}
-
+	
 	@After
 	public void finalize() {
 		entitymanager.close();
 		factory.close();
-
+		
 		// gc
 		entitymanager = null;
 		factory = null;

@@ -15,9 +15,9 @@ public class FuncionarioDAO {
 	private DAO<Funcionario, Long> dao;
 	private HQLBuilder<Funcionario> hql;
 	
-	public FuncionarioDAO(EntityManager em){
-		this.dao = new DAO<Funcionario, Long>(em, Funcionario.class);
-		this.hql = new HQLBuilder<Funcionario>(dao.getEntityManager(), Funcionario.class);
+	public FuncionarioDAO(EntityManager entityManager){
+		this.dao = new DAO<Funcionario, Long>(entityManager, Funcionario.class);
+		this.hql = new HQLBuilder<Funcionario>(entityManager, Funcionario.class);
 	}
 	
 	public void adiciona(Funcionario funcionario) {

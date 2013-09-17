@@ -2,6 +2,7 @@ package gerenciamentodefrota.test.dao;
 
 import gerenciamentodefrota.dao.CombustivelDAO;
 import gerenciamentodefrota.model.Combustivel;
+import gerenciamentodefrota.test.utils.DAOTest;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -33,13 +34,7 @@ public class CombustivelDAOTest extends DAOTest {
 	@Override
 	@After
 	public void finalize() {
-		try {
-			entitymanager.getTransaction().commit();
-		} catch (Exception e) {
-			if (entitymanager.getTransaction().isActive()) {
-				entitymanager.getTransaction().rollback();
-			}
-		}
+		commitOrRallBack();
 		
 		super.finalize();
 		combustivelDAO = null;
