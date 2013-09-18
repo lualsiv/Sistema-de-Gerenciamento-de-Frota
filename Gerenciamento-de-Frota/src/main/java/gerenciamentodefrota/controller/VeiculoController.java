@@ -14,7 +14,7 @@ import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
-import br.com.caelum.vraptor.validator.Validations;
+import br.com.caelum.vraptor.validator.ValidationMessage;
 
 @Resource
 public class VeiculoController {
@@ -49,15 +49,10 @@ public class VeiculoController {
 	
 	private void validaNovoVeiculo(final Veiculo veiculo) {
 		validator.validate(veiculo);
-
-		validator.checking(new Validations() {
-			{
-				that(veiculoDAO.buscaPorPlaca(veiculo.getPlaca()) == null,
-						"veiculo.placa",
-						"Já existe um veiculo cadastrado com esta placa");
-			}
-		});
-
+		
+		if(veiculoDAO.buscaPorPlaca(veiculo.getPlaca()) == null)
+			validator.add(new ValidationMessage("Já existe um veiculo cadastrado com esta placa.", "veiculo.placa"));
+		
 		validator.onErrorRedirectTo(this).novo();
 	}
 
@@ -90,13 +85,8 @@ public class VeiculoController {
 		Veiculo veiculoValida = veiculoDAO.buscaPorPlaca(veiculo.getPlaca());
 		
 		if (!veiculoValida.equals(veiculo)) {
-			validator.checking(new Validations() {
-				{
-					that(veiculoDAO.buscaPorPlaca(veiculo.getPlaca()) == null,
-							"veiculo.placa",
-							"Já existe um veiculo cadastrado com esta placa");
-				}
-			});
+			if(veiculoDAO.buscaPorPlaca(veiculo.getPlaca()) == null)
+				validator.add(new ValidationMessage("Já existe um veiculo cadastrado com esta placa.", "veiculo.placa"));
 		}
 		
 		result.include("combustiveis", combustivelDAO.lista());

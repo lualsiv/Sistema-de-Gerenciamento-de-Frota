@@ -1,11 +1,13 @@
 package gerenciamentodefrota.test.controller;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,7 +29,7 @@ public class CombustivelControllerTest extends DAOTest {
 	private FileSystemDataSetSource arquivo = new FileSystemDataSetSource(DATASET);
 	private CombustivelDAO combustivelDAO;
 	private CombustivelController controller;
-	private Validator validator;
+	private Validator validator = new JSR303MockValidator();
 	private Result result;
 	private Notice notice;
 	
@@ -38,7 +40,7 @@ public class CombustivelControllerTest extends DAOTest {
 		dbunitmanager.cleanAndInsert(arquivo);
 		
 		combustivelDAO = new CombustivelDAO(entitymanager);
-		validator = new JSR303MockValidator();
+//		validator = new JSR303MockValidator();
 		
 		result = new MockResult();
 		notice = new Notice();
@@ -58,7 +60,7 @@ public class CombustivelControllerTest extends DAOTest {
 	@Test
 	public void deveRetornarListaCom2Itens() {
 		List<Combustivel> lista = controller.lista();
-		Assert.assertEquals(lista.size(), 2);
+		assertEquals(lista.size(), 2);
 	}
 
 	@Test
@@ -71,30 +73,25 @@ public class CombustivelControllerTest extends DAOTest {
 		
 		List<Combustivel> combustiveis = combustivelDAO.lista();
 		
-		Assert.assertEquals(3, combustiveis.size());
+		assertEquals(3, combustiveis.size());
 	}
 	
 	@Test
 	public void salvaAlteracaoDeUmCombustivel() {
-		Combustivel combustivel = combustivelDAO.busca((long) 1);
-		
-//		combustivel.setPreco(new BigDecimal("4.44"));
-		combustivel.setDescricao("ALCOOL");
-		
-		// JSR303MockValidator deve estar bugado
-		
-		validator.validate(combustivel);
-		
-		System.out.println("Tem erro? " + validator.hasErrors());
-		System.out.println("N. de erros: " + validator.getErrors().size());
-		
-		System.out.println("Messafes: " + validator.getErrors());
-		for (Message m : validator.getErrors()) {
-			System.out.println(m.getCategory() + " : " + m.getMessage());
-		}
-		
-		Assert.assertFalse(validator.hasErrors());
-		
+		Combustivel combustivel = combustivelDAO.busca((long)1);
+		combustivel.setPreco(new  BigDecimal("4.44"));
+
+		try {
+			controller.alterar(combustivel);
+			
+			System.out.println(validator.getErrors());
+			
+			Combustivel busca = combustivelDAO.busca((long)1);
+			assertEquals(new BigDecimal("4.44"), busca.getPreco());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Deveria ser válido.");
+		}	
 	}
 	
 	@Test
@@ -102,7 +99,7 @@ public class CombustivelControllerTest extends DAOTest {
 		controller.editar((long) 1);
 		
 		Combustivel combustivel = (Combustivel) result.included().get("combustivel");
-		Assert.assertEquals("GASOLINA", combustivel.getDescricao());
+		assertEquals("GASOLINA", combustivel.getDescricao());
 	}
 	
 	@Test
@@ -115,7 +112,7 @@ public class CombustivelControllerTest extends DAOTest {
 		
 		validator.validate(combustivel);
 		
-		Assert.assertEquals(validator.getErrors().size(), 0);
+		assertEquals(validator.getErrors().size(), 0);
 	}
 	
 	@Test
@@ -128,7 +125,7 @@ public class CombustivelControllerTest extends DAOTest {
 		validator.validate(combustivel);
 		
 		for (Message m : validator.getErrors()) {
-			Assert.assertEquals("preco", m.getCategory());
+			assertEquals("preco", m.getCategory());
 		}
 	}
 	

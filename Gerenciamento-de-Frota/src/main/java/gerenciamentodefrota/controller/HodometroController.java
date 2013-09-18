@@ -56,23 +56,20 @@ public class HodometroController {
 	private void validaNovoHodometro(Hodometro hodometro) {
 		hodometro.setVeiculo(veiculoDAO.buscaPorPlaca(hodometro.getVeiculo().getPlaca()));
 		
-		if (hodometro.getVeiculo() == null) {
+		if (hodometro.getVeiculo() == null)
 			validator.add(new ValidationMessage("Não existe veículo com esta placa nos registros.","veiculo.placa"));
-		}
 		
 		validator.onErrorUsePageOf(this).novoRegistro();
 		
 		Hodometro registroAnterior = hodometroDAO.ultimoRegistroDoVeiculo(hodometro.getVeiculo());
 		BigDecimal quilometragemAnterior = registroAnterior == null ? BigDecimal.ZERO : registroAnterior.getQuilometragem();
-		LocalDateTime dataAnterior = registroAnterior == null ? new LocalDateTime() : registroAnterior.getDataLeitura();
+		LocalDateTime dataAnterior = registroAnterior == null ? LocalDateTime.now().minusYears(1) : registroAnterior.getDataLeitura();
 		
-		if (!hodometro.getDataLeitura().isAfter(dataAnterior)) {
+		if (!hodometro.getDataLeitura().isAfter(dataAnterior))
 			validator.add(new ValidationMessage("A data da leitura deve ser maior que o registro anterior.","hodometro.dataLeitura"));
-		}
 		
-		if (hodometro.getQuilometragem().compareTo(quilometragemAnterior) != 1) {
+		if (hodometro.getQuilometragem().compareTo(quilometragemAnterior) != 1)
 			validator.add(new ValidationMessage("A quilometragem deve ser maior que o registro anterior.","hodometro.quilometragem"));
-		}
 		
 		validator.onErrorUsePageOf(this).novoRegistro();
 	}

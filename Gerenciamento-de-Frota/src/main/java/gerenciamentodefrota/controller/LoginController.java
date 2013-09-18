@@ -40,16 +40,20 @@ public class LoginController {
 		String uri = StringUtil.isNullOrEmpty(usuarioSession.getUrl()) ? "/" : usuarioSession.getUrl();
 		
 		if (usuario != null) {
-			if (usuario.getSituacao() == true) {
-				usuarioSession.login(usuario);
-				result.redirectTo(uri);
-			} else {
-				notice.warning("O usuário está desativado.");
-				result.redirectTo("/");
-			}
+			usuarioExiste(usuario, uri);
 		} else {
 			notice.warning("Login ou senha inválidos.");
 			result.redirectTo(this).login();
+		}
+	}
+
+	private void usuarioExiste(Usuario usuario, String uri) {
+		if (usuario.getSituacao() == true) {
+			usuarioSession.login(usuario);
+			result.redirectTo(uri);
+		} else {
+			notice.warning("O usuário está desativado.");
+			result.redirectTo("/");
 		}
 	}
 

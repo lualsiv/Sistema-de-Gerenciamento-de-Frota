@@ -39,22 +39,30 @@ public class PermissionInterceptor implements Interceptor {
 
 	@Override
 	public void intercept(InterceptorStack stack, ResourceMethod method, Object controller) throws InterceptionException {
-		Permission methodPermission = method.getMethod().getAnnotation(Permission.class);
-		
 		if (usuarioSession.isLogado()) {
-			if (this.hasAccess(methodPermission)) {
-				stack.next(method, controller);
-			} else {
-				notice.warning("Seu usuário não tem permissão para usar este recurso do sistema.");
-				result.redirectTo("/");
-			}
+			isLogged(stack, method, controller);
 		}
 		else {
-			String uri = request.getRequestURL().toString();
-			usuarioSession.setUrl(uri);
-			notice.info("Você deve logar no sistema para executar esta operação.");
-			result.redirectTo(LoginController.class).login();
+			notLogger();
 		}
+	}
+
+	private void isLogged(InterceptorStack stack, ResourceMethod method, Object controller) {
+		Permission methodPermission = method.getMethod().getAnnotation(Permission.class);
+		
+		if (this.hasAccess(methodPermission)) {
+			stack.next(method, controller);
+		} else {
+			notice.warning("Seu usuário não tem permissão para usar este recurso do sistema.");
+			result.redirectTo("/");
+		}
+	}
+
+	private void notLogger() {
+		String uri = request.getRequestURL().toString();
+		usuarioSession.setUrl(uri);
+		notice.info("Você deve logar no sistema para executar esta operação.");
+		result.redirectTo(LoginController.class).login();
 	}
 
 	private Boolean hasAccess(Permission permission) {

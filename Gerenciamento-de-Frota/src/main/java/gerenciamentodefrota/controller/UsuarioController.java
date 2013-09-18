@@ -51,19 +51,16 @@ public class UsuarioController {
 	
 	private void validaNovoUsuario(Usuario usuario) {
 		Usuario usuarioJaCadastrado = usuarioDAO.buscaPorCadastro(usuario.getFuncionario().getCadastro());
-		if (usuarioJaCadastrado != null) {
+		if (usuarioJaCadastrado != null)
 			validator.add(new ValidationMessage("Já existe um usuário do sistema cadastrado para este funcionario.", "funcionario"));
-		}
 		
 		usuarioJaCadastrado = usuarioDAO.buscaPorLogin(usuario.getLogin());
-		if (usuarioJaCadastrado != null) {
+		if (usuarioJaCadastrado != null)
 			validator.add(new ValidationMessage("Já existe um usuário com este login.", "login"));
-		}
 		
 		usuario.setFuncionario(funcionarioDAO.buscaPorCadastro(usuario.getFuncionario().getCadastro()));
-		if(usuario.getFuncionario() == null) {
+		if(usuario.getFuncionario() == null)
 			validator.add(new ValidationMessage("Funcionario não encontrado.", "funcionario"));
-		}
 		
 		validator.validate(usuario);
 		validator.onErrorUsePageOf(this).novo();
