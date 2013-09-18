@@ -9,7 +9,6 @@ import java.util.List;
 import javax.persistence.EnumType;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
 public class TagLinkPermission extends TagSupport {
@@ -38,26 +37,27 @@ public class TagLinkPermission extends TagSupport {
 	public int doStartTag() throws JspException {
 		getUsuarioSession();
 		
-		try {
-			JspWriter out = pageContext.getOut();
-			
-			if (usuarioSession != null) {
-				if (usuarioSession.isLogado() && hasAccess()) {
-					out.println("<a href=\"" + link + "\">" + titulo + "</a>");
-				} else {
-					if (exibir)
-						out.println("<span>" + titulo + "</span>");
-				}
-			}
-			else {
+		if (usuarioSession != null) {
+			if (usuarioSession.isLogado() && hasAccess()) {
+				print("<a href=\"" + link + "\">" + titulo + "</a>");
+			} else {
 				if (exibir)
-					out.println("<span>" + titulo + "</span>");
+					print("<span>" + titulo + "</span>");
 			}
+		} else {
+			if (exibir)
+				print("<span>" + titulo + "</span>");
+		}
 			
+		return SKIP_BODY;
+	}
+
+	private void print(String string) {
+		try {
+			pageContext.getOut().print(string);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return SKIP_BODY;
 	}
 	
 	public void setPerfis(String perfis) {

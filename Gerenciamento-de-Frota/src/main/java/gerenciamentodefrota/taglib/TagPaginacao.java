@@ -1,7 +1,6 @@
 package gerenciamentodefrota.taglib;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
 public class TagPaginacao extends TagSupport {
@@ -14,25 +13,25 @@ public class TagPaginacao extends TagSupport {
 	
 	@Override
 	public int doStartTag() throws JspException {
-		try {
-			JspWriter out = pageContext.getOut();
-			
-			for (Integer i = 1; i <= this.totalPaginas; i++) {
-				if (i == paginaAtual) {
-					out.println("<span>" + i + "</span>");
-				}
-				else {
-					out.println("<a href='" + link.replaceFirst("#", i.toString()) + "'>" + i + "</a>");
-				}
+		for (Integer i = 1; i <= this.totalPaginas; i++) {
+			if (i == paginaAtual) {
+				print("<span>" + i + "</span>");
+			} else {
+				print("<a href='" + link.replaceFirst("#", i.toString()) + "'>" + i + "</a>");
 			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
-		
+
 		return SKIP_BODY;
 	}
 	
+	private void print(String string) {
+		try {
+			pageContext.getOut().print(string);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public String getLink() {
 		return link;
 	}

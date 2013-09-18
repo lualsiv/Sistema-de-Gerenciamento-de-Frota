@@ -11,7 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.triadworks.dbunit.dataset.FileSystemDataSetSource;
+import gerenciamentodefrota.dao.Condition;
 import gerenciamentodefrota.dao.HQLBuilder;
+import gerenciamentodefrota.dao.Operator;
 import gerenciamentodefrota.infra.Pagination;
 import gerenciamentodefrota.infra.Select;
 import gerenciamentodefrota.model.Funcionario;
@@ -38,7 +40,7 @@ public class HQLBuilderTest extends DAOTest {
 	}
 	
 	@Test
-	public void deveListarTodosOsRegisTrosERetornar23Registros() {
+	public void deveListarTodosOsRegistrosERetornar23Registros() {
 		List<Funcionario> funcionarios = hql.from()
 											.list();
 		
@@ -173,6 +175,36 @@ public class HQLBuilderTest extends DAOTest {
 		Assert.assertEquals(funcionarios.size(), 23);
 		Assert.assertEquals((long)funcionarios.get(0).getValue(), (long)1);
 		Assert.assertEquals((String)funcionarios.get(0).getText(), (String)"Vagner");
+	}
+	
+	@Test
+	public void deveFiltrarOsRegistrosUsandoNotIsNullERetornar0Registros() {
+		List<Funcionario> funcionarios = hql.from()
+											.andNotIsNull("dataExoneracao")
+											.list();
+		
+		Assert.assertEquals(funcionarios.size(), 0);
+	}
+	
+	@Test
+	public void deveFiltrarOsRegistrosUsandoIsNullERetornar23Registros() {
+		List<Funcionario> funcionarios = hql.from()
+											.andIsNull("dataExoneracao")
+											.list();
+		
+		Assert.assertEquals(funcionarios.size(), 23);
+	}
+	
+	@Test
+	public void condicao() {
+		List<Funcionario> lista = hql.from()
+									 .montaCondicao("id", (long)1, Condition.NONE, Operator.EQUALS)
+									 .montaCondicao("id", (long)2, Condition.OR, Operator.EQUALS)
+									 .montaCondicao("id", (long)3, Condition.OR, Operator.EQUALS)
+									 .montaCondicao("situacao", Condition.OR, Operator.ISFALSE)
+									 .list();
+		
+		Assert.assertEquals(lista.size(), 5);
 	}
 	
 }
