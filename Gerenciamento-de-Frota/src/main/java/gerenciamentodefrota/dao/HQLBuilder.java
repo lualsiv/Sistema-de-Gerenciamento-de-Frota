@@ -15,9 +15,9 @@ import javax.persistence.Query;
 
 public class HQLBuilder<T> {
 	
-	private String hql = "";
+	private String hql;
 	private Map<String, Object> campos = new HashMap<String, Object>();
-	private String ordem = "";
+	private String ordem;
 	private Class<T> classe;
 	private String alias;
 	private EntityManager em;
@@ -26,6 +26,8 @@ public class HQLBuilder<T> {
 		this.em = em;
 		this.classe = classe;
 		this.alias = "a";
+		this.hql = "";
+		this.ordem = "";
 	}
 	
 	private String getHQL() {
@@ -59,11 +61,11 @@ public class HQLBuilder<T> {
 		this.hql = "from " + classe.getName() + " " + alias + " where 1=1";
 		return this;
 	}
-
+	
 	public HQLBuilder<T> andBetween(String campo, Object valor1, Object valor2) {
 		return montaCondicao(campo, valor1, valor2, Condition.AND, Operator.BETWEEN);
 	}
-
+	
 	public HQLBuilder<T> andBetweenIf(String campo, Object valor1, Object valor2) {
 		return montaCondicaoIf(campo, valor1, valor2, Condition.AND, Operator.BETWEEN);
 	}
@@ -257,27 +259,17 @@ public class HQLBuilder<T> {
 	}
 	
 	private String listStringToString(List<String> valores) {
-		String retorno = "";
-		
-		retorno += "(";
-		for (String string : valores) {
-			retorno += "'" + string + "',"; 
-		}
-		retorno += ")";
-
-		return retorno.replace(",)", ")");
+		return valores.toString()
+					  .replace("[", "('")
+					  .replace("]", "')")
+					  .replaceAll(", ", "', '");
 	}
-
+	
 	private String listObjectToString(List<Object> valores) {
-		String retorno = "";
-		
-		retorno = "(";
-		for (Object valor : valores) {
-			retorno += valor.toString() + ",";
-		}
-		retorno += ")";
-
-		return retorno.replace(",)", ")");
+		return valores.toString()
+				  .replace("[", "(")
+				  .replace("]", ")")
+				  .replaceAll(", ", ", ");
 	}
 	
 	public HQLBuilder<T> orderBy(String ordem) {

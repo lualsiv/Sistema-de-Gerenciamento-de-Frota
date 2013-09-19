@@ -5,7 +5,6 @@ import gerenciamentodefrota.infra.NoticeItem;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
 public class TagNotice extends TagSupport {
@@ -27,24 +26,25 @@ public class TagNotice extends TagSupport {
 		}
 	}
 
-	@Override
-	public int doStartTag() throws JspException {
-		getNoticesFromSession();
-		
+	private void print(String string) {
 		try {
-			JspWriter out = pageContext.getOut();
-
-			if (notices != null) {
-				for (NoticeItem notice : notices.getNotices()) {
-					out.println(String.format("<div class=\"%s\"> %s </div>", notice.getTipo().toString(), notice.getMensagem()));
-				}
-			}
-
-			notices.clear();
-			
+			pageContext.getOut().print(string);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int doStartTag() throws JspException {
+		getNoticesFromSession();
+
+		if (notices != null) {
+			for (NoticeItem notice : notices.getNotices()) {
+				print(String.format("<div class=\"%s\"> %s </div>", notice.getTipo().toString(), notice.getMensagem()));
+			}
+		}
+
+		notices.clear();
 
 		return SKIP_BODY;
 	}

@@ -1,6 +1,7 @@
 package gerenciamentodefrota.test.controller;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -62,7 +63,7 @@ public class CombustivelControllerTest extends DAOTest {
 		List<Combustivel> lista = controller.lista();
 		assertEquals(lista.size(), 2);
 	}
-
+	
 	@Test
 	public void cadastrarNovoCombustivel() {
 		Combustivel combustivel = new Combustivel();
@@ -80,7 +81,7 @@ public class CombustivelControllerTest extends DAOTest {
 	public void salvaAlteracaoDeUmCombustivel() {
 		Combustivel combustivel = combustivelDAO.busca((long)1);
 		combustivel.setPreco(new  BigDecimal("4.44"));
-
+		
 		try {
 			controller.alterar(combustivel);
 			
@@ -88,10 +89,11 @@ public class CombustivelControllerTest extends DAOTest {
 			
 			Combustivel busca = combustivelDAO.busca((long)1);
 			assertEquals(new BigDecimal("4.44"), busca.getPreco());
+			
 		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Deveria ser válido.");
-		}	
+			System.out.println(e.getMessage());
+			fail("Deveria alterar as informações do combustível.");
+		}
 	}
 	
 	@Test
@@ -127,6 +129,37 @@ public class CombustivelControllerTest extends DAOTest {
 		for (Message m : validator.getErrors()) {
 			assertEquals("preco", m.getCategory());
 		}
+	}
+	
+	@Test
+	public void teste1() {
+		Combustivel combustivel = combustivelDAO.busca((long) 1);
+		combustivel.setPreco(new BigDecimal("4.44"));
+		
+		validator.validate(combustivel);
+		System.out.println(validator.getErrors());
+		
+		assertFalse(validator.hasErrors());
+	}
+
+	@Test
+	public void teste2() {
+		Combustivel combustivel = combustivelDAO.busca((long) 1);
+
+		validator.validate(combustivel);
+		
+		assertFalse(validator.hasErrors());
+	}
+	
+	@Test
+	public void teste3() {
+		Combustivel combustivel = new Combustivel();
+		combustivel.setPreco(new BigDecimal("4.44"));
+		combustivel.setDescricao("ALCOOL");
+
+		validator.validate(combustivel);
+		
+		assertFalse(validator.hasErrors());
 	}
 	
 }
