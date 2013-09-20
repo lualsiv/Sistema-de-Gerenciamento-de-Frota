@@ -51,6 +51,7 @@ public class FuncionarioControllerTest extends DAOTest {
 	@After
 	public void finalize() {
 		commitOrRallBack();
+		dbunitmanager.deleteAll(arquivo);
 		super.finalize();
 	}
 	

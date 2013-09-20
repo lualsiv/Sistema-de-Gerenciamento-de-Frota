@@ -1,7 +1,6 @@
 package gerenciamentodefrota.controller;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.LocalDateTime;
@@ -43,6 +42,7 @@ public class HodometroController {
 
 	}
 
+	@Permission({Perfil.ADMINISTRADOR,Perfil.USUARIO})
 	@Transacional
 	@Post("/veiculo/registrarquilometragem")
 	public void novoRegistro(Hodometro hodometro) {
@@ -76,11 +76,7 @@ public class HodometroController {
 
 	@Get("/hodometro")
 	public List<Hodometro> lista() {
-		try {
-			return hodometroDAO.lista();
-		} catch (Exception e) {
-			return new ArrayList<Hodometro>();
-		}
+		return hodometroDAO.lista();
 	}
 	
 }

@@ -2,7 +2,6 @@ package gerenciamentodefrota.test.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -30,7 +29,7 @@ public class CombustivelControllerTest extends DAOTest {
 	private FileSystemDataSetSource arquivo = new FileSystemDataSetSource(DATASET);
 	private CombustivelDAO combustivelDAO;
 	private CombustivelController controller;
-	private Validator validator = new JSR303MockValidator();
+	private Validator validator;
 	private Result result;
 	private Notice notice;
 	
@@ -41,7 +40,7 @@ public class CombustivelControllerTest extends DAOTest {
 		dbunitmanager.cleanAndInsert(arquivo);
 		
 		combustivelDAO = new CombustivelDAO(entitymanager);
-//		validator = new JSR303MockValidator();
+		validator = new JSR303MockValidator();
 		
 		result = new MockResult();
 		notice = new Notice();
@@ -55,6 +54,7 @@ public class CombustivelControllerTest extends DAOTest {
 	@After
 	public void finalize() {
 		commitOrRallBack();
+		dbunitmanager.deleteAll(arquivo);
 		super.finalize();
 	}
 
@@ -79,21 +79,14 @@ public class CombustivelControllerTest extends DAOTest {
 	
 	@Test
 	public void salvaAlteracaoDeUmCombustivel() {
-		Combustivel combustivel = combustivelDAO.busca((long)1);
-		combustivel.setPreco(new  BigDecimal("4.44"));
+		Combustivel combustivel = combustivelDAO.busca((long) 1);
+		combustivel.setPreco(new BigDecimal("4.44"));
 		
-		try {
-			controller.alterar(combustivel);
-			
-			System.out.println(validator.getErrors());
-			
-			Combustivel busca = combustivelDAO.busca((long)1);
-			assertEquals(new BigDecimal("4.44"), busca.getPreco());
-			
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			fail("Deveria alterar as informações do combustível.");
-		}
+		controller.alterar(combustivel);
+
+		Combustivel busca = combustivelDAO.busca((long) 1);
+		assertEquals(new BigDecimal("4.44"), busca.getPreco());
+
 	}
 	
 	@Test
@@ -135,11 +128,19 @@ public class CombustivelControllerTest extends DAOTest {
 	public void teste1() {
 		Combustivel combustivel = combustivelDAO.busca((long) 1);
 		combustivel.setPreco(new BigDecimal("4.44"));
+		combustivel.setDescricao("ALCOOL");
+		assertFalse("Já tem erros antes!", validator.hasErrors());
+		validator.validate(combustivel);        
+		assertFalse("Tem erros depois =(", validator.hasErrors());
 		
-		validator.validate(combustivel);
-		System.out.println(validator.getErrors());
+//		Combustivel combustivel = combustivelDAO.busca((long) 1);
+//		combustivel.setPreco(new BigDecimal("4.44"));
 		
-		assertFalse(validator.hasErrors());
+//		validator.validate(combustivel);
+//		System.out.println(validator.getErrors());
+		
+//		assertFalse(validator.getErrors().size() > 0);
+//		assertFalse(validator.hasErrors());
 	}
 
 	@Test

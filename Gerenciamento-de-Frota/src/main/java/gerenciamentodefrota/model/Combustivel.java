@@ -19,21 +19,21 @@ public class Combustivel {
 	private Long id;
 
 	@Column(unique = true)
-	@NotEmpty
 	private String descricao;
 
 	@Column
-	@NotNull
 	private BigDecimal preco;
 
 	public Long getId() {
 		return id;
 	}
 
+	@NotEmpty
 	public String getDescricao() {
 		return descricao;
 	}
 
+	@NotNull
 	public BigDecimal getPreco() {
 		return preco;
 	}

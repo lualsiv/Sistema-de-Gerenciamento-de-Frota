@@ -1,9 +1,11 @@
 package gerenciamentodefrota.dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 public class DAO<T, I extends Serializable> {
@@ -23,7 +25,13 @@ public class DAO<T, I extends Serializable> {
 	@SuppressWarnings("unchecked")
 	public List<T> list() {
 		Query query = em.createQuery("select e from " + classe.getName() + " e");
-		return (List<T>) query.getResultList();
+		
+		try {
+			return query.getResultList();
+		} catch (NoResultException e) {
+			return new ArrayList<T>();
+		}
+
 	}
 	
 	public EntityManager getEntityManager(){
