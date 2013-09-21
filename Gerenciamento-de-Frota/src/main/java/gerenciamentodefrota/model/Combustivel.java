@@ -1,5 +1,6 @@
 package gerenciamentodefrota.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -9,10 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Combustivel {
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+public class Combustivel implements Serializable {
+	
+	private static final long serialVersionUID = -3520205668087592150L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)

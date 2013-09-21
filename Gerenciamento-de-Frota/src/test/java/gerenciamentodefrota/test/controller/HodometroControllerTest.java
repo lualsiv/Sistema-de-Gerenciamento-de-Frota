@@ -138,8 +138,4 @@ public class HodometroControllerTest extends DAOTest {
 		controller.novoRegistro(hodometro);
 	}
 	
-	@Test
-	public void asd() {
-		
-	}
 }

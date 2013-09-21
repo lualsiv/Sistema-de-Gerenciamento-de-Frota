@@ -25,6 +25,7 @@ public class DAO<T, I extends Serializable> {
 	@SuppressWarnings("unchecked")
 	public List<T> list() {
 		Query query = em.createQuery("select e from " + classe.getName() + " e");
+		query.setHint("org.hibernate.cacheable", true);
 		
 		try {
 			return query.getResultList();

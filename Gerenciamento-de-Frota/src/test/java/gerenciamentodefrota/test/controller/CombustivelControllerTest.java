@@ -1,7 +1,6 @@
 package gerenciamentodefrota.test.controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -122,45 +121,6 @@ public class CombustivelControllerTest extends DAOTest {
 		for (Message m : validator.getErrors()) {
 			assertEquals("preco", m.getCategory());
 		}
-	}
-	
-	@Test
-	public void teste1() {
-		Combustivel combustivel = combustivelDAO.busca((long) 1);
-		combustivel.setPreco(new BigDecimal("4.44"));
-		combustivel.setDescricao("ALCOOL");
-		assertFalse("Já tem erros antes!", validator.hasErrors());
-		validator.validate(combustivel);        
-		assertFalse("Tem erros depois =(", validator.hasErrors());
-		
-//		Combustivel combustivel = combustivelDAO.busca((long) 1);
-//		combustivel.setPreco(new BigDecimal("4.44"));
-		
-//		validator.validate(combustivel);
-//		System.out.println(validator.getErrors());
-		
-//		assertFalse(validator.getErrors().size() > 0);
-//		assertFalse(validator.hasErrors());
-	}
-
-	@Test
-	public void teste2() {
-		Combustivel combustivel = combustivelDAO.busca((long) 1);
-
-		validator.validate(combustivel);
-		
-		assertFalse(validator.hasErrors());
-	}
-	
-	@Test
-	public void teste3() {
-		Combustivel combustivel = new Combustivel();
-		combustivel.setPreco(new BigDecimal("4.44"));
-		combustivel.setDescricao("ALCOOL");
-
-		validator.validate(combustivel);
-		
-		assertFalse(validator.hasErrors());
 	}
 	
 }

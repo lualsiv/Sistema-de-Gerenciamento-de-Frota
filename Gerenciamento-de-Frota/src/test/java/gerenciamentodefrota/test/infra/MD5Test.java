@@ -1,10 +1,9 @@
 package gerenciamentodefrota.test.infra;
 
-import gerenciamentodefrota.infra.MD5;
+import gerenciamentodefrota.util.MD5;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 
 public class MD5Test {
 

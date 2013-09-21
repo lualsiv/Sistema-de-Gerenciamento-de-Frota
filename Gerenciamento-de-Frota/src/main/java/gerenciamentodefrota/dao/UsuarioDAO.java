@@ -2,8 +2,8 @@ package gerenciamentodefrota.dao;
 
 import java.util.List;
 
-import gerenciamentodefrota.infra.MD5;
 import gerenciamentodefrota.model.Usuario;
+import gerenciamentodefrota.util.MD5;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

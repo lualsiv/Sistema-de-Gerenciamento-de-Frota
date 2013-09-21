@@ -1,4 +1,4 @@
-package gerenciamentodefrota.infra;
+package gerenciamentodefrota.util;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

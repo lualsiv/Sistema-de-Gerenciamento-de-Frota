@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- ====================================================================== -->
+	<!-- A P P E N D E R S                                                      -->
+	<!-- ====================================================================== -->
+	
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd.MM.yyyy HH:mm:ss} *%-5p* %c{1}: %m (%F, line %L)%n" />
+			<param name="ConversionPattern" value="%p %c %x.%M line %L - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="arquivo" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="logs.log" />
+		<param name="MaxFileSize" value="5MB" />
+		
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd.MM.yyyy HH:mm:ss} *%-5p* %c{1}: %m (%F, line %L)%n" />
+		</layout>
+	</appender>
+	
+	<appender name="email" class="org.apache.log4j.net.SMTPAppender">
+		<param name="SMTPUsername" value="vagnercotrim" />
+		<param name="SMTPPassword" value="" />
+		
+		<param name="BufferSize" value="1024" />
+		<param name="SMTPHost" value="smtp.gmail.com" />
+		<param name="SMTPPort" value="465" />
+		<param name="SMTPProtocol" value="smtps" />
+		<param name="From" value="vagnercotrim@gmail.com" />
+		<param name="To" value="vagnercotrim@gmail.com" />
+		<param name="Subject" value="test mail" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{dd.MM.yyyy HH:mm:ss}] (%F, line %L)%n %n%n%-5p%n%n%c%n%n%m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="error" />
+			<param name="LevelMax" value="fatal" />
+		</filter>
+	</appender>
+	
+	<!-- ====================================================================== -->
+	<!-- L O G G E R S                                                          -->
+	<!-- ====================================================================== -->
+	
+	<category name="gerenciamentodefrota">
+		<priority value="WARN" />
+		<appender-ref ref="arquivo" />
+	</category>
+	
+	<category name="gerenciamentodefrota">
+		<priority value="FATAL" />
+		<appender-ref ref="email" />
+	</category>
+	
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="console" />
+	</root>
+	
+</log4j:configuration>
