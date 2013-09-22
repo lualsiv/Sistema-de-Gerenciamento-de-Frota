@@ -49,15 +49,13 @@ public class MotoristaController {
 	private void validaNovoMotorista(Motorista motorista) {
 		Motorista motoristaJaCadastrado = motoristaDAO.buscaPorCadastro(motorista.getFuncionario().getCadastro());
 		
-		if (motoristaJaCadastrado != null) {
+		if (motoristaJaCadastrado != null)
 			validator.add(new ValidationMessage("Já existe um cdastro de motorista para este funcionario.", "funcionario"));
-		}
 		
 		motorista.setFuncionario(funcionarioDAO.buscaPorCadastro(motorista.getFuncionario().getCadastro()));
 		
-		if(motorista.getFuncionario() == null) {
+		if(motorista.getFuncionario() == null)
 			validator.add(new ValidationMessage("Funcionario não encontrado.", "funcionario"));
-		}
 		
 		validator.validate(motorista);
 		
