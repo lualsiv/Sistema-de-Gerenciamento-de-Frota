@@ -49,5 +49,8 @@
 
 		<!-- Minify dependencies -->
 		<dependency org="com.yahoo.platform.yui" name="yuicompressor" rev="2.3.6" conf="minify->default" />
+		
+		<dependency org="br.com.caelum" name="restfulie" rev="1.0.1" conf="default" />
+		
 	</dependencies>
 </ivy-module>

@@ -14,12 +14,15 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias( "combustivel" )
 @Entity
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 public class Combustivel implements Serializable {
 	
 	private static final long serialVersionUID = -3520205668087592150L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
