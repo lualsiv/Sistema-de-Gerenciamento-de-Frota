@@ -13,7 +13,8 @@
 		<dependency org="br.com.caelum" name="vraptor" rev="3.5.2" conf="default" />
 		<dependency org="opensymphony" name="sitemesh" rev="2.4.2" conf="default" />
 		<dependency org="javax.servlet" name="jstl" rev="1.2" conf="default" />
-		
+		<dependency org="br.com.caelum" name="restfulie" rev="1.0.1" conf="default" />
+			
 		<dependency org="org.hibernate" name="hibernate-entitymanager" rev="4.0.1.Final" conf="default" />
 		<dependency org="org.hibernate" name="hibernate-c3p0" rev="4.0.1.Final" conf="default" />
 		<dependency org="org.hibernate" name="hibernate-validator" rev="4.2.0.Final" conf="default" />
@@ -49,8 +50,6 @@
 
 		<!-- Minify dependencies -->
 		<dependency org="com.yahoo.platform.yui" name="yuicompressor" rev="2.3.6" conf="minify->default" />
-		
-		<dependency org="br.com.caelum" name="restfulie" rev="1.0.1" conf="default" />
 		
 	</dependencies>
 </ivy-module>

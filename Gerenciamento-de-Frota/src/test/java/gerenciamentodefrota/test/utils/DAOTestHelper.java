@@ -9,7 +9,7 @@ import org.junit.Before;
 
 import br.com.triadworks.dbunit.vendors.postgresql.PostgreSqlDbUnitManagerImpl;
 
-public abstract class DAOTest {
+public abstract class DAOTestHelper {
 
 	protected PostgreSqlDbUnitManagerImpl dbunitmanager;
 	public EntityManagerFactory factory;

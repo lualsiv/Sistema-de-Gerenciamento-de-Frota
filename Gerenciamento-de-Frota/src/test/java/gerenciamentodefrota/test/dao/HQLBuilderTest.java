@@ -17,9 +17,9 @@ import gerenciamentodefrota.dao.Operator;
 import gerenciamentodefrota.infra.Pagination;
 import gerenciamentodefrota.infra.Select;
 import gerenciamentodefrota.model.Funcionario;
-import gerenciamentodefrota.test.utils.DAOTest;
+import gerenciamentodefrota.test.utils.DAOTestHelper;
 
-public class HQLBuilderTest extends DAOTest {
+public class HQLBuilderTest extends DAOTestHelper {
 
 	private File DATASET = new File("src/test/resources/funcionario.xml");
 	private FileSystemDataSetSource arquivo = new FileSystemDataSetSource(DATASET);

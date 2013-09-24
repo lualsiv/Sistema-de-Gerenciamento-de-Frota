@@ -5,7 +5,7 @@ import gerenciamentodefrota.dao.FuncionarioDAO;
 import gerenciamentodefrota.infra.Notice;
 import gerenciamentodefrota.infra.Pagination;
 import gerenciamentodefrota.model.Funcionario;
-import gerenciamentodefrota.test.utils.DAOTest;
+import gerenciamentodefrota.test.utils.DAOTestHelper;
 
 import java.io.File;
 
@@ -20,7 +20,7 @@ import br.com.caelum.vraptor.util.test.JSR303MockValidator;
 import br.com.caelum.vraptor.util.test.MockResult;
 import br.com.triadworks.dbunit.dataset.FileSystemDataSetSource;
 
-public class FuncionarioControllerTest extends DAOTest {
+public class FuncionarioControllerTest extends DAOTestHelper {
 
 	private File DATASET = new File("src/test/resources/funcionario.xml");
 	private FileSystemDataSetSource arquivo = new FileSystemDataSetSource(DATASET);

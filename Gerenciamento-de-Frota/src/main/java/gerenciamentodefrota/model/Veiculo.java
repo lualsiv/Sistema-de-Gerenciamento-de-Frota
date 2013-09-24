@@ -18,7 +18,10 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 @Entity
+@XStreamAlias( "veiculo" )
 public class Veiculo {
 
 	@Id

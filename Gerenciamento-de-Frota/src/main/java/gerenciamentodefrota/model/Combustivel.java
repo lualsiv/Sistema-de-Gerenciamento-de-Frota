@@ -14,9 +14,6 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-
-@XStreamAlias( "combustivel" )
 @Entity
 @Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 public class Combustivel implements Serializable {
@@ -57,6 +54,11 @@ public class Combustivel implements Serializable {
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
+	}
+	
+	@Override
+	public String toString() {
+		return "Combustível [id: " + id + ", descricao: " + descricao + ", preço: " + preco  + "]";
 	}
 
 }

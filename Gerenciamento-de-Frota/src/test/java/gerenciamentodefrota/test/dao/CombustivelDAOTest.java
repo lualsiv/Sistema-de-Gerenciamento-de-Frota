@@ -2,7 +2,7 @@ package gerenciamentodefrota.test.dao;
 
 import gerenciamentodefrota.dao.CombustivelDAO;
 import gerenciamentodefrota.model.Combustivel;
-import gerenciamentodefrota.test.utils.DAOTest;
+import gerenciamentodefrota.test.utils.DAOTestHelper;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import br.com.triadworks.dbunit.dataset.FileSystemDataSetSource;
 
-public class CombustivelDAOTest extends DAOTest {
+public class CombustivelDAOTest extends DAOTestHelper {
 	
 	private File DATASET = new File("src/test/resources/combustivel.xml");
 	FileSystemDataSetSource arquivo = new FileSystemDataSetSource(DATASET);

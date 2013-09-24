@@ -20,9 +20,9 @@ import gerenciamentodefrota.controller.CombustivelController;
 import gerenciamentodefrota.dao.CombustivelDAO;
 import gerenciamentodefrota.infra.Notice;
 import gerenciamentodefrota.model.Combustivel;
-import gerenciamentodefrota.test.utils.DAOTest;
+import gerenciamentodefrota.test.utils.DAOTestHelper;
 
-public class CombustivelControllerTest extends DAOTest {
+public class CombustivelControllerTest extends DAOTestHelper {
 
 	private File DATASET = new File("src/test/resources/combustivel.xml");
 	private FileSystemDataSetSource arquivo = new FileSystemDataSetSource(DATASET);

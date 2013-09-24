@@ -24,9 +24,9 @@ import gerenciamentodefrota.dao.VeiculoDAO;
 import gerenciamentodefrota.infra.UsuarioSession;
 import gerenciamentodefrota.model.Hodometro;
 import gerenciamentodefrota.model.Veiculo;
-import gerenciamentodefrota.test.utils.DAOTest;
+import gerenciamentodefrota.test.utils.DAOTestHelper;
 
-public class HodometroControllerTest extends DAOTest {
+public class HodometroControllerTest extends DAOTestHelper {
 
 	private File DATASET = new File("src/test/resources/hodometro.xml");
 	private FileSystemDataSetSource arquivo = new FileSystemDataSetSource(DATASET);
