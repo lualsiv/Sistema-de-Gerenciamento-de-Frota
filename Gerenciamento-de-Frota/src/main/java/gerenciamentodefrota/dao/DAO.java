@@ -19,7 +19,8 @@ public class DAO<T, I extends Serializable> {
 	}
 	
 	public T find(I id) {
-		return em.getReference(classe, id);
+//		return em.getReference(classe, id);
+		return em.find(classe, id);
 	}
 	
 	@SuppressWarnings("unchecked")

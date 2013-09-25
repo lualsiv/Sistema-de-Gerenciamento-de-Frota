@@ -10,7 +10,7 @@
 				<th>Valor</th>
 				<th>Opções</th>
 			</tr>
-			<c:forEach items="${combustivelList}" var="combustivel">
+			<c:forEach items="${combustiveis.list}" var="combustivel">
 			<tr>
 				<td>${combustivel.descricao}</td>
 				<td><fmt:formatNumber>${combustivel.preco}</fmt:formatNumber></td>
@@ -24,6 +24,10 @@
 
 </div>
 
+<tag:paginacao 	totalPaginas="${combustiveis.totalPage}" 
+				link="${linkTo[CombustivelController].lista}?pagina=#" 
+				paginaAtual="${combustiveis.pageNum}" />
+				
 <content tag="breadcrumb">
 	<div class="small-nav">
 		<a href="${pageContext.request.contextPath}/combustivel/novo">Cadastrar combustível</a>

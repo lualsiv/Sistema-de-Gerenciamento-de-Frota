@@ -40,4 +40,12 @@ public class Pagination<T> {
 		return pageNum;
 	}
 
+	public boolean hasNext() {
+		return pageNum < totalPage;
+	}
+	
+	public boolean hasPrev() {
+		return pageNum > 1;
+	}
+	
 }

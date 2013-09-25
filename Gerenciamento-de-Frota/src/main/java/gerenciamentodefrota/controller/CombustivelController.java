@@ -1,8 +1,5 @@
 package gerenciamentodefrota.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.CombustivelDAO;
 import gerenciamentodefrota.infra.Notice;
@@ -43,7 +40,7 @@ public class CombustivelController {
 		
 		combustivelDAO.adiciona(combustivel);
 		notice.success("Combustível cadastrado com sucesso.");
-		result.redirectTo(this).lista();
+		result.redirectTo(this).lista(1);
 	}
 
 	@Get
@@ -66,16 +63,12 @@ public class CombustivelController {
 		
 		combustivelDAO.atualiza(combustivel);
 		notice.success("Combustível alterado com sucesso.");
-		result.redirectTo(this).lista();
+		result.redirectTo(this).lista(1);
 	}
 	
 	@Get("/combustivel")
-	public List<Combustivel> lista() {
-		try {
-			return combustivelDAO.lista();
-		} catch (Exception e) {
-			return new ArrayList<Combustivel>();
-		}
+	public void lista(Integer pagina) {
+		result.include("combustiveis", combustivelDAO.lista(pagina, 5));
 	}
 
 }

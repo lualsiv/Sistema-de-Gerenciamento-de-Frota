@@ -2,6 +2,7 @@ package gerenciamentodefrota.dao;
 
 import java.util.List;
 
+import gerenciamentodefrota.infra.Pagination;
 import gerenciamentodefrota.model.Combustivel;
 
 import javax.persistence.EntityManager;
@@ -12,9 +13,11 @@ import br.com.caelum.vraptor.ioc.Component;
 public class CombustivelDAO {
 
 	private DAO<Combustivel, Long> dao;
-
+	private HQLBuilder<Combustivel> hql;
+	
 	public CombustivelDAO(EntityManager em){
 		this.dao = new DAO<Combustivel, Long>(em, Combustivel.class);
+		this.hql = new HQLBuilder<Combustivel>(em, Combustivel.class);
 	}
 	
 	public void adiciona(Combustivel combustivel) {
@@ -33,4 +36,10 @@ public class CombustivelDAO {
 		return dao.list();
 	}
 
+	public Pagination<Combustivel> lista(Integer paginaAtual, Integer registrosPorPagina) {
+		hql.from();
+		
+		return hql.listPagination(paginaAtual, registrosPorPagina);
+	}
+	
 }

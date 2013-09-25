@@ -1,8 +1,7 @@
 package gerenciamentodefrota.infra;
 
-import java.io.File;
-import java.io.FileReader;
-import java.util.Properties;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 import br.com.caelum.vraptor.ioc.ApplicationScoped;
 import br.com.caelum.vraptor.ioc.Component;
@@ -11,24 +10,17 @@ import br.com.caelum.vraptor.ioc.Component;
 @ApplicationScoped
 public class WebConfig {
 	
-	private Properties properties;
+	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("web");
 	
 	public WebConfig() {
-		getWebProperties();
 	}
 	
 	public String get(String key) {
-		return properties.getProperty(key);
-	}
-
-	private void getWebProperties() {
 		try {
-			properties = new Properties();
-			properties.load(new FileReader(new File("src/main/resources/web.properties")));
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Não achou o arquivo web.properties");
+			return RESOURCE_BUNDLE.getString(key);
+		} catch (MissingResourceException e) {
+			return '!' + key + '!';
 		}
 	}
-	
+
 }

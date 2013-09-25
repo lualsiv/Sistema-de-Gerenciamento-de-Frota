@@ -19,6 +19,7 @@ import br.com.triadworks.dbunit.dataset.FileSystemDataSetSource;
 import gerenciamentodefrota.controller.CombustivelController;
 import gerenciamentodefrota.dao.CombustivelDAO;
 import gerenciamentodefrota.infra.Notice;
+import gerenciamentodefrota.infra.Pagination;
 import gerenciamentodefrota.model.Combustivel;
 import gerenciamentodefrota.test.utils.DAOTestHelper;
 
@@ -57,10 +58,13 @@ public class CombustivelControllerTest extends DAOTestHelper {
 		super.finalize();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void deveRetornarListaCom2Itens() {
-		List<Combustivel> lista = controller.lista();
-		assertEquals(lista.size(), 2);
+		controller.lista(1);
+		
+		Pagination<Combustivel> combustiveis = (Pagination<Combustivel>) result.included().get("combustiveis");
+		assertEquals(combustiveis.getTotalCount(), 2);
 	}
 	
 	@Test

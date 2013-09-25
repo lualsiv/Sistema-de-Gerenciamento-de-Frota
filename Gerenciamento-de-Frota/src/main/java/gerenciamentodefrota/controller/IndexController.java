@@ -10,5 +10,10 @@ public class IndexController {
 	public void index() {
 		
 	}
+
+	@Get("/erro")
+	public void erro() {
+		
+	}
 	
 }
