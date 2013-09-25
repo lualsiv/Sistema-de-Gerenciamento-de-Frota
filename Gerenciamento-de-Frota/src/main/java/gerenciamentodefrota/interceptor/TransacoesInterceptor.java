@@ -18,20 +18,17 @@ public class TransacoesInterceptor implements Interceptor {
 	public TransacoesInterceptor(EntityManager manager) {
 		this.manager = manager;
 	}
-	
+
 	@Override
 	public boolean accepts(ResourceMethod method) {
 		return method.containsAnnotation(Transacional.class);
 	}
 
 	@Override
-	public void intercept(InterceptorStack stack, ResourceMethod method,
-			Object controller) throws InterceptionException {
+	public void intercept(InterceptorStack stack, ResourceMethod method, Object controller) throws InterceptionException {
 		try {
 			manager.getTransaction().begin();
-
 			stack.next(method, controller);
-
 			manager.getTransaction().commit();
 		} finally {
 			if (manager.getTransaction().isActive()) {
