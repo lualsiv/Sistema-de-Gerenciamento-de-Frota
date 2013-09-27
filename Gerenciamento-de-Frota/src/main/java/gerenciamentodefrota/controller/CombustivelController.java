@@ -68,7 +68,7 @@ public class CombustivelController {
 	
 	@Get("/combustivel")
 	public void lista(Integer pagina) {
-		result.include("combustiveis", combustivelDAO.lista(pagina, 5));
+		result.include("combustiveis", combustivelDAO.lista(pagina));
 	}
 
 }

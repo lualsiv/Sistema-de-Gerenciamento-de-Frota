@@ -1,4 +1,4 @@
-	package gerenciamentodefrota.taglib;
+package gerenciamentodefrota.infra.taglib;
 
 import gerenciamentodefrota.infra.UsuarioSession;
 import gerenciamentodefrota.model.enums.Perfil;

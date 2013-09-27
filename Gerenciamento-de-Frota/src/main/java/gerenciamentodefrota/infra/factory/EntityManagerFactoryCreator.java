@@ -1,4 +1,4 @@
-package gerenciamentodefrota.dao;
+package gerenciamentodefrota.infra.factory;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

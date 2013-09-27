@@ -1,4 +1,4 @@
-package gerenciamentodefrota.infra;
+package gerenciamentodefrota.infra.factory;
 
 import javax.annotation.PreDestroy;
 import javax.persistence.EntityManager;

@@ -1,4 +1,4 @@
-package gerenciamentodefrota.service;
+package gerenciamentodefrota.infra.service;
 
 import br.com.caelum.restfulie.Response;
 import br.com.caelum.restfulie.RestClient;

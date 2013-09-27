@@ -36,9 +36,12 @@ public class CombustivelDAO {
 		return dao.list();
 	}
 
+	public Pagination<Combustivel> lista(Integer paginaAtual) {
+		return lista(paginaAtual, Pagination.PAGESIZE);
+	}
+	
 	public Pagination<Combustivel> lista(Integer paginaAtual, Integer registrosPorPagina) {
 		hql.from();
-		
 		return hql.listPagination(paginaAtual, registrosPorPagina);
 	}
 	

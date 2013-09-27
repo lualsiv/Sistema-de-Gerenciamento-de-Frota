@@ -1,4 +1,4 @@
-package gerenciamentodefrota.dao;
+package gerenciamentodefrota.infra.persistence;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package gerenciamentodefrota.infra;
+package gerenciamentodefrota.infra.view;
 
 import java.io.Serializable;
 

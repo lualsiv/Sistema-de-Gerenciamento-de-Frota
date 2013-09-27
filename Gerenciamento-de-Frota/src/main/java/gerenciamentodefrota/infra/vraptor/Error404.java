@@ -1,4 +1,4 @@
-package gerenciamentodefrota.infra;
+package gerenciamentodefrota.infra.vraptor;
 
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.core.RequestInfo;

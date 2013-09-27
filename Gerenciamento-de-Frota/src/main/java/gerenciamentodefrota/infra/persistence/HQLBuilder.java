@@ -1,4 +1,4 @@
-package gerenciamentodefrota.dao;
+package gerenciamentodefrota.infra.persistence;
 
 import gerenciamentodefrota.infra.Pagination;
 import gerenciamentodefrota.infra.Select;

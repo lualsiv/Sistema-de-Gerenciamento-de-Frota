@@ -1,4 +1,4 @@
-package gerenciamentodefrota.dao;
+package gerenciamentodefrota.infra.persistence;
 
 public enum Operator {
 

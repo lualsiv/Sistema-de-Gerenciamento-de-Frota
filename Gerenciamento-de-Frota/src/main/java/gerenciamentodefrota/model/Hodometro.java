@@ -11,11 +11,15 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
 import org.joda.time.LocalDateTime;
 
 @Entity
+@Audited
+@AuditTable(value = "hodometro_audit", schema = "auditoria")
 public class Hodometro {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;

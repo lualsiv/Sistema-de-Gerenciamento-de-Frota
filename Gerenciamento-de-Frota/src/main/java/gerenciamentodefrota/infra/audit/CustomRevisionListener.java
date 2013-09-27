@@ -1,4 +1,6 @@
-package gerenciamentodefrota.infra;
+package gerenciamentodefrota.infra.audit;
+
+import gerenciamentodefrota.infra.UsuarioSession;
 
 import org.hibernate.envers.RevisionListener;
 

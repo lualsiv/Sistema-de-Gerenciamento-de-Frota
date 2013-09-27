@@ -16,12 +16,15 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @Entity
-@XStreamAlias( "veiculo" )
+@XStreamAlias("veiculo")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Veiculo {
 
 	@Id
@@ -30,7 +33,7 @@ public class Veiculo {
 
 	@Column(unique = true, length = 8)
 	@NotEmpty
-	@Pattern(regexp="^[a-zA-Z]{3}\\-\\d{4}$", message="Placa inválida")
+	@Pattern(regexp = "^[a-zA-Z]{3}\\-\\d{4}$", message = "Placa inválida")
 	private String placa;
 
 	@Column
@@ -81,7 +84,7 @@ public class Veiculo {
 	@NotNull
 	private SituacaoVeiculo situacao;
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Combustivel combustivel;
 
 	public Long getId() {
@@ -213,7 +216,7 @@ public class Veiculo {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

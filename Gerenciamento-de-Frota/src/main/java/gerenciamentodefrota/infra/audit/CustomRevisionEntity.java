@@ -1,4 +1,4 @@
-package gerenciamentodefrota.infra;
+package gerenciamentodefrota.infra.audit;
 
 import javax.persistence.Entity;
 
