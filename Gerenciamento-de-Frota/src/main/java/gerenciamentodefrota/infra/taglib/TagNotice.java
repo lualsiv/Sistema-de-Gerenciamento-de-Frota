@@ -1,7 +1,7 @@
 package gerenciamentodefrota.infra.taglib;
 
-import gerenciamentodefrota.infra.Notice;
-import gerenciamentodefrota.infra.NoticeItem;
+import gerenciamentodefrota.infra.view.Notice;
+import gerenciamentodefrota.infra.view.NoticeItem;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;

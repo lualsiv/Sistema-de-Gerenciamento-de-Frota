@@ -6,8 +6,8 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import gerenciamentodefrota.annotation.Logged;
 import gerenciamentodefrota.dao.UsuarioDAO;
-import gerenciamentodefrota.infra.Notice;
 import gerenciamentodefrota.infra.UsuarioSession;
+import gerenciamentodefrota.infra.view.Notice;
 import gerenciamentodefrota.model.Usuario;
 import gerenciamentodefrota.util.StringUtil;
 
@@ -56,10 +56,11 @@ public class LoginController {
 			result.redirectTo("/");
 		}
 	}
-
+	
 	@Logged
 	@Get("/logout")
 	public void logout() {
+		usuarioSession.setUrl(null);
 		usuarioSession.logoff();
 		result.redirectTo(LoginController.class).login();
 	}

@@ -8,7 +8,7 @@ import gerenciamentodefrota.annotation.Permission;
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
 import gerenciamentodefrota.dao.UsuarioDAO;
-import gerenciamentodefrota.infra.Notice;
+import gerenciamentodefrota.infra.view.Notice;
 import gerenciamentodefrota.model.Usuario;
 import gerenciamentodefrota.model.enums.Perfil;
 import br.com.caelum.vraptor.Get;

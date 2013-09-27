@@ -10,17 +10,36 @@ public class TagPaginacao extends TagSupport {
 	private String link;
 	private Integer paginaAtual;
 	private Integer totalPaginas;
+
+	private int de() {
+		if (paginaAtual > 5)
+			return paginaAtual - 5;
+		else
+			return 1;
+	}
+	
+	private int ate() {
+		if ( (paginaAtual) < (totalPaginas - 5) )
+			return paginaAtual + 5;
+		else
+			return totalPaginas;
+	}
 	
 	@Override
 	public int doStartTag() throws JspException {
-		for (Integer i = 1; i <= this.totalPaginas; i++) {
-			if (i == paginaAtual) {
+		if (de() > 1)
+			print("<a href='" + link.replaceFirst("#", "1") + "'>1</a>");
+		
+		if (ate() < totalPaginas)
+			print("<a href='" + link.replaceFirst("#", totalPaginas.toString()) + "'>" + totalPaginas.toString() + "</a>");
+		
+		for (Integer i = de(); i <= ate(); i++) {
+			if (i == paginaAtual)
 				print("<span>" + i + "</span>");
-			} else {
+			else
 				print("<a href='" + link.replaceFirst("#", i.toString()) + "'>" + i + "</a>");
-			}
 		}
-
+		
 		return SKIP_BODY;
 	}
 	

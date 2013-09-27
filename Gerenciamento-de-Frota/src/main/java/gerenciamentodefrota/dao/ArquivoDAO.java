@@ -2,6 +2,7 @@ package gerenciamentodefrota.dao;
 
 import java.util.List;
 
+import gerenciamentodefrota.infra.persistence.DAO;
 import gerenciamentodefrota.model.Arquivo;
 
 import javax.persistence.EntityManager;

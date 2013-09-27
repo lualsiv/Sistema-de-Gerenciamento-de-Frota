@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import gerenciamentodefrota.infra.persistence.DAO;
 import gerenciamentodefrota.model.Veiculo;
 import br.com.caelum.vraptor.ioc.Component;
 

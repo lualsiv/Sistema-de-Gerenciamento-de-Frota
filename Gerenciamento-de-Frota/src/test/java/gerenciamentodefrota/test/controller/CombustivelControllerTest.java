@@ -18,8 +18,8 @@ import br.com.caelum.vraptor.validator.Message;
 import br.com.triadworks.dbunit.dataset.FileSystemDataSetSource;
 import gerenciamentodefrota.controller.CombustivelController;
 import gerenciamentodefrota.dao.CombustivelDAO;
-import gerenciamentodefrota.infra.Notice;
-import gerenciamentodefrota.infra.Pagination;
+import gerenciamentodefrota.infra.persistence.Pagination;
+import gerenciamentodefrota.infra.view.Notice;
 import gerenciamentodefrota.model.Combustivel;
 import gerenciamentodefrota.test.utils.DAOTestHelper;
 

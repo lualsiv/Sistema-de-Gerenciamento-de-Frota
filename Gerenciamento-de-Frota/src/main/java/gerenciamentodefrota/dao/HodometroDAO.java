@@ -3,6 +3,7 @@ package gerenciamentodefrota.dao;
 import java.math.BigDecimal;
 import java.util.List;
 
+import gerenciamentodefrota.infra.persistence.DAO;
 import gerenciamentodefrota.model.Hodometro;
 import gerenciamentodefrota.model.Veiculo;
 

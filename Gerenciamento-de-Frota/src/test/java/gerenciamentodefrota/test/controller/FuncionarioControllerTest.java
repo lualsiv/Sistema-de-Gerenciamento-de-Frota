@@ -2,8 +2,8 @@ package gerenciamentodefrota.test.controller;
 
 import gerenciamentodefrota.controller.FuncionarioController;
 import gerenciamentodefrota.dao.FuncionarioDAO;
-import gerenciamentodefrota.infra.Notice;
-import gerenciamentodefrota.infra.Pagination;
+import gerenciamentodefrota.infra.persistence.Pagination;
+import gerenciamentodefrota.infra.view.Notice;
 import gerenciamentodefrota.model.Funcionario;
 import gerenciamentodefrota.test.utils.DAOTestHelper;
 

@@ -18,6 +18,8 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
@@ -25,6 +27,8 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @Entity
 @XStreamAlias("veiculo")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Audited
+@AuditTable(value = "veiculo_audit", schema = "auditoria")
 public class Veiculo {
 
 	@Id
@@ -35,7 +39,7 @@ public class Veiculo {
 	@NotEmpty
 	@Pattern(regexp = "^[a-zA-Z]{3}\\-\\d{4}$", message = "Placa inválida")
 	private String placa;
-
+	
 	@Column
 	@NotEmpty
 	private String descricao;

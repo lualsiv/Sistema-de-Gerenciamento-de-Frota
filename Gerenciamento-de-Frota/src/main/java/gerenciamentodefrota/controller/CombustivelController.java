@@ -2,7 +2,7 @@ package gerenciamentodefrota.controller;
 
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.CombustivelDAO;
-import gerenciamentodefrota.infra.Notice;
+import gerenciamentodefrota.infra.view.Notice;
 import gerenciamentodefrota.model.Combustivel;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;

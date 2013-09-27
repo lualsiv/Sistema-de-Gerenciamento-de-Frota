@@ -29,18 +29,11 @@ public class ArquivoController {
 
 	@Transacional
 	@Post("/arquivo/novo")
-	public void novo(UploadedFile uploaded) {
-		Arquivo arquivo;
-		
+	public void novo(UploadedFile uploaded) throws IOException {
 		if (uploaded != null) {
-			
-			try {
-				arquivo = new Arquivo(uploaded);
-				arquivoDAO.adiciona(arquivo);
-				result.redirectTo(this).lista();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			Arquivo arquivo = new Arquivo(uploaded);
+			arquivoDAO.adiciona(arquivo);
+			result.redirectTo(this).lista();
 		}
 		
 		result.redirectTo(this).novo();

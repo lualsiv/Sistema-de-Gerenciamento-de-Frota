@@ -6,7 +6,7 @@ import java.util.List;
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
 import gerenciamentodefrota.dao.MotoristaDAO;
-import gerenciamentodefrota.infra.Notice;
+import gerenciamentodefrota.infra.view.Notice;
 import gerenciamentodefrota.model.Motorista;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;

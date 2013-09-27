@@ -14,10 +14,15 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDateTime;
 
 @Entity
+@Audited
+@AuditTable(value = "usuario_audit", schema = "auditoria")
 public class Usuario {
 
 	@Id
@@ -37,6 +42,7 @@ public class Usuario {
 	private Perfil perfil;
 	
 	@ManyToOne
+	@NotAudited
 	private Funcionario funcionario;
 
 	@NotNull

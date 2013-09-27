@@ -7,7 +7,7 @@
 	<uri>http://gerenciamentodefrota/taglib</uri>
 	<tag>
 		<name>paginacao</name>
-		<tagclass>gerenciamentodefrota.taglib.TagPaginacao</tagclass>
+		<tagclass>gerenciamentodefrota.infra.taglib.TagPaginacao</tagclass>
 		<info>Paginação</info>
 		<attribute>
 			<name>link</name>
@@ -28,13 +28,13 @@
 
 	<tag>
 		<name>notice</name>
-		<tagclass>gerenciamentodefrota.taglib.TagNotice</tagclass>
+		<tagclass>gerenciamentodefrota.infra.taglib.TagNotice</tagclass>
 		<info>Notice</info>
 	</tag>
 
 	<tag>
 		<name>datetimepicker</name>
-		<tagclass>gerenciamentodefrota.taglib.TagDateTimePicker</tagclass>
+		<tagclass>gerenciamentodefrota.infra.taglib.TagDateTimePicker</tagclass>
 		<info>datetimepicker</info>
 		<attribute>
 			<name>id</name>
@@ -44,7 +44,7 @@
 	
 	<tag>
 		<name>linkpermission</name>
-		<tagclass>gerenciamentodefrota.taglib.TagLinkPermission</tagclass>
+		<tagclass>gerenciamentodefrota.infra.taglib.TagLinkPermission</tagclass>
 		<info>datetimepicker</info>
 		<attribute>
 			<name>perfis</name>
@@ -68,7 +68,7 @@
 	
 	<tag>
 		<name>enumtocombobox</name>
-		<tagclass>gerenciamentodefrota.taglib.TagEnumToComboBox</tagclass>
+		<tagclass>gerenciamentodefrota.infra.taglib.TagEnumToComboBox</tagclass>
 		<info>Notice</info>
 		<attribute>
 			<name>valor</name>

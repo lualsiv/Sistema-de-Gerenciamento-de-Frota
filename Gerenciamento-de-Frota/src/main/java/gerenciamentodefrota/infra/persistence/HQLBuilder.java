@@ -1,7 +1,5 @@
 package gerenciamentodefrota.infra.persistence;
 
-import gerenciamentodefrota.infra.Pagination;
-import gerenciamentodefrota.infra.Select;
 import gerenciamentodefrota.util.StringUtil;
 
 import java.util.Arrays;

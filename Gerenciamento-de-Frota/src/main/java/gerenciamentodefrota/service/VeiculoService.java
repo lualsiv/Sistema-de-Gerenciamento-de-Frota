@@ -3,6 +3,7 @@ package gerenciamentodefrota.service;
 import br.com.caelum.restfulie.Response;
 import br.com.caelum.vraptor.ioc.Component;
 import gerenciamentodefrota.infra.WebConfig;
+import gerenciamentodefrota.infra.service.ServiceXML;
 import gerenciamentodefrota.model.Veiculo;
 
 @Component

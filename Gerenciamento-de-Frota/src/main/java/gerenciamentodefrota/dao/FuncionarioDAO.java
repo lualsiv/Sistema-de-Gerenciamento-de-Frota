@@ -2,7 +2,9 @@ package gerenciamentodefrota.dao;
 
 import java.util.List;
 
-import gerenciamentodefrota.infra.Pagination;
+import gerenciamentodefrota.infra.persistence.DAO;
+import gerenciamentodefrota.infra.persistence.HQLBuilder;
+import gerenciamentodefrota.infra.persistence.Pagination;
 import gerenciamentodefrota.model.Funcionario;
 
 import javax.persistence.EntityManager;

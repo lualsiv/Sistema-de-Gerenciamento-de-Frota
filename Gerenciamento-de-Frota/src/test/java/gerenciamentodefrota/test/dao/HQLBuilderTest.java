@@ -11,11 +11,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.triadworks.dbunit.dataset.FileSystemDataSetSource;
-import gerenciamentodefrota.dao.Condition;
-import gerenciamentodefrota.dao.HQLBuilder;
-import gerenciamentodefrota.dao.Operator;
-import gerenciamentodefrota.infra.Pagination;
-import gerenciamentodefrota.infra.Select;
+import gerenciamentodefrota.infra.persistence.Condition;
+import gerenciamentodefrota.infra.persistence.HQLBuilder;
+import gerenciamentodefrota.infra.persistence.Operator;
+import gerenciamentodefrota.infra.persistence.Pagination;
+import gerenciamentodefrota.infra.persistence.Select;
 import gerenciamentodefrota.model.Funcionario;
 import gerenciamentodefrota.test.utils.DAOTestHelper;
 

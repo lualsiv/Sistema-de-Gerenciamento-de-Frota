@@ -2,8 +2,8 @@ package gerenciamentodefrota.controller;
 
 import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
-import gerenciamentodefrota.infra.Notice;
-import gerenciamentodefrota.infra.Pagination;
+import gerenciamentodefrota.infra.persistence.Pagination;
+import gerenciamentodefrota.infra.view.Notice;
 import gerenciamentodefrota.model.Funcionario;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
