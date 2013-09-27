@@ -5,18 +5,14 @@ import br.com.caelum.restfulie.RestClient;
 import br.com.caelum.restfulie.Restfulie;
 import br.com.caelum.restfulie.mediatype.XmlMediaType;
 
-public class Service<T> {
+public class ServiceXML<T> {
 	
 	private RestClient restClient;
-	private String type;
+	private String type ="application/xml";
 	
-	public Service(Class<T> classe, String type) {
-		this.type = type;
+	@SuppressWarnings("rawtypes")
+	public ServiceXML(Class... classe) {
 		this.restClient = Restfulie.custom();
-		registerMediaType(classe);
-	}
-	
-	public void registerMediaType(Class<T> classe) {
 		this.restClient.getMediaTypes().register(new XmlMediaType().withTypes(classe));
 	}
 	

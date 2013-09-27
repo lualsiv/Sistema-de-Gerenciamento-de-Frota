@@ -8,16 +8,16 @@ import gerenciamentodefrota.model.Veiculo;
 @Component
 public class VeiculoService {
 	
-	private Service<Veiculo> service;
-	private WebConfig webconfig;
+	private ServiceXML<Veiculo> service;
+	private WebConfig web;
 	
-	public VeiculoService(WebConfig webconfig) {
-		this.webconfig = webconfig;
-		this.service = new Service<Veiculo>(Veiculo.class, "application/xml");
+	public VeiculoService(WebConfig web) {
+		this.web = web;
+		this.service = new ServiceXML<Veiculo>(Veiculo.class);
 	}
 	
 	public Response salva(Veiculo veiculo) {
-		return service.post(webconfig.get("url_salva_veiculo"), veiculo);
+		return service.post(web.get("url_salva_veiculo"), veiculo);
 	}
 	
 }

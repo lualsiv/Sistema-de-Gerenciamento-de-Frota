@@ -10,12 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Audited
+@AuditTable(value = "combustivel_audit", schema = "auditoria")
 public class Combustivel implements Serializable {
 	
 	private static final long serialVersionUID = -3520205668087592150L;

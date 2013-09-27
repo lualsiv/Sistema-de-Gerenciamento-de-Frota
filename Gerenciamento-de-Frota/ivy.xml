@@ -8,13 +8,15 @@
 		<conf name="jetty" description="dependencies used for jetty" visibility="public" />
 		<conf name="minify" description="dependencies used to minify js and css" visibility="public" />
 	</configurations>
-
+	
 	<dependencies>
 		<dependency org="br.com.caelum" name="vraptor" rev="3.5.2" conf="default" />
 		<dependency org="opensymphony" name="sitemesh" rev="2.4.2" conf="default" />
 		<dependency org="javax.servlet" name="jstl" rev="1.2" conf="default" />
 		<dependency org="br.com.caelum" name="restfulie" rev="1.0.1" conf="default" />
 		<dependency org="br.com.prixma" name="vraptor-tasks" rev="1.1.0" conf="default" />
+		
+		<dependency org="org.hibernate" name="hibernate-envers" rev="4.2.5.Final" conf="default" />
 		
 		<dependency org="org.hibernate" name="hibernate-entitymanager" rev="4.0.1.Final" conf="default" />
 		<dependency org="org.hibernate" name="hibernate-c3p0" rev="4.0.1.Final" conf="default" />

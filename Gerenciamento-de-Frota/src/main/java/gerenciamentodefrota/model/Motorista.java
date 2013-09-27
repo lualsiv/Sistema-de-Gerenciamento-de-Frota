@@ -22,7 +22,8 @@ public class Motorista {
 	private Long id;
 
 	@Column
-	@NotEmpty String numero;
+	@NotEmpty
+	private String numero;
 	
 	@Column
 	@NotEmpty
