@@ -22,25 +22,25 @@
 		</layout>
 	</appender>
 	
-	<appender name="email" class="org.apache.log4j.net.SMTPAppender">
-		<param name="SMTPUsername" value="vagnercotrim" />
-		<param name="SMTPPassword" value="" />
+<!-- 	<appender name="email" class="org.apache.log4j.net.SMTPAppender"> -->
+<!-- 		<param name="SMTPUsername" value="vagnercotrim" /> -->
+<!-- 		<param name="SMTPPassword" value="" /> -->
 		
-		<param name="BufferSize" value="1024" />
-		<param name="SMTPHost" value="smtp.gmail.com" />
-		<param name="SMTPPort" value="465" />
-		<param name="SMTPProtocol" value="smtps" />
-		<param name="From" value="vagnercotrim@gmail.com" />
-		<param name="To" value="vagnercotrim@gmail.com" />
-		<param name="Subject" value="test mail" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="[%d{dd.MM.yyyy HH:mm:ss}] (%F, line %L)%n %n%n%-5p%n%n%c%n%n%m%n%n" />
-		</layout>
-		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="LevelMin" value="error" />
-			<param name="LevelMax" value="fatal" />
-		</filter>
-	</appender>
+<!-- 		<param name="BufferSize" value="1024" /> -->
+<!-- 		<param name="SMTPHost" value="smtp.gmail.com" /> -->
+<!-- 		<param name="SMTPPort" value="465" /> -->
+<!-- 		<param name="SMTPProtocol" value="smtps" /> -->
+<!-- 		<param name="From" value="vagnercotrim@gmail.com" /> -->
+<!-- 		<param name="To" value="vagnercotrim@gmail.com" /> -->
+<!-- 		<param name="Subject" value="test mail" /> -->
+<!-- 		<layout class="org.apache.log4j.PatternLayout"> -->
+<!-- 			<param name="ConversionPattern" value="[%d{dd.MM.yyyy HH:mm:ss}] (%F, line %L)%n %n%n%-5p%n%n%c%n%n%m%n%n" /> -->
+<!-- 		</layout> -->
+<!-- 		<filter class="org.apache.log4j.varia.LevelRangeFilter"> -->
+<!-- 			<param name="LevelMin" value="error" /> -->
+<!-- 			<param name="LevelMax" value="fatal" /> -->
+<!-- 		</filter> -->
+<!-- 	</appender> -->
 	
 	<!-- ====================================================================== -->
 	<!-- L O G G E R S                                                          -->
@@ -51,10 +51,10 @@
 		<appender-ref ref="arquivo" />
 	</category>
 	
-	<category name="gerenciamentodefrota">
-		<priority value="FATAL" />
-		<appender-ref ref="email" />
-	</category>
+<!-- 	<category name="gerenciamentodefrota"> -->
+<!-- 		<priority value="FATAL" /> -->
+<!-- 		<appender-ref ref="email" /> -->
+<!-- 	</category> -->
 	
 	<root>
 		<level value="INFO" />

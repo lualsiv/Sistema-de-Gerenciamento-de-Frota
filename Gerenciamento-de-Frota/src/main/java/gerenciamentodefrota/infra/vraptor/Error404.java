@@ -1,5 +1,6 @@
 package gerenciamentodefrota.infra.vraptor;
 
+import gerenciamentodefrota.controller.IndexController;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.core.RequestInfo;
 import br.com.caelum.vraptor.http.route.ResourceNotFoundException;
@@ -27,14 +28,12 @@ public class Error404 extends DefaultResourceNotFoundHandler {
 		try {
 			String uri = requestInfo.getRequestedUri();
 			if (uri.endsWith("/")) {
-				tryMovePermanentlyTo(requestInfo,
-						uri.substring(0, uri.length() - 1));
+				tryMovePermanentlyTo(requestInfo, uri.substring(0, uri.length() - 1));
 			} else {
 				tryMovePermanentlyTo(requestInfo, uri + "/");
 			}
 		} catch (ResourceNotFoundException ex) {
-			result.redirectTo("/erro/naoencontrado");
-//			super.couldntFind(requestInfo);
+			result.redirectTo(IndexController.class).erro();
 		}
 	}
 	

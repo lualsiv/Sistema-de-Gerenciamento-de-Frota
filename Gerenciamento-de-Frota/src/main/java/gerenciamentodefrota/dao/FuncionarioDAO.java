@@ -35,11 +35,10 @@ public class FuncionarioDAO {
 	}
 	
 	public Pagination<Funcionario> lista(String nome, String ordem, Integer paginaAtual, Integer registrosPorPagina) {
-		hql.from()
-			.andStringLikeContainsIf("nome", nome)
-			.orderBy(ordem);
-		
-		return hql.listPagination(paginaAtual, registrosPorPagina);
+		return hql.from()
+				  .andStringLikeContainsIf("nome", nome)
+				  .orderBy(ordem)
+				  .listPagination(paginaAtual, registrosPorPagina);
 	}
 	
 	public Funcionario buscaPorCadastro(String cadastro) {

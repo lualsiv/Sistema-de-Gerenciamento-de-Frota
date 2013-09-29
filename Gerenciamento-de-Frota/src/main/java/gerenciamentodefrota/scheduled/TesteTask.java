@@ -12,10 +12,10 @@ public class TesteTask implements Task {
 	
 	// TODO - Aprender como configurar o cron
 	// http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger
-
+	
 	@Override
 	public void execute() {
 		System.out.println("Contagem:" + LocalDateTime.now());
 	}
-
+	
 }

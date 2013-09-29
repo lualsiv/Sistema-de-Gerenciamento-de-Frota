@@ -1,14 +1,25 @@
 <ivysettings>
 
 	<settings defaultResolver="chain-resolver" overwriteMode="newer" />
+	<settings defaultResolver="default" overwriteMode="newer" />
 	
 	<property name="nexus-snapshots" value="https://oss.sonatype.org/content/groups/public/" />
-
+	<property name="m2-pattern" value="${user.home}/.m2/repository/[organisation]/[module]/[revision]/[module]-[revision](-[classifier]).[ext]" override="false" />
+	
 	<resolvers>
 		<chain name="chain-resolver" dual="true">
 			<ibiblio name="maven2" m2compatible="true" />
 			<ibiblio name="nexus" m2compatible="true" root="${nexus-snapshots}" />
 		</chain>
+		
+		<chain name="default" dual="true">
+			<filesystem name="local-maven2" m2compatible="true">
+				<artifact pattern="${m2-pattern}" />
+				<ivy pattern="${m2-pattern}" />
+			</filesystem>
+			<ibiblio name="central" m2compatible="true" />
+		</chain>
+
 	</resolvers>
 
 </ivysettings>

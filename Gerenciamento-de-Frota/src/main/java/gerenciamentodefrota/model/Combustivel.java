@@ -24,13 +24,13 @@ public class Combustivel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-
+	
 	@Column(unique = true)
 	private String descricao;
-
+	
 	@Column
 	private BigDecimal preco;
-
+	
 	public Long getId() {
 		return id;
 	}

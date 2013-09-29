@@ -8,7 +8,6 @@ import gerenciamentodefrota.dao.CombustivelDAO;
 import gerenciamentodefrota.dao.VeiculoDAO;
 import gerenciamentodefrota.model.Veiculo;
 import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
@@ -32,8 +31,7 @@ public class VeiculoController {
 		this.combustivelDAO = combustivelDAO;
 	}
 
-	@Get
-	@Path(value = "/veiculo/novo", priority = Path.HIGHEST)
+	@Get(value = "/veiculo/novo")
 	public void novo() {
 		result.include("combustiveis", combustivelDAO.lista());
 	}
@@ -56,8 +54,7 @@ public class VeiculoController {
 		validator.onErrorRedirectTo(this).novo();
 	}
 
-	@Get
-	@Path(value = "/veiculo/{id}", priority = Path.DEFAULT)
+	@Get(value = "/veiculo/{id}")
 	public void editar(Long id) {
 		try {
 			Veiculo veiculo = veiculoDAO.busca(id);
@@ -70,8 +67,7 @@ public class VeiculoController {
 	}
 
 	@Transacional
-	@Put
-	@Path(value = "/veiculo/{veiculo.id}", priority = Path.LOWEST)
+	@Put(value = "/veiculo/{veiculo.id}")
 	public void alterar(final Veiculo veiculo) {
 		validaEditarVeiculo(veiculo);
 		

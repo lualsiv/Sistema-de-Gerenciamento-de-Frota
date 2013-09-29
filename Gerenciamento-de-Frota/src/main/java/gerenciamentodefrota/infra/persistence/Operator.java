@@ -1,7 +1,7 @@
 package gerenciamentodefrota.infra.persistence;
 
 public enum Operator {
-
+	
 	EQUALS("#FIELD# = #VALUE1# "),
 	NOTEQUALS("#FIELD# <> #VALUE1# "),
 	GREATERTHAN("#FIELD# > #VALUE1# "),

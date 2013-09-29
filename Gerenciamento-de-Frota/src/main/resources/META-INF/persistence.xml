@@ -17,7 +17,7 @@
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.generate_statistics" value="true" />
 			
-			<!-- #DATASOURCE POOL CONFIGURATIONS -->
+			<!-- DATASOURCE POOL CONFIGURATIONS -->
 			<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
 			<property name="maxPoolSize" value="20" />
 			<property name="minPoolSize" value="3" />
@@ -27,7 +27,7 @@
 			<property name="preferredTestQuery" value="select 1" />
 			<property name="idleConnectionTestPeriod" value="100" />
 			
-			<!-- #EHCACHE - CACHE DE SEGUNDO NIVEL -->
+			<!-- EHCACHE - CACHE DE SEGUNDO NIVEL -->
 			<property name="hibernate.cache.use_query_cache" value="true" />
 			<property name="hibernate.cache.use_second_level_cache" value="true" />
 			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory" />
@@ -41,14 +41,34 @@
 	<persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
-			<property name="hibernate.connection.username" value="postgres" />
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
-			<property name="hibernate.connection.password" value="password" />
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/frotadeveiculos_teste" />
-			<property name="hibernate.connection.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.connection.username" value="postgres" />
+			<property name="hibernate.connection.password" value="password" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.query.substitutions" value="true=1, false=0" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.generate_statistics" value="true" />
+			
+			<!-- DATASOURCE POOL CONFIGURATIONS -->
+			<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="maxPoolSize" value="20" />
+			<property name="minPoolSize" value="3" />
+			<property name="initialPoolSize" value="3" />
+			<property name="timeout" value="25200" />
+			<property name="acquireIncrement" value="5" />
+			<property name="preferredTestQuery" value="select 1" />
+			<property name="idleConnectionTestPeriod" value="100" />
+			
+			<!-- EHCACHE - CACHE DE SEGUNDO NIVEL -->
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<property name="hibernate.cache.use_second_level_cache" value="true" />
+			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory" />
+			
+			<!-- ENVERS -->
+			<property name="post-insert" value="org.hibernate.ejb.event.EJB3PostInsertEventListener, org.hibernate.envers.event.EnversListener" />
+			<property name="post-update" value="org.hibernate.ejb.event.EJB3PostUpdateEventListener, org.hibernate.envers.event.EnversListener" />
 		</properties>
 	</persistence-unit>
   

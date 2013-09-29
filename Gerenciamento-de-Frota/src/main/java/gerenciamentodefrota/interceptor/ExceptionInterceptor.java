@@ -5,13 +5,12 @@ import gerenciamentodefrota.controller.IndexController;
 import org.apache.log4j.Logger;
 
 import br.com.caelum.vraptor.InterceptionException;
-import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.core.InterceptorStack;
 import br.com.caelum.vraptor.interceptor.Interceptor;
-import br.com.caelum.vraptor.interceptor.ResourceLookupInterceptor;
 import br.com.caelum.vraptor.resource.ResourceMethod;
 
+// TODO Esta anotação está comentada na etapa de teste
 //@Intercepts(before = ResourceLookupInterceptor.class, after = {})
 public class ExceptionInterceptor implements Interceptor {
 
