@@ -270,9 +270,14 @@ public class HQLBuilder<T> {
 				  .replaceAll(", ", ", ");
 	}
 	
-	public HQLBuilder<T> orderBy(String ordem) {
-		if (StringUtil.notNullOrEmpty(ordem))
-			this.ordem = " order by " + alias + "." + ordem;
+	public HQLBuilder<T> orderBy(String field) {
+		return orderBy(field, Order.ASC);
+	}
+	
+	public HQLBuilder<T> orderBy(String field, Order order) {
+		if (StringUtil.notNullOrEmpty(field))
+			this.ordem = " order by " + alias + "." + field + order;
+		
 		return this;
 	}
 	
@@ -286,14 +291,10 @@ public class HQLBuilder<T> {
 				 .setMaxResults(registrosPorPagina);
 	}
 	
-	private Query getQueryCount() {
-		return em.createQuery(getHQLCount());
-	}
-	
 	@SuppressWarnings("unchecked")
 	public List<T> list() {
 		Query query = this.getQuery();
-
+		
 		for(Entry<String, Object> e : campos.entrySet()) {
 			query.setParameter(e.getKey(), e.getValue());
 	    }
@@ -301,6 +302,31 @@ public class HQLBuilder<T> {
 		return (List<T>) query.getResultList();
 	}
 	
+	public T first() {
+		try {
+			List<T> list = this.top(1);
+			
+			if (list.size() == 1)
+				return (T) list.get(0);
+			else
+				return (T) null;
+		} catch (Exception e) {
+			return (T) null;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> top(int top) {
+		Query query = this.getQuery()
+						  .setMaxResults(top);
+		
+		for(Entry<String, Object> e : campos.entrySet()) {
+			query.setParameter(e.getKey(), e.getValue());
+		}
+		
+		return (List<T>) query.getResultList();
+	}
+
 	public Pagination<T> listPagination(Integer paginaAtual) {
 		return listPagination(paginaAtual, Pagination.PAGESIZE);
 	}
@@ -309,7 +335,7 @@ public class HQLBuilder<T> {
 		paginaAtual = (paginaAtual == null) ? 1 : paginaAtual;
 		
 		Query query = this.getQuery(paginaAtual, registrosPorPagina);
-		Query queryCount = this.getQueryCount();
+		Query queryCount = em.createQuery(getHQLCount());
 		
 		for(Entry<String, Object> e : campos.entrySet()) {
 			query.setParameter(e.getKey(), e.getValue());

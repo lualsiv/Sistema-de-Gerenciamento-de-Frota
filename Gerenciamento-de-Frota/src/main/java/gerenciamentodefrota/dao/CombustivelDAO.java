@@ -16,12 +16,12 @@ public class CombustivelDAO {
 
 	private DAO<Combustivel, Long> dao;
 	private HQLBuilder<Combustivel> hql;
-	
-	public CombustivelDAO(EntityManager em){
+
+	public CombustivelDAO(EntityManager em) {
 		this.dao = new DAO<Combustivel, Long>(em, Combustivel.class);
 		this.hql = new HQLBuilder<Combustivel>(em, Combustivel.class);
 	}
-	
+
 	public void adiciona(Combustivel combustivel) {
 		dao.create(combustivel);
 	}
@@ -29,11 +29,11 @@ public class CombustivelDAO {
 	public void atualiza(Combustivel combustivel) {
 		dao.update(combustivel);
 	}
-	
+
 	public Combustivel busca(Long id) {
 		return dao.find(id);
 	}
-	
+
 	public List<Combustivel> lista() {
 		return dao.list();
 	}
@@ -41,10 +41,9 @@ public class CombustivelDAO {
 	public Pagination<Combustivel> lista(Integer paginaAtual) {
 		return lista(paginaAtual, Pagination.PAGESIZE);
 	}
-	
+
 	public Pagination<Combustivel> lista(Integer paginaAtual, Integer registrosPorPagina) {
-		hql.from();
-		return hql.listPagination(paginaAtual, registrosPorPagina);
+		return hql.from().listPagination(paginaAtual, registrosPorPagina);
 	}
-	
+
 }

@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDateTime;
 
 import com.google.common.io.ByteStreams;
@@ -21,10 +23,13 @@ public class Arquivo {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
+	@NotEmpty
 	private String nome;
 	
+	@NotNull
 	private byte[] conteudo;
 	
+	@NotEmpty
 	private String contentType;
 	
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
