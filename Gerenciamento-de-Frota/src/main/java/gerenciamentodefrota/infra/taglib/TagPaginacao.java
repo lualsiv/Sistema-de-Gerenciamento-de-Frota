@@ -30,15 +30,15 @@ public class TagPaginacao extends TagSupport {
 		if (de() > 1)
 			print("<a href='" + link.replaceFirst("#", "1") + "'>1</a>");
 		
-		if (ate() < totalPaginas)
-			print("<a href='" + link.replaceFirst("#", totalPaginas.toString()) + "'>" + totalPaginas.toString() + "</a>");
-		
 		for (Integer i = de(); i <= ate(); i++) {
-			if (i == paginaAtual)
+			if (i.equals(paginaAtual))
 				print("<span>" + i + "</span>");
 			else
 				print("<a href='" + link.replaceFirst("#", i.toString()) + "'>" + i + "</a>");
 		}
+
+		if (ate() < totalPaginas)
+			print("<a href='" + link.replaceFirst("#", totalPaginas.toString()) + "'>" + totalPaginas.toString() + "</a>");
 		
 		return SKIP_BODY;
 	}
