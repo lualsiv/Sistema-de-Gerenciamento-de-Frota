@@ -10,6 +10,8 @@
 	</configurations>
 	
 	<dependencies>
+
+<!-- 		<dependency org="com.microsoft.sqlserver" name="sqljdbc4" rev="3.0" conf="default" /> -->
 		<dependency org="br.com.caelum" name="vraptor" rev="3.5.3" conf="default" />
 		<dependency org="opensymphony" name="sitemesh" rev="2.4.2" conf="default" />
 		<dependency org="javax.servlet" name="jstl" rev="1.2" conf="default" />
@@ -40,10 +42,10 @@
 		<dependency org="javax.servlet.jsp" name="jsp-api" rev="2.1" conf="provided->default" />
 		
 		<!-- Test dependencies -->
-		<dependency org="junit" name="junit" rev="4.10" conf="test->default" />
+		<dependency org="junit" name="junit" rev="4.11" conf="test->default" />
 		<dependency org="org.hamcrest" name="hamcrest-all" rev="1.1" conf="test->default" />
 		<dependency org="org.mockito" name="mockito-all" rev="1.9.0" conf="test->default" />
-		<dependency org="br.com.triadworks" name="dbunitmanager" rev="1.0-SNAPSHOT" conf="default" />
+		<dependency org="br.com.triadworks" name="dbunitmanager" rev="1.0.0" conf="default" />
 		
 		<!-- Jetty dependencies -->
 		<dependency org="org.mortbay.jetty" name="jsp-api-2.1" rev="6.1.14" conf="jetty->default" />

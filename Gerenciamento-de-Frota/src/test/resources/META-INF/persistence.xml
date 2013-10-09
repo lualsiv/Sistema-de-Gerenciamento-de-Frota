@@ -40,6 +40,15 @@
 
 	<persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<class>gerenciamentodefrota.model.Arquivo</class>
+		<class>gerenciamentodefrota.model.Combustivel</class>
+		<class>gerenciamentodefrota.model.Funcionario</class>
+		<class>gerenciamentodefrota.model.Hodometro</class>
+		<class>gerenciamentodefrota.model.Motorista</class>
+		<class>gerenciamentodefrota.model.Usuario</class>
+		<class>gerenciamentodefrota.model.Veiculo</class>				
+		
 		<properties>
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
 			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/frotadeveiculos_teste" />
