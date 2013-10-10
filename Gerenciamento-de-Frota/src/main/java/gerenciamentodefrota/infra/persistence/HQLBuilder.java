@@ -33,6 +33,14 @@ public class HQLBuilder<T> {
 		return "select " + alias + " " + hql + ordem;
 	}
 	
+	private String getHQLSum(String campo) {
+		clearHQL();
+		String hqlSum = "select sum(" + alias + ".#campo#) "
+					 	.replaceAll("#campo#", campo);
+		
+		return hqlSum + hql;
+	}
+	
 	private String getHQLSelect(String value, String text) {
 		clearHQL();
 		String hqlSelect = "select new #select#(#value#,#text#) "
@@ -284,7 +292,7 @@ public class HQLBuilder<T> {
 	private Query getQuery() {
 		return em.createQuery(getHQL());
 	}
-
+	
 	private Query getQuery(Integer paginaAtual, Integer registrosPorPagina) {
 		return em.createQuery(getHQL())
 				 .setFirstResult(((paginaAtual - 1) * registrosPorPagina))
@@ -316,6 +324,16 @@ public class HQLBuilder<T> {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public <R> R sum(String campo) {
+		Query query = em.createQuery(getHQLSum(campo));
+		for(Entry<String, Object> e : campos.entrySet()) {
+			query.setParameter(e.getKey(), e.getValue());
+	    }
+		
+		return (R) query.getSingleResult();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<T> top(int top) {
 		Query query = this.getQuery()
 						  .setMaxResults(top);
@@ -326,28 +344,38 @@ public class HQLBuilder<T> {
 		
 		return (List<T>) query.getResultList();
 	}
-
+	
+	public Long count() {
+		Query queryCount = em.createQuery(getHQLCount());
+		
+		for(Entry<String, Object> e : campos.entrySet()) {
+			queryCount.setParameter(e.getKey(), e.getValue());
+	    }
+		
+		return (Long) queryCount.getSingleResult();
+	}
+	
 	public Pagination<T> listPagination(Integer paginaAtual) {
 		return listPagination(paginaAtual, Pagination.PAGESIZE);
 	}
 	
 	public Pagination<T> listPagination(Integer paginaAtual, Integer registrosPorPagina) {
 		paginaAtual = (paginaAtual == null) ? 1 : paginaAtual;
+		paginaAtual = (paginaAtual < 1) ? 1 : paginaAtual;
+
+		long totalRegistros = this.count();
 		
 		Query query = this.getQuery(paginaAtual, registrosPorPagina);
-		Query queryCount = em.createQuery(getHQLCount());
 		
 		for(Entry<String, Object> e : campos.entrySet()) {
 			query.setParameter(e.getKey(), e.getValue());
-			queryCount.setParameter(e.getKey(), e.getValue());
 	    }
 		
-		return listPagination(query, queryCount, paginaAtual, registrosPorPagina);
+		return listPagination(query, totalRegistros, paginaAtual, registrosPorPagina);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Pagination<T> listPagination(Query query, Query queryCount, Integer paginaAtual, Integer registrosPorPagina) {
-		Long totalRegistros = (Long) queryCount.getSingleResult();
+	public Pagination<T> listPagination(Query query, Long totalRegistros, Integer paginaAtual, Integer registrosPorPagina) {
 		Integer totalPaginas = (int) Math.ceil(totalRegistros / (double)registrosPorPagina);
 		
 		return new Pagination<T>(query.getResultList(), registrosPorPagina, paginaAtual, totalPaginas, totalRegistros.intValue());

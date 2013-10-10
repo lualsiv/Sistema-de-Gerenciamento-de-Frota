@@ -1,5 +1,7 @@
 package gerenciamentodefrota.test.dao;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
@@ -192,7 +194,7 @@ public class HQLBuilderTest extends DAOTestHelper {
 											.andIsNull("dataExoneracao")
 											.list();
 		
-		Assert.assertEquals(funcionarios.size(), 23);
+		assertEquals(funcionarios.size(), 23);
 	}
 	
 	@Test
@@ -204,7 +206,41 @@ public class HQLBuilderTest extends DAOTestHelper {
 									 .montaCondicao("situacao", Condition.OR, Operator.ISFALSE)
 									 .list();
 		
-		Assert.assertEquals(lista.size(), 5);
+		assertEquals(lista.size(), 5);
+	}
+
+	@Test
+	public void deveRetornar23RegistrosComOMetodoCount() {
+		long quantidade = hql.from().count();
+
+		Assert.assertEquals(quantidade, (long)23);
+	}
+	
+	@Test
+	public void deveSomarOsCamposIdMenorOuIgualA6ERetornar21() {
+		long quantidade = (long) hql.from()
+									  .andLessOrEquals("id", (long)6)
+									  .sum("id");
+		
+		Assert.assertEquals(quantidade, (long)21);
+	}
+	
+	@Test
+	public void deveSomarOsCamposIdMenorQue7ERetornar21() {
+		long quantidade = (long) hql.from()
+									  .andLessThan("id", (long)7)
+									  .sum("id");
+		
+		Assert.assertEquals(quantidade, (long)21);
+	}
+	
+	@Test
+	public void deveSomarOsCamposIdMenorOuIgualA7ERetornar28() {
+		long quantidade = (long) hql.from()
+									  .andLessOrEquals("id", (long)7)
+									  .sum("id");
+
+		Assert.assertEquals(quantidade, (long)28);
 	}
 	
 }
