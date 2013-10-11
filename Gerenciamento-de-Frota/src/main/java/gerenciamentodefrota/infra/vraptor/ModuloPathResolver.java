@@ -8,8 +8,6 @@ import br.com.caelum.vraptor.view.DefaultPathResolver;
 
 @Component
 public class ModuloPathResolver extends DefaultPathResolver {
-
-	private String nomeModulo = "";
 	
 	public ModuloPathResolver(FormatResolver resolver) {
 		super(resolver);
@@ -17,14 +15,16 @@ public class ModuloPathResolver extends DefaultPathResolver {
 
 	@Override
 	public String pathFor(ResourceMethod method) {
+		return super.pathFor(method).replaceAll("jsp/", "jsp/" + nomeModulo(method) + "/");
+	}
+
+	private String nomeModulo(ResourceMethod method) {
 		try {
 			Modulo modulo = method.getResource().getType().getAnnotation(Modulo.class);
-			this.nomeModulo = modulo.nome().toLowerCase();
+			return modulo.nome().toLowerCase();
 		} catch (Exception e) {
-			
+			return "";
 		}
-		
-		return super.pathFor(method).replaceAll("jsp/", "jsp/" + nomeModulo + "/");
 	}
 	
 }

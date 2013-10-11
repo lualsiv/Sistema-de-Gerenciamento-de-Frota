@@ -8,7 +8,7 @@ import br.com.caelum.vraptor.Resource;
 @Modulo(nome="relatorio")
 public class GastosController {
 
-	@Get("/gastos/lavagem")
+	@Get("relatorio/gastos/lavagem")
 	public void lavagem() {
 		
 	}
