@@ -1,7 +1,7 @@
 package gerenciamentodefrota.controller;
 
-import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
+import gerenciamentodefrota.infra.annotation.Transacional;
 import gerenciamentodefrota.infra.persistence.Pagination;
 import gerenciamentodefrota.infra.view.Notice;
 import gerenciamentodefrota.model.Funcionario;

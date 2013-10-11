@@ -1,6 +1,5 @@
 package gerenciamentodefrota.infra.factory;
 
-import javax.annotation.PreDestroy;
 import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
@@ -21,11 +20,6 @@ public class StatisticsCreator implements ComponentFactory<Statistics> {
 	@Override
 	public Statistics getInstance() {
 		return ((Session)manager.getDelegate()).getSessionFactory().getStatistics();
-	}
-	
-	@PreDestroy
-	public void fechaManager() {
-		manager.close();
 	}
 	
 }

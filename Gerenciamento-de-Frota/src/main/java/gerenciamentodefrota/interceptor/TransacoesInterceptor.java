@@ -1,6 +1,6 @@
 package gerenciamentodefrota.interceptor;
 
-import gerenciamentodefrota.annotation.Transacional;
+import gerenciamentodefrota.infra.annotation.Transacional;
 
 import javax.persistence.EntityManager;
 

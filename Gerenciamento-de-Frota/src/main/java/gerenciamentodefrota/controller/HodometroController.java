@@ -6,10 +6,10 @@ import java.util.List;
 import org.joda.time.LocalDateTime;
 
 import gerenciamentodefrota.annotation.Permission;
-import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.HodometroDAO;
 import gerenciamentodefrota.dao.VeiculoDAO;
 import gerenciamentodefrota.infra.UsuarioSession;
+import gerenciamentodefrota.infra.annotation.Transacional;
 import gerenciamentodefrota.model.Hodometro;
 import gerenciamentodefrota.model.enums.Perfil;
 import br.com.caelum.vraptor.Get;

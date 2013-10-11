@@ -5,7 +5,7 @@ import java.util.List;
 
 import gerenciamentodefrota.annotation.Logged;
 import gerenciamentodefrota.annotation.Permission;
-import gerenciamentodefrota.annotation.Transacional;
+import gerenciamentodefrota.infra.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
 import gerenciamentodefrota.dao.UsuarioDAO;
 import gerenciamentodefrota.infra.view.Notice;

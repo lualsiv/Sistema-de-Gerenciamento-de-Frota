@@ -19,6 +19,11 @@ public class HibernateController {
 	
 	@Get("/hibernate/statistics")
 	public void consultamaislonga() {
+		result.include("connectCount", statistics.getConnectCount());
+		result.include("entityNames", statistics.getEntityNames());
+		result.include("queryExecutionMaxTime", statistics.getQueryExecutionMaxTime());
+		result.include("secondLevelCacheHitCount", statistics.getSecondLevelCacheHitCount());
+		
 		result.include("consultamaislonga", statistics.getQueryExecutionMaxTimeQueryString());
 		result.include("queries", statistics.getQueries());
 	}

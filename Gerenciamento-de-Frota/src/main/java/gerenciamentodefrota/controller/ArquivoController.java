@@ -8,8 +8,8 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
-import gerenciamentodefrota.annotation.Transacional;
 import gerenciamentodefrota.dao.ArquivoDAO;
+import gerenciamentodefrota.infra.annotation.Transacional;
 import gerenciamentodefrota.model.Arquivo;
 
 @Resource

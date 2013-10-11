@@ -3,7 +3,7 @@ package gerenciamentodefrota.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import gerenciamentodefrota.annotation.Transacional;
+import gerenciamentodefrota.infra.annotation.Transacional;
 import gerenciamentodefrota.dao.CombustivelDAO;
 import gerenciamentodefrota.dao.VeiculoDAO;
 import gerenciamentodefrota.model.Veiculo;
