@@ -33,8 +33,13 @@
 			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory" />
 			
 			<!-- ENVERS -->
-			<property name="post-insert" value="org.hibernate.ejb.event.EJB3PostInsertEventListener, org.hibernate.envers.event.EnversListener" />
-			<property name="post-update" value="org.hibernate.ejb.event.EJB3PostUpdateEventListener, org.hibernate.envers.event.EnversListener" />
+			<property name="post-insert" value="org.hibernate.ejb.event.EJB3PostInsertEventListener,org.hibernate.envers.event.AuditEventListener" />
+            <property name="post-update" value="org.hibernate.ejb.event.EJB3PostUpdateEventListener,org.hibernate.envers.event.AuditEventListener" />
+            <property name="post-delete" value="org.hibernate.ejb.event.EJB3PostDeleteEventListener,org.hibernate.envers.event.AuditEventListener" />
+            <property name="pre-collection-update" value="org.hibernate.envers.event.AuditEventListener" />
+            <property name="post-collection-recreate" value="org.hibernate.envers.event.AuditEventListener" />
+            <property name="pre-collection-remove" value="org.hibernate.envers.event.AuditEventListener" />
+            
 		</properties>
     </persistence-unit>
 
@@ -67,8 +72,13 @@
 			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory" />
 			
 			<!-- ENVERS -->
-			<property name="post-insert" value="org.hibernate.ejb.event.EJB3PostInsertEventListener, org.hibernate.envers.event.EnversListener" />
-			<property name="post-update" value="org.hibernate.ejb.event.EJB3PostUpdateEventListener, org.hibernate.envers.event.EnversListener" />
+			<property name="post-insert" value="org.hibernate.ejb.event.EJB3PostInsertEventListener,org.hibernate.envers.event.AuditEventListener" />
+            <property name="post-update" value="org.hibernate.ejb.event.EJB3PostUpdateEventListener,org.hibernate.envers.event.AuditEventListener" />
+            <property name="post-delete" value="org.hibernate.ejb.event.EJB3PostDeleteEventListener,org.hibernate.envers.event.AuditEventListener" />
+            <property name="pre-collection-update" value="org.hibernate.envers.event.AuditEventListener" />
+            <property name="post-collection-recreate" value="org.hibernate.envers.event.AuditEventListener" />
+            <property name="pre-collection-remove" value="org.hibernate.envers.event.AuditEventListener" />
+            
 		</properties>
 	</persistence-unit>
   

@@ -15,13 +15,13 @@ public class ModuloPathResolver extends DefaultPathResolver {
 
 	@Override
 	public String pathFor(ResourceMethod method) {
-		return super.pathFor(method).replaceAll("jsp/", "jsp/" + nomeModulo(method) + "/");
+		return super.pathFor(method).replaceAll("jsp/", "jsp/" + nomeModulo(method));
 	}
-
+	
 	private String nomeModulo(ResourceMethod method) {
 		try {
 			Modulo modulo = method.getResource().getType().getAnnotation(Modulo.class);
-			return modulo.nome().toLowerCase();
+			return modulo.nome().toLowerCase() + "/";
 		} catch (Exception e) {
 			return "";
 		}

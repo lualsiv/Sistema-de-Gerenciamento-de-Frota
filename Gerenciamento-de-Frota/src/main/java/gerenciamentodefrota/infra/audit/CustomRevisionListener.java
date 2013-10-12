@@ -1,5 +1,7 @@
 package gerenciamentodefrota.infra.audit;
 
+import javax.servlet.http.HttpSession;
+
 import gerenciamentodefrota.infra.UsuarioSession;
 
 import org.hibernate.envers.RevisionListener;
@@ -8,18 +10,29 @@ import br.com.caelum.vraptor.ioc.spring.VRaptorRequestHolder;
 
 public class CustomRevisionListener implements RevisionListener {
 
-	private UsuarioSession usuarioSession;
 	private String login;
-	
+	private UsuarioSession usuarioSession;
+
 	@Override
 	public void newRevision(Object revisionEntity) {
-		try {
-			usuarioSession = (UsuarioSession) VRaptorRequestHolder.currentRequest().getRequest().getSession().getAttribute("usuarioSession");
+		usuarioSession = getUsuarioSession();
+		if (usuarioSession != null) {
 			login = usuarioSession.getUsuario().getLogin();
-
-			((CustomRevisionEntity) revisionEntity).setLogin(login);
-		} catch (Exception e) {
+			CustomRevisionEntity customRevisionEntity = (CustomRevisionEntity) revisionEntity;
+			customRevisionEntity.setLogin(login);
 		}
+	}
+
+	private UsuarioSession getUsuarioSession() {
+		try {
+			return (UsuarioSession) getSession().getAttribute("usuarioSession");
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	private HttpSession getSession() {
+		return VRaptorRequestHolder.currentRequest().getRequest().getSession();
 	}
 
 }

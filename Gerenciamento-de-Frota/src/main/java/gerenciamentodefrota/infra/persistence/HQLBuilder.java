@@ -188,6 +188,10 @@ public class HQLBuilder<T> {
 		return montaCondicao(campo, valor, Condition.AND, Operator.NOTLIKE);
 	}
 
+	public HQLBuilder<T> andStringiLike(String campo, String valor) {
+		return montaCondicao(campo, valor, Condition.AND, Operator.ILIKE);
+	}
+	
 	public HQLBuilder<T> equals(String campo, Object valor, Condition cond) {
 		return montaCondicao(campo, valor, cond, Operator.EQUALS);
 	}
