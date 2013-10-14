@@ -1,6 +1,7 @@
 package gerenciamentodefrota.infra.vraptor;
 
 import gerenciamentodefrota.infra.annotation.Modulo;
+import gerenciamentodefrota.infra.annotation.View;
 import br.com.caelum.vraptor.http.FormatResolver;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.resource.ResourceMethod;
@@ -15,6 +16,11 @@ public class ModuloPathResolver extends DefaultPathResolver {
 
 	@Override
 	public String pathFor(ResourceMethod method) {
+		if(method.getMethod().isAnnotationPresent(View.class)) {
+			View view = method.getMethod().getAnnotation(View.class);
+			return "/WEB-INF/jsp/" + nomeModulo(method) + "index/" + view.nome() + ".jsp";
+		}
+		
 		return super.pathFor(method).replaceAll("jsp/", "jsp/" + nomeModulo(method));
 	}
 	
