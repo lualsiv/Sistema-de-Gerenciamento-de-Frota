@@ -60,4 +60,11 @@ public class HodometroDAO {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Hodometro> ultimoRegistroCadaVeiculo() {
+		String sql = "SELECT h FROM " + Hodometro.class.getName() + " h where h.dataLeitura in (SELECT max(i.dataLeitura) FROM " + Hodometro.class.getName() + " i group by i.veiculo)";
+		Query q = dao.getEntityManager().createQuery(sql);
+		return q.getResultList();
+	}
+	
 }

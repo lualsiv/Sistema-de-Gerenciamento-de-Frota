@@ -48,7 +48,7 @@ public class VeiculoController {
 	private void validaNovoVeiculo(final Veiculo veiculo) {
 		validator.validate(veiculo);
 		
-		if(veiculoDAO.buscaPorPlaca(veiculo.getPlaca()) == null)
+		if(veiculoDAO.buscaPorPlaca(veiculo.getPlaca()) != null)
 			validator.add(new ValidationMessage("Já existe um veiculo cadastrado com esta placa.", "veiculo.placa"));
 		
 		validator.onErrorRedirectTo(this).novo();

@@ -19,7 +19,7 @@
 		<dependency org="br.com.prixma" name="vraptor-tasks" rev="1.1.0" conf="default" />
 		
 		<dependency org="org.hibernate" name="hibernate-envers" rev="4.2.5.Final" conf="default" />
-		<dependency org="org.hibernate" name="hibernate-entitymanager" rev="4.0.1.Final" conf="default" />
+<!-- 		<dependency org="org.hibernate" name="hibernate-entitymanager" rev="4.0.1.Final" conf="default" /> -->
 		<dependency org="org.hibernate" name="hibernate-c3p0" rev="4.0.1.Final" conf="default" />
 		<dependency org="org.hibernate" name="hibernate-validator" rev="4.2.0.Final" conf="default" />
 		<dependency org="org.hibernate" name="hibernate-ehcache" rev="4.0.1.Final" conf="default" />
@@ -40,6 +40,7 @@
 		<!-- Provided dependencies -->
 		<dependency org="javax.servlet" name="servlet-api" rev="2.5" conf="provided->default" />
 		<dependency org="javax.servlet.jsp" name="jsp-api" rev="2.1" conf="provided->default" />
+<!-- 		<dependency org="org.glassfish.web" name="el-impl" rev="2.2" conf="provided->default"/> -->
 		
 		<!-- Test dependencies -->
 		<dependency org="junit" name="junit" rev="4.11" conf="test->default" />
@@ -56,4 +57,5 @@
 		<dependency org="com.yahoo.platform.yui" name="yuicompressor" rev="2.3.6" conf="minify->default" />
 		
 	</dependencies>
+	
 </ivy-module>

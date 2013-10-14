@@ -73,10 +73,10 @@ public class HodometroController {
 		
 		validator.onErrorUsePageOf(this).novoRegistro();
 	}
-
+	
 	@Get("/hodometro")
 	public List<Hodometro> lista() {
-		return hodometroDAO.lista();
+		return hodometroDAO.ultimoRegistroCadaVeiculo();
 	}
 	
 }

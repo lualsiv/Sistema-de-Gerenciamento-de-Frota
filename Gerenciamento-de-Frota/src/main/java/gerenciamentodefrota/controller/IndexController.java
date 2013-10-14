@@ -1,36 +1,23 @@
 package gerenciamentodefrota.controller;
 
-import gerenciamentodefrota.infra.Cookies;
-
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Resource;
+import br.com.caelum.vraptor.Result;
 
 @Resource
 public class IndexController {
-	
-	private Cookies cookie;
 
-	public IndexController(Cookies cookie) {
-		this.cookie = cookie;
+	private Result result;
+
+	public IndexController(Result result) {
+		this.result = result;
 	}
 	
 	@Get("/")
 	public void index() {
-		
-		cookie.set("name", "cotrim");
-		System.out.println(cookie.get("name"));
-		
-		cookie.delete("name");
-		System.out.println(cookie.get("name"));
-		
-		cookie.set("name", "vagner");
-		System.out.println(cookie.get("name"));
-		
-		cookie.set("name", "oliveira");
-		System.out.println(cookie.get("name"));
-		
+		result.include("teste", " OK ");
 	}
-
+	
 	@Get("/erro")
 	public void erro() {
 		
