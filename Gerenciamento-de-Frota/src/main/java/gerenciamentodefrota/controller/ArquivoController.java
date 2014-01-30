@@ -9,7 +9,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.download.Download;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import gerenciamentodefrota.dao.ArquivoDAO;
-import gerenciamentodefrota.infra.annotation.Transacional;
+import gerenciamentodefrota.infra.persistence.Transacional;
 import gerenciamentodefrota.model.Arquivo;
 
 @Resource
@@ -47,4 +47,5 @@ public class ArquivoController {
 	@Get("/arquivo")
 	private void lista() {
 	}
+	
 }

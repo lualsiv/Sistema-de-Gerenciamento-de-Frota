@@ -1,11 +1,11 @@
 package gerenciamentodefrota.controller.relatorio;
 
-import gerenciamentodefrota.infra.annotation.Modulo;
+import gerenciamentodefrota.infra.vraptor.Module;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Resource;
 
 @Resource
-@Modulo(nome="relatorio")
+@Module("relatorio")
 public class GastosController {
 
 	@Get("relatorio/gastos/lavagem")

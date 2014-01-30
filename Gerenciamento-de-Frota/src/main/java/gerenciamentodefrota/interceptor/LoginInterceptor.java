@@ -2,9 +2,9 @@ package gerenciamentodefrota.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 
-import gerenciamentodefrota.annotation.Logged;
 import gerenciamentodefrota.controller.LoginController;
 import gerenciamentodefrota.infra.UsuarioSession;
+import gerenciamentodefrota.infra.security.Logged;
 import gerenciamentodefrota.infra.view.Notice;
 import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;

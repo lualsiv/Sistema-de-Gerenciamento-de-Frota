@@ -5,9 +5,9 @@ import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 
-import gerenciamentodefrota.annotation.Permission;
 import gerenciamentodefrota.controller.LoginController;
 import gerenciamentodefrota.infra.UsuarioSession;
+import gerenciamentodefrota.infra.security.Permission;
 import gerenciamentodefrota.infra.view.Notice;
 import gerenciamentodefrota.model.enums.Perfil;
 import br.com.caelum.vraptor.InterceptionException;

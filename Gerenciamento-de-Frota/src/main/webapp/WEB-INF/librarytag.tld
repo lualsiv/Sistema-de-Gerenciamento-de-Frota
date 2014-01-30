@@ -33,6 +33,27 @@
 	</tag>
 
 	<tag>
+		<name>imagem</name>
+		<tagclass>gerenciamentodefrota.infra.taglib.TagImagem</tagclass>
+		<info>Imagem</info>
+		<attribute>
+			<name>arquivo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<tag>
 		<name>datetimepicker</name>
 		<tagclass>gerenciamentodefrota.infra.taglib.TagDateTimePicker</tagclass>
 		<info>datetimepicker</info>

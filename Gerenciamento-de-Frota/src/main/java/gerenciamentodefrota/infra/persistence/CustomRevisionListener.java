@@ -1,4 +1,4 @@
-package gerenciamentodefrota.infra.audit;
+package gerenciamentodefrota.infra.persistence;
 
 import javax.servlet.http.HttpSession;
 

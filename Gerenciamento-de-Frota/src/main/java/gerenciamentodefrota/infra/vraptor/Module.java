@@ -1,4 +1,4 @@
-package gerenciamentodefrota.infra.annotation;
+package gerenciamentodefrota.infra.vraptor;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,8 +8,8 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface Modulo {
+public @interface Module {
 
-	String nome() default "";
+	String value() default "";
 	
 }

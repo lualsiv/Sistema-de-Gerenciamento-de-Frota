@@ -3,11 +3,11 @@ package gerenciamentodefrota.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import gerenciamentodefrota.annotation.Logged;
-import gerenciamentodefrota.annotation.Permission;
-import gerenciamentodefrota.infra.annotation.Transacional;
 import gerenciamentodefrota.dao.FuncionarioDAO;
 import gerenciamentodefrota.dao.UsuarioDAO;
+import gerenciamentodefrota.infra.persistence.Transacional;
+import gerenciamentodefrota.infra.security.Logged;
+import gerenciamentodefrota.infra.security.Permission;
 import gerenciamentodefrota.infra.view.Notice;
 import gerenciamentodefrota.model.Usuario;
 import gerenciamentodefrota.model.enums.Perfil;
